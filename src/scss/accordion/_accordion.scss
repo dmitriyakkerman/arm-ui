@@ -1,0 +1,26 @@
+.accordion {
+
+  > div:first-child {
+    cursor: pointer;
+
+    + div {
+      opacity: 0;
+      height: 0;
+      visibility: hidden;
+      transition: max-height .5s, opacity .3s;
+    }
+  }
+
+  &.active {
+
+    > div:first-child {
+
+      + div {
+        opacity: 1;
+        visibility: visible;
+        height: auto;
+        transition: height .5s, opacity .5s;
+      }
+    }
+  }
+}
