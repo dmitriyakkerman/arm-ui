@@ -9,5 +9,16 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'dist/js'),
     filename: 'arm-ui.min.js'
-  }
+  },
+  module: {
+      rules: [
+          {
+              test: /\.js$/,
+              loader: 'babel-loader',
+              query: {
+                  presets: ['@babel/preset-env']
+              }
+          }
+      ]
+  },
 };

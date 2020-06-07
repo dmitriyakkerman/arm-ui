@@ -10,6 +10,8 @@
   "author": "Dmitriy Akkerman",
   "license": "ISC",
   "devDependencies": {
+    "@babel/core": "^7.10.2",
+    "@babel/preset-env": "^7.10.2",
     "gulp": "^4.0.2",
     "gulp-autoprefixer": "^6.0.0",
     "gulp-clean-css": "^3.10.0",
@@ -19,6 +21,7 @@
     "webpack-cli": "^3.1.2"
   },
   "dependencies": {
+    "babel-loader": "^8.1.0",
     "node-sass": "^4.13.1"
   }
 }
