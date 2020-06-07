@@ -33,7 +33,7 @@ Markup:
     -------------------------------       
         
     <div class="popup">
-        <div></div>
+        <div>Popup text</div>
     </div>
     <a href="#" class="j-popup">Show popup</a>
 
