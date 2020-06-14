@@ -1,1 +1,0 @@
-import {Accordion, Tabs, Popup} from './index.js'

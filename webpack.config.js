@@ -4,11 +4,11 @@ let webpack = require('webpack');
 module.exports = {
   watch: true,
   entry: {
-    common: './src/js/main.js'
+    'arm-ui': './src/js/arm-ui.js'
   },
   output: {
     path: path.resolve(__dirname, 'dist/js'),
-    filename: 'arm-ui.min.js'
+    filename: '[name].min.js'
   },
   module: {
       rules: [
