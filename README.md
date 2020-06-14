@@ -19,16 +19,14 @@ Markup:
         
     <ul class="tabs">
         <li>
-            <a href="#1">Link1</a>
+            <a href="" data-pane="pane-1">Link 1</a>
         </li>
         <li>
-            <a href="#2">Link2</a>
+            <a href="" data-pane="pane-2">Link 2</a>
         </li>
-    </ul>       
-    <div class="tabs-result">
-        <div>1</div>
-        <div>2</div>
-    </div>    
+    </ul>
+    <div class="tab-pane" id="pane-1">Content 1</div>
+    <div class="tab-pane" id="pane-2">Content 2</div>   
     
     -------------------------------       
         
@@ -39,27 +37,49 @@ Markup:
 
 Modules initialization:
 
-    import {Accordion, Tabs, Popup} from './index.js'
+  With script tag:
     
+    <script src="dist/js/arm-ui.min.js"></script>
+      
+    <script>    
         
-    document.addEventListener('DOMContentLoaded', function() {    
+    document.addEventListener('DOMContentLoaded', function() {
+            
+    Accordion   
         
-        new Accordion({
-            elements: document.querySelectorAll('.accordion')
-        });    
-        
-        new Tabs({
-            tabLinks: document.querySelectorAll('.tabs a'),
-            tabContentBlocks: document.querySelectorAll('.tabs-result div')
-        })
-        
-        new Popup({
-            el: document.querySelector('.popup'),
-            openers:  document.querySelectorAll('.j-popup'),
-            closable: true
-        });
-        
+    new ArmUI.Accordion({
+        elements: document.querySelectorAll('.accordion')
     });
+        
+    Popup
+        
+    new ArmUI.Popup({
+        el: document.querySelector('.popup'),
+        openers:  document.querySelectorAll('.j-popup'),
+        closable: true
+    });
+        
+    Tabs    
+        
+    new ArmUI.Tabs({
+        tabTogglers: document.querySelectorAll('.tabs a')
+    })
+        
+    or
+        
+    new ArmUI.Tabs()
+       
+    Select    
+        
+    new ArmUI.SelectExtended({})    
+           
+    </script>
+    
+    
+With ES6 import:    
+
+    import {Accordion, Tabs, Popup, SelectExtended} from './index.js'    
+
        
       
     
