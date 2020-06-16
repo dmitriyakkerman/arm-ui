@@ -34,6 +34,15 @@ Markup:
         <div>Popup text</div>
     </div>
     <a href="#" class="j-popup">Show popup</a>
+    
+    --------------------------------
+        
+    <select class="my-select" data-placeholder="Выберите опцию">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+    </select>
+
 
 Modules initialization:
 
@@ -69,9 +78,12 @@ Modules initialization:
         
     new ArmUI.Tabs()
        
-    Select    
-        
-    new ArmUI.SelectExtended({})    
+    Select  
+    
+    new ArmUI.SelectExtended(document.querySelector('.my-select'), {
+        containerClass: 'additional-class'
+    });
+
            
     </script>
     
