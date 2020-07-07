@@ -20,6 +20,33 @@ describe('ArmUI testing', () => {
 
 });
 
+describe('Accordion testing', () => {
+
+  //Adding default accordion markup
+
+  document.body.innerHTML = `
+    <div class="accordion">
+      <div>Question1</div>
+      <div>Answer1</div>
+    </div>
+  `;
+
+  //Initializing accordion
+
+  let accordion = new ArmUI.Accordion({
+    elements: document.querySelectorAll('.accordion')
+  });
+
+  test('Accordion should contain root selector', () => {
+    expect(accordion.elements).toBeDefined();
+  });
+
+  test('Accordion should be initialized', () => {
+    expect(accordion).toBeTruthy();
+  });
+
+});
+
 describe('Popup testing', () => {
 
   //Adding default popup markup
@@ -43,21 +70,17 @@ describe('Popup testing', () => {
     expect(popup.el).toBeDefined();
   });
 
-  test('Popup should be initialized', () => {
-    expect(popup).toBeTruthy();
-  });
-
   test('Popup should contain openers', () => {
     expect(popup.openers).toBeTruthy();
+  });
+
+  test('Popup should be initialized', () => {
+    expect(popup).toBeTruthy();
   });
 
 });
 
 describe('Tabs testing', () => {
-
-});
-
-describe('Accordion testing', () => {
 
 });
 
