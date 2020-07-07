@@ -22,12 +22,16 @@ describe('ArmUI testing', () => {
 
 describe('Popup testing', () => {
 
+  //Adding default popup markup
+
   document.body.innerHTML = `
     <div class="popup">
       <div>Popup text</div>
     </div>
     <a href="#" class="j-popup">Show popup</a>
   `;
+
+  //Initializing popup
 
   let popup = new ArmUI.Popup({
     el: document.querySelector('.popup'),
