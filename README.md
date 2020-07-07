@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/dmitriyakkerman/arm-ui.svg?branch=master)](https://travis-ci.org/dmitriyakkerman/arm-ui)
+
 Example:
 
 Styles:  
