@@ -53,6 +53,7 @@
     constructor(options = {}) {
 
       this.tabTogglers = options.tabTogglers || document.querySelectorAll('.tabs [data-pane]');
+
       this.onInit();
     }
 
