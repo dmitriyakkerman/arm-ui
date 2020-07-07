@@ -83,6 +83,7 @@ Modules initialization:
     Select  
     
     new ArmUI.SelectExtended(document.querySelector('.my-select'), {
+        multiSelect: false/true,
         containerClass: 'additional-class'
     });
 

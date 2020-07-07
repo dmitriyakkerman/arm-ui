@@ -163,7 +163,7 @@
         if (!e.target.closest('.popup__container')) {
           that.el.classList.remove('active');
         }
-      })
+      });
 
       let popupClose = that.el.querySelector('.popup__close-btn');
 

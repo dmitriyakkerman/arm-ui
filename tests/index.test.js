@@ -22,6 +22,10 @@ describe('ArmUI testing', () => {
     expect(ArmUI.Popup).toBeDefined();
   });
 
+  test('Defining ArmUI.SelectExtended', () => {
+    expect(ArmUI.SelectExtended).toBeDefined();
+  });
+
 });
 
 describe('Accordion testing', () => {
@@ -99,7 +103,7 @@ describe('Popup testing', () => {
 
   let popup = new ArmUI.Popup({
     el: document.querySelector('.popup'),
-    openers:  document.querySelectorAll('.j-popup'),
+    openers: document.querySelectorAll('.j-popup'),
     closable: true
   });
 
@@ -112,15 +116,39 @@ describe('Popup testing', () => {
   });
 
   test('Popup module should be initialized', () => {
-    expect(popup).toBeTruthy();
+    expect(popup).toBeDefined();
   });
 
 });
 
 describe('SelectExtended testing', () => {
 
-  test('Defining ArmUI.SelextExtended', () => {
-    expect(ArmUI.SelectExtended).toBeDefined();
+  document.body.innerHTML = `
+    <select class="select-default" data-placeholder="Выберите опцию">
+      <option value="1">1</option>
+      <option value="2">2</option>
+    </select>
+  `;
+
+  let select = new ArmUI.SelectExtended(document.querySelector('.select-default'), {
+    multiSelect: true,
+    containerClass: 'additional-class'
+  });
+
+  test('SelectExtended should contain root selector', () => {
+    expect(select.$select).toBeDefined();
+  });
+
+  test('SelectExtended toBe multiselected', () => {
+    expect(select.options.multiSelect).toBeTruthy();
+  });
+
+  test('SelectExtended should have class wrapper', () => {
+    expect(select.options.containerClass).toBeDefined();
+  });
+
+  test('SelectExtended module should be initialized', () => {
+    expect(select).toBeDefined();
   });
 
 });
