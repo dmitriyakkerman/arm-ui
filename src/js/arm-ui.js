@@ -18,9 +18,17 @@
         throw new Error('No accordion root selector/selectors')
       }
 
+      if (options.onLoad) {
+        this.constructor.onLoad(options.onLoad);
+      }
+
       this.elements = options.elements;
 
-      this.onInit()
+      this.onInit();
+    }
+
+    static onLoad(callback) {
+      callback();
     }
 
     onInit() {
@@ -52,20 +60,27 @@
   class Tabs {
     constructor(options = {}) {
 
-      this.tabTogglers = options.tabTogglers || document.querySelectorAll('.tabs [data-pane]');
+      if (options.onLoad) {
+        this.constructor.onLoad(options.onLoad);
+      }
 
+      this.tabTogglers = options.tabTogglers || document.querySelectorAll('.tabs [data-pane]');
       this.onInit();
     }
 
-    onInit() {
-      this.setCurrentOnInit();
-      this.changeCurrent();
+    static onLoad(callback) {
+      callback();
     }
 
     static clearClasses(arr) {
       arr.forEach(function (el) {
         el.classList.remove('active');
       })
+    }
+
+    onInit() {
+      this.setCurrentOnInit();
+      this.changeCurrent();
     }
 
     setCurrentOnInit() {
@@ -109,11 +124,19 @@
         throw new Error('No popup opener selector/selectors')
       }
 
+      if (options.onLoad) {
+        this.constructor.onLoad(options.onLoad);
+      }
+
       this.el = options.el;
       this.openers = options.openers;
       this.closable = options.closable || false;
 
       this.onInit();
+    }
+
+    static onLoad(callback) {
+      callback();
     }
 
     onInit() {
@@ -163,7 +186,7 @@
         if (!e.target.closest('.popup__container')) {
           that.el.classList.remove('active');
         }
-      });
+      })
 
       let popupClose = that.el.querySelector('.popup__close-btn');
 
@@ -186,6 +209,10 @@
       this.placeholder = this.$select.dataset['placeholder'] || '';
 
       this.options = options || {};
+
+      if (options.onLoad) {
+        this.constructor.onLoad(options.onLoad);
+      }
 
       if (typeof this.options.multiSelect === 'undefined') {
         this.options.multiSelect = false;
@@ -227,6 +254,10 @@
       if (!this.options.multiSelect) {
         this.value = null;
       }
+    }
+
+    static onLoad(callback) {
+      callback();
     }
 
     static generateId() {
