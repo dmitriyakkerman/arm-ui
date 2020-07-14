@@ -89,11 +89,16 @@ Modules initialization:
 
            
     </script>
-    
+
+Require:
+
+    const ArmUI = require('../src/js/arm-ui');
     
 With ES6 import:    
-
-    import {Accordion, Tabs, Popup, SelectExtended} from './index.js'    
+    
+    import ArmUI from './arm-ui.js'       
+    or    
+    import {Accordion, Tabs, Popup, SelectExtended} from './arm-ui.js'    
 
        
       
