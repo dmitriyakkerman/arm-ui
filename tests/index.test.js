@@ -26,11 +26,15 @@ describe('ArmUI testing', () => {
     expect(ArmUI.SelectExtended).toBeDefined();
   });
 
+  test('Defining ArmUI.Dropdown', () => {
+    expect(ArmUI.Dropdown).toBeDefined();
+  });
+
 });
 
 describe('Accordion testing', () => {
 
-  //Adding default accordion markup
+  //Default accordion markup
 
   document.body.innerHTML = `
     <div class="accordion">
@@ -39,7 +43,7 @@ describe('Accordion testing', () => {
     </div>
   `;
 
-  //Initializing accordion
+  //Accordion initialization
 
   let accordion = new ArmUI.Accordion({
     elements: document.querySelectorAll('.accordion')
@@ -57,7 +61,7 @@ describe('Accordion testing', () => {
 
 describe('Tabs testing', () => {
 
-  //Adding default tabs markup
+  //Default tabs markup
 
   document.body.innerHTML = `
     <ul class="tabs">
@@ -72,7 +76,7 @@ describe('Tabs testing', () => {
     <div class="tab-pane" id="pane-2">Content 2</div>   
   `;
 
-  //Initializing tabs
+  //Tabs initialization
 
   let tabs = new ArmUI.Tabs({
     tabTogglers: document.querySelectorAll('.tabs a')
@@ -90,7 +94,7 @@ describe('Tabs testing', () => {
 
 describe('Popup testing', () => {
 
-  //Adding default popup markup
+  //Default popup markup
 
   document.body.innerHTML = `
     <div class="popup">
@@ -99,7 +103,7 @@ describe('Popup testing', () => {
     <a href="#" class="j-popup">Show popup</a>
   `;
 
-  //Initializing popup
+  //Popup initialization
 
   let popup = new ArmUI.Popup({
     el: document.querySelector('.popup'),
@@ -123,12 +127,16 @@ describe('Popup testing', () => {
 
 describe('SelectExtended testing', () => {
 
+  //Default select markup
+
   document.body.innerHTML = `
     <select class="select-default" data-placeholder="Выберите опцию">
       <option value="1">1</option>
       <option value="2">2</option>
     </select>
   `;
+
+  //Select initialization
 
   let select = new ArmUI.SelectExtended(document.querySelector('.select-default'), {
     multiSelect: true,
@@ -149,6 +157,35 @@ describe('SelectExtended testing', () => {
 
   test('SelectExtended module should be initialized', () => {
     expect(select).toBeDefined();
+  });
+
+});
+
+describe('Dropdown testing', () => {
+
+  //Default dropdown markup
+
+  document.body.innerHTML = `
+    <div id="dropdown-lang" class="dropdown">
+      <a href="#" class="toggler">Some text</a>
+      <ul class="dropdown__content">
+        <li>
+          <a href="">111</a>
+        </li>
+      </ul>
+    </div>
+  `;
+
+  //Dropdown initialization
+
+  let dropdown = new ArmUI.Dropdown(document.getElementById('dropdown-lang'));
+
+  test('Dropdown module should be defined', () => {
+    expect(dropdown).toBeDefined();
+  });
+
+  test('Dropdown should contain root selector', () => {
+    expect(dropdown.$el).toBeDefined();
   });
 
 });
