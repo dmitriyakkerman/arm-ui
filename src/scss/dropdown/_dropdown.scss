@@ -1,0 +1,35 @@
+.dropdown {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-transform: uppercase;
+
+  &__toggle {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    box-sizing: border-box;
+    text-decoration: none;
+  }
+
+  &__content {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    box-sizing: border-box;
+    text-align: center;
+    opacity: 0;
+    z-index: 995;
+  }
+
+  &.open {
+
+    > .dropdown__content {
+      opacity: 1;
+    }
+  }
+}

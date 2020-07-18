@@ -29,14 +29,14 @@ Markup:
     </ul>
     <div class="tab-pane" id="pane-1">Content 1</div>
     <div class="tab-pane" id="pane-2">Content 2</div>   
-    
+        
     -------------------------------       
         
     <div class="popup">
         <div>Popup text</div>
     </div>
-    <a href="#" class="j-popup">Show popup</a>
-    
+    <a href="#" class="j-popup">Show popup</a>   
+     
     --------------------------------
         
     <select class="my-select" data-placeholder="Выберите опцию">
@@ -44,8 +44,18 @@ Markup:
         <option value="2">2</option>
         <option value="3">3</option>
     </select>
-
-
+           
+    ---------------------------------              
+           
+    <div id="dropdown-lang" class="dropdown">
+      <a href="#" class="toggler">Some text</a>
+      <ul class="dropdown__content">
+        <li>
+          <a href="">111</a>
+        </li>
+      </ul>
+    </div>  
+ 
 Modules initialization:
 
   With script tag:
@@ -90,7 +100,11 @@ Modules initialization:
         multiSelect: false,
         onChange: function() {},
         onLoad: function() {}
-    });
+    });   
+    
+    Dropdown   
+    
+    new ArmUI.Dropdown(document.getElementById('dropdown-lang'));
            
     </script>
 
@@ -102,7 +116,7 @@ With ES6 import:
     
     import ArmUI from './arm-ui.js'       
     or    
-    import {Accordion, Tabs, Popup, SelectExtended} from './arm-ui.js'    
+    import {Accordion, Tabs, Popup, SelectExtended, Dropdown} from './arm-ui.js'    
 
        
       
