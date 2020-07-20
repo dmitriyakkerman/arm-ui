@@ -124,12 +124,18 @@
         throw new Error('No popup opener selector/selectors')
       }
 
-      if (options.onLoad) {
+      if (options.onLoad && typeof options.onLoad === 'function') {
         this.constructor.onLoad(options.onLoad);
       }
+      else {
+        return
+      }
 
-      if (options.onOpen) {
+      if (options.onOpen && typeof options.onOpen === 'function') {
         this.constructor.onOpen(options.onOpen, options.openers);
+      }
+      else {
+        return
       }
 
       this.el = options.el;
