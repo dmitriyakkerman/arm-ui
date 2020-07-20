@@ -79,7 +79,8 @@ Modules initialization:
         el: document.querySelector('.popup'),
         openers:  document.querySelectorAll('.j-popup'),
         closable: true,
-        onLoad: function() {}
+        onLoad: function() {},
+        onOpen: function() {}
     });
         
     Tabs    
