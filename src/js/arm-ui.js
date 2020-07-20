@@ -128,6 +128,10 @@
         this.constructor.onLoad(options.onLoad);
       }
 
+      if (options.onOpen) {
+        this.constructor.onOpen(options.onOpen, options.openers);
+      }
+
       this.el = options.el;
       this.openers = options.openers;
       this.closable = options.closable || false;
@@ -137,6 +141,16 @@
 
     static onLoad(callback) {
       callback();
+    }
+
+    static onOpen(callback, openers) {
+
+      openers.forEach(function(opener) {
+        opener.addEventListener('click', function (e) {
+          e.preventDefault();
+          callback();
+        })
+      })
     }
 
     onInit() {
