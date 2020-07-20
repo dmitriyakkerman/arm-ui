@@ -148,7 +148,7 @@
       openers.forEach(function(opener) {
         opener.addEventListener('click', function (e) {
           e.preventDefault();
-          callback();
+          callback(e);
         })
       })
     }
