@@ -124,33 +124,24 @@
         throw new Error('No popup opener selector/selectors')
       }
 
-      if (options.onLoad && typeof options.onLoad === 'function') {
-        this.constructor.onLoad(options.onLoad);
-      }
-
-      if (options.onOpen && typeof options.onOpen === 'function') {
-        this.constructor.onOpen(options.onOpen, options.openers);
-      }
-
       this.el = options.el;
       this.openers = options.openers;
       this.closable = options.closable || false;
-
+      this.mergeOptions(options);
       this.onInit();
+      this.options.onLoad();
     }
 
-    static onLoad(callback) {
-      callback();
-    }
+    mergeOptions(options) {
+      let that = this;
 
-    static onOpen(callback, openers) {
+      let defaults = {
+        onLoad: function() {},
+        onOpen: function () {},
+        onClose: function () {}
+      };
 
-      openers.forEach(function(opener) {
-        opener.addEventListener('click', function (e) {
-          e.preventDefault();
-          callback(e);
-        })
-      })
+      that.options = Object.assign(defaults, options);
     }
 
     onInit() {
@@ -187,6 +178,8 @@
         popupOpen.addEventListener('click', function (e) {
           e.preventDefault();
           that.el.classList.add('active');
+
+          that.options.onOpen.call(that);
         })
       })
     }
@@ -199,8 +192,9 @@
 
         if (!e.target.closest('.popup__container')) {
           that.el.classList.remove('active');
+          that.options.onClose.call(that);
         }
-      })
+      });
 
       let popupClose = that.el.querySelector('.popup__close-btn');
 
@@ -208,6 +202,7 @@
         popupClose.addEventListener('click', function (e) {
           e.preventDefault();
           that.el.classList.remove('active');
+          that.options.onClose.call(that);
         })
       }
     }
