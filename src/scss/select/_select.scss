@@ -1,0 +1,15 @@
+.select-ext {
+  cursor: pointer;
+
+  &__options {
+    opacity: 0;
+    transition: opacity .3s ease;
+  }
+
+  &.active {
+
+    .select-ext__options {
+      opacity: 1;
+    }
+  }
+}

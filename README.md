@@ -69,8 +69,7 @@ Modules initialization:
     Accordion   
         
     new ArmUI.Accordion({
-        elements: document.querySelectorAll('.accordion'),
-        onLoad: function() {}
+        elements: document.querySelectorAll('.accordion')
     });
         
     Popup
@@ -86,8 +85,7 @@ Modules initialization:
     Tabs    
         
     new ArmUI.Tabs({
-        tabTogglers: document.querySelectorAll('.tabs a'),
-        onLoad: function() {}
+        tabTogglers: document.querySelectorAll('.tabs a')
     })
         
     or
@@ -99,8 +97,7 @@ Modules initialization:
     new ArmUI.SelectExtended(document.querySelector('.my-select'), {
         containerClass: 'additional-class',
         multiSelect: false,
-        onChange: function() {},
-        onLoad: function() {}
+        onChange: function() {}
     });   
     
     Dropdown   
