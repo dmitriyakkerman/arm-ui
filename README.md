@@ -79,7 +79,8 @@ Modules initialization:
         openers:  document.querySelectorAll('.j-popup'),
         closable: true,
         onLoad: function() {},
-        onOpen: function() {}
+        onOpen: function() {},
+        onClose: function() {}
     });
         
     Tabs    
@@ -102,7 +103,10 @@ Modules initialization:
     
     Dropdown   
     
-    new ArmUI.Dropdown(document.getElementById('dropdown-lang'));
+    new ArmUI.Dropdown(document.getElementById('dropdown-lang'), {
+        onOpen: function() {},
+        onClose: function() {}
+    });
            
     </script>
 

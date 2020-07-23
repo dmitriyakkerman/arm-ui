@@ -23,7 +23,6 @@
       }
 
       this.elements = options.elements;
-
       this.onInit();
     }
 
@@ -219,10 +218,6 @@
 
       this.options = options || {};
 
-      if (options.onLoad) {
-        this.constructor.onLoad(options.onLoad);
-      }
-
       if (typeof this.options.multiSelect === 'undefined') {
         this.options.multiSelect = false;
       }
@@ -263,10 +258,6 @@
       if (!this.options.multiSelect) {
         this.value = null;
       }
-    }
-
-    static onLoad(callback) {
-      callback();
     }
 
     static generateId() {
