@@ -6,6 +6,10 @@
     transition: opacity .3s ease;
   }
 
+  &-multi-option {
+    display: block;
+  }
+
   &.active {
 
     .select-ext__options {

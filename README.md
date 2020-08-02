@@ -98,6 +98,7 @@ Modules initialization:
     new ArmUI.SelectExtended(document.querySelector('.my-select'), {
         containerClass: 'additional-class',
         multiSelect: false,
+        multiSelectedText: 'Выбрано'
         onChange: function() {}
     });   
     
