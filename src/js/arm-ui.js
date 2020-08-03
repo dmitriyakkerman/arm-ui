@@ -14,20 +14,8 @@
   class Accordion {
     constructor(options = {}) {
 
-      if (!options.elements) {
-        throw new Error('No accordion root selector/selectors')
-      }
-
-      if (options.onLoad) {
-        this.constructor.onLoad(options.onLoad);
-      }
-
-      this.elements = options.elements;
+      this.elements = options.elements || document.querySelectorAll('.accordion');
       this.onInit();
-    }
-
-    static onLoad(callback) {
-      callback();
     }
 
     onInit() {

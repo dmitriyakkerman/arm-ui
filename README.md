@@ -12,10 +12,7 @@ Markup:
         <div>Question1</div>
         <div>Answer1</div>
     </div>
-    <div class="accordion">
-        <div>Question2</div>
-        <div>Answer2</div>
-    </div>    
+      
     
     ------------------------------    
         
@@ -71,7 +68,11 @@ Modules initialization:
     new ArmUI.Accordion({
         elements: document.querySelectorAll('.accordion')
     });
+       
+    or
         
+    new ArmUI.Accordion();  
+     
     Popup
         
     new ArmUI.Popup({
