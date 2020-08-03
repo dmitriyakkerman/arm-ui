@@ -90,6 +90,7 @@
 
     onInit() {
       this.setCurrentOnInit();
+      this.initClasses();
       this.changeCurrent();
     }
 
@@ -100,6 +101,14 @@
 
       currentTabToggler.classList.add('active');
       currentPane.classList.add('active');
+    }
+
+    initClasses() {
+
+      this.tabTogglers.forEach(function(tabToggler) {
+        let matchedPane = document.getElementById(tabToggler.dataset.pane);
+        matchedPane.classList.add('tab-pane')
+      })
     }
 
     changeCurrent() {

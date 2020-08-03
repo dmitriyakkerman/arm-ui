@@ -27,8 +27,8 @@ Markup:
             <a href="" data-pane="pane-2">Link 2</a>
         </li>
     </ul>
-    <div class="tab-pane" id="pane-1">Content 1</div>
-    <div class="tab-pane" id="pane-2">Content 2</div>   
+    <div id="pane-1">Content 1</div>
+    <div id="pane-2">Content 2</div>   
         
     -------------------------------       
         
