@@ -120,9 +120,4 @@ With ES6 import:
     
     import ArmUI from './arm-ui.js'       
     or    
-    import {Accordion, Tabs, Popup, SelectExtended, Dropdown} from './arm-ui.js'    
-
-       
-      
-    
-    
+    import {Accordion, Tabs, Popup, SelectExtended, Dropdown} from './arm-ui.js'
