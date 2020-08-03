@@ -59,10 +59,6 @@
   class Tabs {
     constructor(options = {}) {
 
-      if (options.onLoad) {
-        this.constructor.onLoad(options.onLoad);
-      }
-
       this.tabTogglers = options.tabTogglers || document.querySelectorAll('.tabs [data-pane]');
       this.mergeOptions(options);
       this.options.onLoad();
@@ -76,10 +72,6 @@
       }
 
       this.options = Object.assign(defaults, options)
-    }
-
-    static onLoad(callback) {
-      callback();
     }
 
     static clearClasses(arr) {
