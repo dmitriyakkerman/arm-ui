@@ -199,6 +199,13 @@
 
       let that = this;
 
+      document.addEventListener('keydown', function(e) {
+        if(e.key === "Escape") {
+          that.el.classList.remove('active');
+          that.options.onClose.call(that);
+        }
+      })
+
       that.el.addEventListener('click', function (e) {
 
         if (!e.target.closest('.popup__container')) {
