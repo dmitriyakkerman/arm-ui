@@ -64,7 +64,18 @@
       }
 
       this.tabTogglers = options.tabTogglers || document.querySelectorAll('.tabs [data-pane]');
+      this.mergeOptions(options);
+      this.options.onLoad();
       this.onInit();
+    }
+
+    mergeOptions(options) {
+
+      let defaults = {
+        onLoad() {}
+      }
+
+      this.options = Object.assign(defaults, options)
     }
 
     static onLoad(callback) {

@@ -86,7 +86,8 @@ Modules initialization:
     Tabs    
         
     new ArmUI.Tabs({
-        tabTogglers: document.querySelectorAll('.tabs a')
+        tabTogglers: document.querySelectorAll('.tabs a'),
+        onLoad: function() {}
     })
         
     or
