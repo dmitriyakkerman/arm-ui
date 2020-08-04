@@ -192,7 +192,7 @@
           that.el.classList.remove('active');
           that.options.onClose.call(that);
         }
-      })
+      });
 
       that.el.addEventListener('click', function (e) {
 
