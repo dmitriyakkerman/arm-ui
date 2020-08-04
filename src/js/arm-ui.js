@@ -178,7 +178,7 @@
           e.preventDefault();
           that.el.classList.add('active');
 
-          that.options.onOpen.call(that);
+          that.options.onOpen.call(that, e);
         })
       })
     }
