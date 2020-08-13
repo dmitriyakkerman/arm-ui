@@ -11,8 +11,7 @@ Markup:
     <div class="accordion">
         <div>Question1</div>
         <div>Answer1</div>
-    </div>
-      
+    </div>      
     
     ------------------------------    
         
