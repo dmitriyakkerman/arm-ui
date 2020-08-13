@@ -55,10 +55,8 @@ Markup:
  
 Modules initialization:
 
-  With script tag:
-    
-    <script src="./dist/js/arm-ui.min.js"></script>
-      
+  With script tag:    
+     
     <script>    
         
     document.addEventListener('DOMContentLoaded', function() {
@@ -122,3 +120,7 @@ With ES6 import:
     import ArmUI from 'arm-ui.js'       
     or    
     import {Accordion, Tabs, Popup, SelectExtended, Dropdown} from 'arm-ui.js'
+    
+Script:
+
+    <script src="./dist/js/arm-ui.min.js"></script>
