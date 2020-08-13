@@ -115,7 +115,7 @@ Modules initialization:
 
 Require:
 
-    const ArmUI = require('../src/js/arm-ui');
+    const ArmUI = require('arm-ui');
     
 With ES6 import:    
     
