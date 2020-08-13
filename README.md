@@ -5,6 +5,20 @@ Example:
 Styles:  
     
     <link rel="stylesheet" href="./dist/css/arm-ui.min.css">
+
+Require:
+
+    const ArmUI = require('arm-ui');
+    
+With ES6 import:    
+    
+    import ArmUI from 'arm-ui.js'       
+    or    
+    import {Accordion, Tabs, Popup, SelectExtended, Dropdown} from 'arm-ui.js'
+    
+Script:
+
+    <script src="./dist/js/arm-ui.min.js"></script>
     
 Markup:
 
@@ -52,14 +66,8 @@ Markup:
       </ul>
     </div>  
  
-Modules initialization:
-
-  With script tag:    
-     
-    <script>    
-        
-    document.addEventListener('DOMContentLoaded', function() {
-            
+Initialization:
+           
     Accordion   
         
     new ArmUI.Accordion({
@@ -107,19 +115,3 @@ Modules initialization:
         onOpen: function() {},
         onClose: function() {}
     });
-           
-    </script>
-
-Require:
-
-    const ArmUI = require('arm-ui');
-    
-With ES6 import:    
-    
-    import ArmUI from 'arm-ui.js'       
-    or    
-    import {Accordion, Tabs, Popup, SelectExtended, Dropdown} from 'arm-ui.js'
-    
-Script:
-
-    <script src="./dist/js/arm-ui.min.js"></script>
