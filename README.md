@@ -57,7 +57,7 @@ Modules initialization:
 
   With script tag:
     
-    <script src="dist/js/arm-ui.min.js"></script>
+    <script src="./dist/js/arm-ui.min.js"></script>
       
     <script>    
         
@@ -119,6 +119,6 @@ Require:
     
 With ES6 import:    
     
-    import ArmUI from './arm-ui.js'       
+    import ArmUI from 'arm-ui.js'       
     or    
-    import {Accordion, Tabs, Popup, SelectExtended, Dropdown} from './arm-ui.js'
+    import {Accordion, Tabs, Popup, SelectExtended, Dropdown} from 'arm-ui.js'
