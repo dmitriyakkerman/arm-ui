@@ -1,8 +1,8 @@
-import {Accordion} from './modules/accordion'
-import {Tabs} from './modules/tabs'
-import {Popup} from './modules/popup'
-import {SelectExtended} from './modules/select'
-import {Dropdown} from './modules/dropdown'
+const Accordion = require('./modules/accordion');
+const Tabs = require('./modules/tabs');
+const Popup = require('./modules/popup');
+const SelectExtended = require('./modules/select');
+const Dropdown = require('./modules/dropdown');
 
 (function (root, factory) {
   if (typeof define === 'function' && define.amd) {

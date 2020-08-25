@@ -1,4 +1,4 @@
-export class Popup {
+class Popup {
   constructor(options = {}) {
 
     if (!options.el) {
@@ -99,3 +99,5 @@ export class Popup {
     }
   }
 }
+
+module.exports = Popup;

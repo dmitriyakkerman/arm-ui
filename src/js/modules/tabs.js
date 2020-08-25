@@ -1,4 +1,4 @@
-export class Tabs {
+class Tabs {
   constructor(options = {}) {
 
     this.tabTogglers = options.tabTogglers || document.querySelectorAll('.tabs [data-pane]');
@@ -64,3 +64,5 @@ export class Tabs {
     })
   }
 }
+
+module.exports = Tabs;

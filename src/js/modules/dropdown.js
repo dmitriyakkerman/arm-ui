@@ -1,4 +1,4 @@
-export class Dropdown {
+class Dropdown {
 
   constructor($el, options) {
     if (!$el) {
@@ -154,3 +154,5 @@ export class Dropdown {
     that.options.onClose.call(that);
   }
 }
+
+module.exports = Dropdown;

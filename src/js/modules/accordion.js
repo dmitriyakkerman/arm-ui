@@ -1,4 +1,4 @@
-export class Accordion {
+class Accordion {
   constructor(options = {}) {
 
     this.elements = options.elements || document.querySelectorAll('.accordion');
@@ -30,3 +30,6 @@ export class Accordion {
     })
   }
 }
+
+module.exports = Accordion;
+

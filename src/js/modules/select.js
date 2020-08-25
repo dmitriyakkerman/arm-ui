@@ -1,4 +1,4 @@
-export class SelectExtended {
+class SelectExtended {
 
   constructor($el, options) {
     let that = this;
@@ -265,3 +265,5 @@ export class SelectExtended {
   }
 
 }
+
+module.exports = SelectExtended;
