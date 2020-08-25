@@ -1,35 +1,47 @@
-class Accordion {
-  constructor(options = {}) {
-
-    this.elements = options.elements || document.querySelectorAll('.accordion');
-    this.onInit();
+(function (root, factory) {
+  if (typeof define === 'function' && define.amd) {
+    define([], factory);
+  } else if (typeof module === 'object' && module.exports) {
+    module.exports = factory();
+  } else {
+    root.Accordion = factory();
   }
+}(typeof self !== 'undefined' ? self : this, function () {
 
-  onInit() {
-    this.addClasses();
-    this.toggleState();
-  }
+  class Accordion {
+    constructor(options = {}) {
 
-  addClasses() {
+      this.elements = options.elements || document.querySelectorAll('.accordion');
+      this.onInit();
+    }
 
-    let that = this;
+    onInit() {
+      this.addClasses();
+      this.toggleState();
+    }
 
-    that.elements.forEach(function (element) {
-      element.classList.add('accordion')
-    })
-  }
+    addClasses() {
 
-  toggleState() {
+      let that = this;
 
-    let that = this;
-
-    that.elements.forEach(function (element) {
-      element.querySelector('div:first-child').addEventListener('click', function () {
-        element.classList.toggle('active')
+      that.elements.forEach(function (element) {
+        element.classList.add('accordion')
       })
-    })
-  }
-}
+    }
 
-module.exports = Accordion;
+    toggleState() {
+
+      let that = this;
+
+      that.elements.forEach(function (element) {
+        element.querySelector('div:first-child').addEventListener('click', function () {
+          element.classList.toggle('active')
+        })
+      })
+    }
+  }
+
+  return Accordion;
+
+}));
 
