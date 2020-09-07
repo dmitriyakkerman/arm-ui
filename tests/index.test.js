@@ -50,7 +50,7 @@ describe('Accordion testing', () => {
   });
 
   test('Accordion should contain root selector', () => {
-    expect(accordion.elements).toBeDefined();
+    expect(accordion.el).toBeDefined();
   });
 
   test('Accordion module should be initialized', () => {
