@@ -14,7 +14,7 @@
       let that = this;
 
       this.id = SelectExtended.generateId();
-      this.$select = $el;
+      this.$select = typeof $el === 'string' ? document.querySelector($el) : $el;
       this.placeholder = this.$select.dataset['placeholder'] || '';
 
       this.options = options || {};

@@ -71,7 +71,7 @@ Initialization:
     Accordion   
         
     new ArmUI.Accordion({
-        elements: document.querySelectorAll('.accordion')
+        el: '.accordion'
     });
        
     or
@@ -81,7 +81,7 @@ Initialization:
     Popup
         
     new ArmUI.Popup({
-        el: document.querySelector('.popup'),
+        el: '.popup',
         openers:  document.querySelectorAll('.j-popup'),
         closable: true,
         onLoad: function() {},
@@ -92,7 +92,7 @@ Initialization:
     Tabs    
         
     new ArmUI.Tabs({
-        tabTogglers: document.querySelectorAll('.tabs a'),
+        tabTogglers: '.tabs a',
         onLoad: function() {}
     })
         
@@ -102,16 +102,16 @@ Initialization:
        
     Select 
      
-    new ArmUI.SelectExtended(document.querySelector('.my-select'), {
+    new ArmUI.SelectExtended('.my-select', {
         containerClass: 'additional-class',
         multiSelect: false,
-        multiSelectedText: 'Выбрано'
+        multiSelectedText: 'Выбрано',
         onChange: function() {}
     });   
     
     Dropdown   
     
-    new ArmUI.Dropdown(document.getElementById('dropdown-lang'), {
+    new ArmUI.Dropdown('#dropdown-lang', {
         onOpen: function() {},
         onClose: function() {}
     });
