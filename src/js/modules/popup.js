@@ -19,7 +19,7 @@
         throw new Error('No popup opener selector/selectors')
       }
 
-      this.el = options.el;
+      this.el = typeof options.el === 'string' ? document.querySelector(options.el) : options.el;
       this.openers = options.openers;
       this.closable = options.closable || false;
       this.mergeOptions(options);
