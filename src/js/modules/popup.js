@@ -22,12 +22,12 @@
       this.el = typeof options.el === 'string' ? document.querySelector(options.el) : options.el;
       this.openers = options.openers;
       this.closable = options.closable || false;
-      this.mergeOptions(options);
-      this.onInit();
+      this.#mergeOptions(options);
+      this.#onInit();
       this.options.onLoad();
     }
 
-    mergeOptions(options) {
+    #mergeOptions(options) {
       let that = this;
 
       let defaults = {
@@ -39,12 +39,12 @@
       that.options = Object.assign(defaults, options);
     }
 
-    onInit() {
-      this.initHTML();
-      this.initEvents();
+    #onInit() {
+      this.#initHTML();
+      this.#initEvents();
     }
 
-    initHTML() {
+    #initHTML() {
       this.el.classList.add('popup');
       this.el.firstElementChild.classList.add('popup__container');
 
@@ -60,7 +60,7 @@
       return this.el;
     }
 
-    initEvents() {
+    #initEvents() {
       this.open();
       this.close();
     }

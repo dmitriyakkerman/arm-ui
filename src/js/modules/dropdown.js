@@ -20,11 +20,11 @@
       options = typeof options === 'undefined' ? {} : options;
 
       that.$el = typeof $el === 'string' ? document.querySelector($el) : $el;
-      that.mergeOptions(options);
-      that.init();
+      that.#mergeOptions(options);
+      that.#init();
     }
 
-    mergeOptions(options) {
+    #mergeOptions(options) {
       let that = this;
 
       let defaults = {
@@ -49,14 +49,14 @@
       that.options = Object.assign(defaults, options);
     }
 
-    init() {
+    #init() {
       let that = this;
 
-      that.initDom();
-      that.initEvents();
+      that.#initDom();
+      that.#initEvents();
     }
 
-    initDom() {
+    #initDom() {
       let that = this;
 
       that.$container = that.$el;
@@ -94,27 +94,25 @@
       that.$content.classList.add(that.options.class.content);
     }
 
-    initEvents() {
+    #initEvents() {
       let that = this;
 
       for (let i = 0; i < that.$toggle.length; i++) {
         that.$toggle[i].addEventListener('click', function (event) {
 
-          that.eventToggleClick(event);
-
+          that.#eventToggleClick(event);
         });
       }
 
       if (that.options.bodyClose) {
         document.addEventListener('click', function (event) {
 
-          that.eventBodyClick(event);
-
+          that.#eventBodyClick(event);
         });
       }
     }
 
-    eventToggleClick(event) {
+    #eventToggleClick(event) {
       event.preventDefault();
 
       let that = this;
@@ -127,15 +125,15 @@
       }
     }
 
-    eventBodyClick(event) {
+    #eventBodyClick(event) {
       let that = this;
 
-      if (!that.elementInDropdown(event.target) ) {
+      if (!that.#elementInDropdown(event.target) ) {
         that.close();
       }
     }
 
-    elementInDropdown($el) {
+    #elementInDropdown($el) {
       let that = this,
         parent = $el;
 

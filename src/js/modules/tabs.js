@@ -15,12 +15,12 @@
           document.querySelectorAll(options.tabTogglers) :
           options.tabTogglers ||
           document.querySelectorAll('.tabs [data-pane]');
-      this.mergeOptions(options);
+      this.#mergeOptions(options);
       this.options.onLoad();
-      this.onInit();
+      this.#onInit();
     }
 
-    mergeOptions(options) {
+    #mergeOptions(options) {
 
       let defaults = {
         onLoad() {}
@@ -35,13 +35,13 @@
       })
     }
 
-    onInit() {
-      this.setCurrentOnInit();
-      this.initClasses();
-      this.changeCurrent();
+    #onInit() {
+      this.#setCurrentOnInit();
+      this.#initClasses();
+      this.#changeCurrent();
     }
 
-    setCurrentOnInit() {
+    #setCurrentOnInit() {
 
       let currentTabToggler = this.tabTogglers[0];
       let currentPane = document.getElementById(currentTabToggler.dataset.pane);
@@ -50,7 +50,7 @@
       currentPane.classList.add('active');
     }
 
-    initClasses() {
+    #initClasses() {
 
       this.tabTogglers.forEach(function(tabToggler) {
         let matchedPane = document.getElementById(tabToggler.dataset.pane);
@@ -58,7 +58,7 @@
       })
     }
 
-    changeCurrent() {
+    #changeCurrent() {
 
       let that = this;
 

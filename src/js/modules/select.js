@@ -25,8 +25,8 @@
 
       this.blocked = false;
 
-      this.initHtml();
-      this.initEvents();
+      this.#initHtml();
+      this.#initEvents();
 
       let value = '';
 
@@ -48,7 +48,7 @@
         },
         set: function (newValue) {
           value = newValue;
-          that._updateValue(value);
+          that.#updateValue(value);
 
           if (typeof this.options.onChange === 'function') {
             that.options.onChange();
@@ -69,7 +69,7 @@
       return SelectExtended.id++;
     }
 
-    initHtml() {
+    #initHtml() {
       this.$select.style.display = 'none';
       this.$el = document.createElement('div');
       this.$el.classList.add('select-ext');
@@ -80,17 +80,17 @@
       }
 
       if (this.options.multiSelect) {
-        this._initMultiSelectHtml();
+        this.#initMultiSelectHtml();
       }
       else {
-        this.$el.appendChild(this._makeCurrentValue());
-        this.$el.appendChild(this._makeOptionGroup());
+        this.$el.appendChild(this.#makeCurrentValue());
+        this.$el.appendChild(this.#makeOptionGroup());
         this.$select.parentElement.insertBefore(this.$el, this.$select);
         this.$el.appendChild(this.$select);
       }
     }
 
-    initEvents() {
+    #initEvents() {
       let that = this;
 
       that.$value.onclick = function (event) {
@@ -142,11 +142,11 @@
       }
     }
 
-    getName() {
+    #getName() {
       return this.$select.name;
     }
 
-    _initMultiSelectHtml() {
+    #initMultiSelectHtml() {
       // Value
       this.$value = document.createElement('div');
       this.$value.classList.add('select-ext__value');
@@ -159,7 +159,7 @@
 
       // Make checkbox options
       for (let i = 0; i < this.$select.options.length; i++) {
-        let $option = this._makeMultiOption(this.$select.options[i].innerHTML, this.$select.options[i].value, this.$select.options[i].dataset['selected']);
+        let $option = this.#makeMultiOption(this.$select.options[i].innerHTML, this.$select.options[i].value, this.$select.options[i].dataset['selected']);
         $group.appendChild($option);
       }
 
@@ -193,7 +193,7 @@
 
     }
 
-    _makeMultiOption(name, value, selected) {
+    #makeMultiOption(name, value, selected) {
       let $option = document.createElement('label');
       $option.classList.add('select-ext-multi-option');
 
@@ -215,14 +215,14 @@
       return $option;
     }
 
-    _makeCurrentValue() {
+    #makeCurrentValue() {
       this.$value = document.createElement('div');
       this.$value.classList.add('select-ext__value');
 
       return this.$value;
     }
 
-    _makeOptionGroup() {
+    #makeOptionGroup() {
       let $group = document.createElement('div');
 
       $group.classList.add('select-ext__options');
@@ -234,9 +234,9 @@
       return $group;
     }
 
-    _updateValue(value) {
+    #updateValue(value) {
       if (value === null) {
-        this._setInactive();
+        this.#setInactive();
 
         return;
       }
@@ -259,7 +259,7 @@
       this.value = null;
     }
 
-    _setInactive() {
+    #setInactive() {
       this.$select.selectIndex = -1;
       this.$value.innerHTML = this.placeholder;
       this.$value.classList.remove('active');
