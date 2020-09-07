@@ -11,7 +11,10 @@
   class Tabs {
     constructor(options = {}) {
 
-      this.tabTogglers = options.tabTogglers || document.querySelectorAll('.tabs [data-pane]');
+      this.tabTogglers = typeof options.tabTogglers === 'string' ?
+          document.querySelectorAll(options.tabTogglers) :
+          options.tabTogglers ||
+          document.querySelectorAll('.tabs [data-pane]');
       this.mergeOptions(options);
       this.options.onLoad();
       this.onInit();
