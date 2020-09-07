@@ -11,7 +11,10 @@
   class Accordion {
     constructor(options = {}) {
 
-      this.elements = options.elements || document.querySelectorAll('.accordion');
+      this.el = typeof options.el === 'string' ?
+          document.querySelectorAll(options.el) :
+          options.el ||
+          document.querySelectorAll('.accordion');
       this.onInit();
     }
 
@@ -24,7 +27,7 @@
 
       let that = this;
 
-      that.elements.forEach(function (element) {
+      that.el.forEach(function (element) {
         element.classList.add('accordion')
       })
     }
@@ -33,8 +36,8 @@
 
       let that = this;
 
-      that.elements.forEach(function (element) {
-        element.querySelector('div:first-child').addEventListener('click', function () {
+      that.el.forEach(function (element) {
+        element.firstElementChild.addEventListener('click', function () {
           element.classList.toggle('active')
         })
       })
