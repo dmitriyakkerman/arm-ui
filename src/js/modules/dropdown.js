@@ -19,7 +19,7 @@
 
       options = typeof options === 'undefined' ? {} : options;
 
-      that.$el = $el;
+      that.$el = typeof $el === 'string' ? document.querySelector($el) : $el;
       that.mergeOptions(options);
       that.init();
     }
