@@ -15,15 +15,15 @@
           document.querySelectorAll(options.el) :
           options.el ||
           document.querySelectorAll('.accordion');
-      this.#onInit();
+      this._onInit();
     }
 
-    #onInit() {
-      this.#addClasses();
-      this.toggleState();
+    _onInit() {
+      this._addClasses();
+      this._toggleState();
     }
 
-    #addClasses() {
+    _addClasses() {
 
       let that = this;
 
@@ -32,7 +32,7 @@
       })
     }
 
-    toggleState() {
+    _toggleState() {
 
       let that = this;
 

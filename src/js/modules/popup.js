@@ -23,7 +23,7 @@
       this.openers = options.openers;
       this.closable = options.closable || false;
       this.#mergeOptions(options);
-      this.#onInit();
+      this._onInit();
       this.options.onLoad();
     }
 
@@ -39,12 +39,12 @@
       that.options = Object.assign(defaults, options);
     }
 
-    #onInit() {
-      this.#initHTML();
-      this.#initEvents();
+    _onInit() {
+      this._initHTML();
+      this._initEvents();
     }
 
-    #initHTML() {
+    _initHTML() {
       this.el.classList.add('popup');
       this.el.firstElementChild.classList.add('popup__container');
 
@@ -60,7 +60,7 @@
       return this.el;
     }
 
-    #initEvents() {
+    _initEvents() {
       this.open();
       this.close();
     }

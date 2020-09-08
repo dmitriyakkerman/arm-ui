@@ -26,7 +26,7 @@
       this.blocked = false;
 
       this.#initHtml();
-      this.#initEvents();
+      this.initEvents();
 
       let value = '';
 
@@ -48,7 +48,7 @@
         },
         set: function (newValue) {
           value = newValue;
-          that.#updateValue(value);
+          that._updateValue(value);
 
           if (typeof this.options.onChange === 'function') {
             that.options.onChange();
@@ -80,17 +80,17 @@
       }
 
       if (this.options.multiSelect) {
-        this.#initMultiSelectHtml();
+        this._initMultiSelectHtml();
       }
       else {
-        this.$el.appendChild(this.#makeCurrentValue());
-        this.$el.appendChild(this.#makeOptionGroup());
+        this.$el.appendChild(this._makeCurrentValue());
+        this.$el.appendChild(this._makeOptionGroup());
         this.$select.parentElement.insertBefore(this.$el, this.$select);
         this.$el.appendChild(this.$select);
       }
     }
 
-    #initEvents() {
+    initEvents() {
       let that = this;
 
       that.$value.onclick = function (event) {
@@ -142,11 +142,11 @@
       }
     }
 
-    #getName() {
+    getName() {
       return this.$select.name;
     }
 
-    #initMultiSelectHtml() {
+    _initMultiSelectHtml() {
       // Value
       this.$value = document.createElement('div');
       this.$value.classList.add('select-ext__value');
@@ -159,7 +159,7 @@
 
       // Make checkbox options
       for (let i = 0; i < this.$select.options.length; i++) {
-        let $option = this.#makeMultiOption(this.$select.options[i].innerHTML, this.$select.options[i].value, this.$select.options[i].dataset['selected']);
+        let $option = this._makeMultiOption(this.$select.options[i].innerHTML, this.$select.options[i].value, this.$select.options[i].dataset['selected']);
         $group.appendChild($option);
       }
 
@@ -193,7 +193,7 @@
 
     }
 
-    #makeMultiOption(name, value, selected) {
+    _makeMultiOption(name, value, selected) {
       let $option = document.createElement('label');
       $option.classList.add('select-ext-multi-option');
 
@@ -215,14 +215,14 @@
       return $option;
     }
 
-    #makeCurrentValue() {
+    _makeCurrentValue() {
       this.$value = document.createElement('div');
       this.$value.classList.add('select-ext__value');
 
       return this.$value;
     }
 
-    #makeOptionGroup() {
+    _makeOptionGroup() {
       let $group = document.createElement('div');
 
       $group.classList.add('select-ext__options');
@@ -234,9 +234,9 @@
       return $group;
     }
 
-    #updateValue(value) {
+    _updateValue(value) {
       if (value === null) {
-        this.#setInactive();
+        this._setInactive();
 
         return;
       }
@@ -259,7 +259,7 @@
       this.value = null;
     }
 
-    #setInactive() {
+    _setInactive() {
       this.$select.selectIndex = -1;
       this.$value.innerHTML = this.placeholder;
       this.$value.classList.remove('active');
