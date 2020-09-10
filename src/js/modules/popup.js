@@ -4,7 +4,7 @@
   } else if (typeof module === 'object' && module.exports) {
     module.exports = factory();
   } else {
-    root.Dropdown = factory();
+    root.Popup = factory();
   }
 }(typeof self !== 'undefined' ? self : this, function () {
 
