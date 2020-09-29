@@ -1,0 +1,55 @@
+import {IAccordion} from "../interfaces/IAccordion";
+import {AccordionOptions} from '../types/AccordionOptions'
+
+(function (root, factory) {
+    if (typeof define === 'function' && define.amd) {
+        define([], factory);
+    } else if (typeof module === 'object' && module.exports) {
+        module.exports = factory();
+    } else {
+        root.Accordion = factory();
+    }
+}(typeof self !== 'undefined' ? self : this, function () {
+
+    class Accordion implements IAccordion{
+
+        public options: object;
+        public el?: any;
+
+        constructor(options: AccordionOptions = {}) {
+            this.options = options;
+            this.el = options.el;
+            this.onInit();
+        }
+
+        protected onInit(): void {
+            this.getElementNode();
+            this.addClasses();
+            this.toggleState();
+        }
+
+        private getElementNode(): void {
+            this.el = typeof this.el === 'string' ? document.querySelectorAll(this.el) : this.el || document.querySelectorAll('.accordion');
+        }
+
+        protected addClasses(): void {
+            let that = this;
+
+            that.el.forEach(function (element:HTMLElement) {
+                element.classList.add('accordion')
+            })
+        }
+
+        protected toggleState(): void {
+            let that = this;
+
+            that.el.forEach(function (element:HTMLElement) {
+                element.firstElementChild!.addEventListener('click', function () {
+                    element.classList.toggle('active')
+                })
+            })
+        }
+    }
+
+    return Accordion;
+}));
