@@ -1,3 +1,4 @@
+import {AccordionInterface} from "../interfaces/AccordionInterface";
 import {AccordionOptions} from '../types/AccordionOptions'
 
 (function (root, factory) {
@@ -10,7 +11,7 @@ import {AccordionOptions} from '../types/AccordionOptions'
     }
 }(typeof self !== 'undefined' ? self : this, function () {
 
-    class Accordion {
+    class Accordion implements AccordionInterface {
 
         public options: object;
         public el: any;

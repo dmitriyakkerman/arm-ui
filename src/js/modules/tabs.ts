@@ -1,3 +1,4 @@
+import {TabsInterface} from "../interfaces/TabsInterface";
 import {TabsOptions} from "../types/TabsOptions";
 
 (function (root, factory) {
@@ -10,7 +11,7 @@ import {TabsOptions} from "../types/TabsOptions";
     }
 }(typeof self !== 'undefined' ? self : this, function () {
 
-    class Tabs {
+    class Tabs implements TabsInterface {
         public options: object;
         public tabTogglers: any;
         public onLoad: any = function () {};

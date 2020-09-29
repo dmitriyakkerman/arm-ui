@@ -1,3 +1,4 @@
+import {PopupInterface} from "../interfaces/PopupInterface";
 import {PopupOptions} from "../types/PopupOptions";
 
 (function (root, factory) {
@@ -10,7 +11,7 @@ import {PopupOptions} from "../types/PopupOptions";
     }
 }(typeof self !== 'undefined' ? self : this, function () {
 
-    class Popup {
+    class Popup implements PopupInterface {
         public options: object;
         public el: any;
         public openers: any;
