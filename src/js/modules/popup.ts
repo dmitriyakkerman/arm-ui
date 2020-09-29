@@ -16,9 +16,9 @@ import {PopupOptions} from "../types/PopupOptions";
         public el: any;
         public openers: any;
         public closable: boolean;
-        public onLoad: any = function () {};
-        public onOpen: any = function () {};
-        public onClose: any = function () {};
+        public onLoad: Function = function () {};
+        public onOpen: Function = function () {};
+        public onClose: Function = function () {};
 
         constructor(options:PopupOptions = {}) {
 
@@ -67,7 +67,7 @@ import {PopupOptions} from "../types/PopupOptions";
             let that = this;
 
             that.openers.forEach(function (popupOpen:HTMLElement) {
-                popupOpen.addEventListener('click', function (e) {
+                popupOpen.addEventListener('click', function (e: Event) {
                     e.preventDefault();
                     that.el.classList.add('active');
                     that.onOpen.call(that, e);
@@ -79,7 +79,7 @@ import {PopupOptions} from "../types/PopupOptions";
 
             let that = this;
 
-            document.addEventListener('keydown', function(e) {
+            document.addEventListener('keydown', function(e: KeyboardEvent) {
                 if(e.key === "Escape") {
                     that.el.classList.remove('active');
                     that.onClose.call(that);

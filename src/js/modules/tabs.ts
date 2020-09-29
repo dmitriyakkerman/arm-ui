@@ -14,7 +14,7 @@ import {TabsOptions} from "../types/TabsOptions";
     class Tabs implements TabsInterface {
         public options: object;
         public tabTogglers: any;
-        public onLoad: any = function () {};
+        public onLoad: Function = function () {};
 
         constructor(options:TabsOptions = {}) {
             this.options = Object.assign(this, options);
