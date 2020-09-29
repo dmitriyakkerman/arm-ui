@@ -76,7 +76,6 @@ import {PopupOptions} from "../types/PopupOptions";
         }
 
         public close() {
-
             let that = this;
 
             document.addEventListener('keydown', function(e: KeyboardEvent) {
