@@ -128,7 +128,7 @@
     _eventBodyClick(event) {
       let that = this;
 
-      if (!that.elementInDropdown(event.target) ) {
+      if (!that._elementInDropdown(event.target) ) {
         that.close();
       }
     }

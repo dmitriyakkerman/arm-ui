@@ -11,39 +11,29 @@ import {PopupOptions} from "../types/PopupOptions";
 }(typeof self !== 'undefined' ? self : this, function () {
 
     class Popup {
-
         public options: object;
         public el: any;
         public openers: any;
         public closable: boolean;
-        public onLoad: any;
-        public onOpen: any;
-        public onClose: any;
+        public onLoad: any = function () {};
+        public onOpen: any = function () {};
+        public onClose: any = function () {};
 
         constructor(options:PopupOptions = {}) {
-
-            Object.assign({
-                onLoad: function() {},
-                onOpen: function () {},
-                onClose: function () {}
-            }, options);
 
             if (!options.el) {
                 throw new Error('No popup root selector')
             }
-
             if (!options.openers) {
                 throw new Error('No popup opener selector/selectors')
             }
 
-            this.options = options;
+            this.options = Object.assign(this, options);
             this.el = typeof options.el === 'string' ? document.querySelector(options.el) : options.el;
             this.openers = typeof options.openers === 'string' ? document.querySelectorAll(options.openers) : options.openers;
             this.closable = options.closable || false;
             this.onInit();
-            this.onLoad = options.onLoad();
-            this.onOpen = options.onOpen;
-            this.onClose = options.onClose;
+            this.onLoad();
         }
 
         protected onInit() :void {
@@ -73,14 +63,12 @@ import {PopupOptions} from "../types/PopupOptions";
         }
 
         public open() :void {
-
             let that = this;
 
             that.openers.forEach(function (popupOpen:HTMLElement) {
                 popupOpen.addEventListener('click', function (e) {
                     e.preventDefault();
                     that.el.classList.add('active');
-
                     that.onOpen.call(that, e);
                 })
             })

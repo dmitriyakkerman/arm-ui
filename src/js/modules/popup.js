@@ -14,25 +14,21 @@ exports.__esModule = true;
     var Popup = /** @class */ (function () {
         function Popup(options) {
             if (options === void 0) { options = {}; }
-            Object.assign({
-                onLoad: function () { },
-                onOpen: function () { },
-                onClose: function () { }
-            }, options);
+            this.onLoad = function () { };
+            this.onOpen = function () { };
+            this.onClose = function () { };
             if (!options.el) {
                 throw new Error('No popup root selector');
             }
             if (!options.openers) {
                 throw new Error('No popup opener selector/selectors');
             }
-            this.options = options;
+            this.options = Object.assign(this, options);
             this.el = typeof options.el === 'string' ? document.querySelector(options.el) : options.el;
             this.openers = typeof options.openers === 'string' ? document.querySelectorAll(options.openers) : options.openers;
             this.closable = options.closable || false;
             this.onInit();
-            this.onLoad = options.onLoad();
-            this.onOpen = options.onOpen;
-            this.onClose = options.onClose;
+            this.onLoad();
         }
         Popup.prototype.onInit = function () {
             this.initHTML();
