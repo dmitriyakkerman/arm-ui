@@ -12,24 +12,18 @@ import {AccordionOptions} from '../types/AccordionOptions'
 }(typeof self !== 'undefined' ? self : this, function () {
 
     class Accordion implements AccordionInterface {
-
         public options: object;
         public el: any;
 
         constructor(options: AccordionOptions = {}) {
             this.options = options;
-            this.el = options.el;
+            this.el = typeof options.el === 'string' ? document.querySelectorAll(options.el) : options.el || document.querySelectorAll('.accordion');
             this.onInit();
         }
 
         protected onInit(): void {
-            this.getElementNode();
             this.addClasses();
             this.toggleState();
-        }
-
-        private getElementNode(): void {
-            this.el = typeof this.el === 'string' ? document.querySelectorAll(this.el) : this.el || document.querySelectorAll('.accordion');
         }
 
         protected addClasses(): void {

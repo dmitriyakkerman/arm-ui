@@ -15,16 +15,12 @@ exports.__esModule = true;
         function Accordion(options) {
             if (options === void 0) { options = {}; }
             this.options = options;
-            this.el = options.el;
+            this.el = typeof options.el === 'string' ? document.querySelectorAll(options.el) : options.el || document.querySelectorAll('.accordion');
             this.onInit();
         }
         Accordion.prototype.onInit = function () {
-            this.getElementNode();
             this.addClasses();
             this.toggleState();
-        };
-        Accordion.prototype.getElementNode = function () {
-            this.el = typeof this.el === 'string' ? document.querySelectorAll(this.el) : this.el || document.querySelectorAll('.accordion');
         };
         Accordion.prototype.addClasses = function () {
             var that = this;
