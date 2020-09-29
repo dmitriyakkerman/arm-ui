@@ -13,7 +13,7 @@ import {AccordionOptions} from '../types/AccordionOptions'
     class Accordion {
 
         public options: object;
-        public el?: any;
+        public el: any;
 
         constructor(options: AccordionOptions = {}) {
             this.options = options;

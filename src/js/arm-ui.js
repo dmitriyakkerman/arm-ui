@@ -24,5 +24,4 @@ const Dropdown = require('./modules/dropdown');
   ArmUI.Dropdown = Dropdown;
 
   return ArmUI;
-
 }));
