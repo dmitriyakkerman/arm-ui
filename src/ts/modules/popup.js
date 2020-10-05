@@ -1,5 +1,5 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+exports.__esModule = true;
 (function (root, factory) {
     if (typeof define === 'function' && define.amd) {
         define([], factory);
@@ -11,8 +11,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
         root.Popup = factory();
     }
 }(typeof self !== 'undefined' ? self : this, function () {
-    class Popup {
-        constructor(options = {}) {
+    var Popup = /** @class */ (function () {
+        function Popup(options) {
+            if (options === void 0) { options = {}; }
             this.onLoad = function () { };
             this.onOpen = function () { };
             this.onClose = function () { };
@@ -23,34 +24,34 @@ Object.defineProperty(exports, "__esModule", { value: true });
                 throw new Error('No popup opener selector/selectors');
             }
             this.options = Object.assign(this, options);
-            this.el = (typeof options.el === 'string' ? document.querySelector(options.el) : options.el);
-            this.openers = (typeof options.openers === 'string' ? document.querySelectorAll(options.openers) : options.openers);
+            this.el = typeof options.el === 'string' ? document.querySelector(options.el) : options.el;
+            this.openers = typeof options.openers === 'string' ? document.querySelectorAll(options.openers) : options.openers;
             this.closable = options.closable || false;
             this.onInit();
             this.onLoad();
         }
-        onInit() {
+        Popup.prototype.onInit = function () {
             this.initHTML();
             this.initEvents();
-        }
-        initHTML() {
+        };
+        Popup.prototype.initHTML = function () {
             this.el.classList.add('popup');
             this.el.firstElementChild.classList.add('popup__container');
             if (this.closable) {
-                let popupClose = document.createElement('a');
+                var popupClose = document.createElement('a');
                 popupClose.href = '#';
                 popupClose.classList.add('popup__close-btn');
                 this.el.firstElementChild.appendChild(popupClose);
             }
             document.body.appendChild(this.el);
             return this.el;
-        }
-        initEvents() {
+        };
+        Popup.prototype.initEvents = function () {
             this.open();
             this.close();
-        }
-        open() {
-            let that = this;
+        };
+        Popup.prototype.open = function () {
+            var that = this;
             that.openers.forEach(function (popupOpen) {
                 popupOpen.addEventListener('click', function (e) {
                     e.preventDefault();
@@ -58,9 +59,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
                     that.onOpen.call(that, e);
                 });
             });
-        }
-        close() {
-            let that = this;
+        };
+        Popup.prototype.close = function () {
+            var that = this;
             document.addEventListener('keydown', function (e) {
                 if (e.key === "Escape") {
                     that.el.classList.remove('active');
@@ -73,7 +74,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
                     that.onClose.call(that);
                 }
             });
-            let popupClose = that.el.querySelector('.popup__close-btn');
+            var popupClose = that.el.querySelector('.popup__close-btn');
             if (popupClose) {
                 popupClose.addEventListener('click', function (e) {
                     e.preventDefault();
@@ -81,7 +82,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
                     that.onClose.call(that);
                 });
             }
-        }
-    }
+        };
+        return Popup;
+    }());
     return Popup;
 }));

@@ -1,8 +1,8 @@
-const Accordion = require('./modules/accordion');
-const Tabs = require('./modules/tabs');
-const Popup = require('./modules/popup');
-const SelectExtended = require('./modules/select');
-const Dropdown = require('./modules/dropdown');
+const Accordion = require('../js/modules/accordion');
+const Tabs = require('../js/modules/tabs');
+const Popup = require('../js/modules/popup');
+const SelectExtended = require('../js/modules/select');
+const Dropdown = require('../js/modules/dropdown');
 
 (function (root, factory) {
   if (typeof define === 'function' && define.amd) {

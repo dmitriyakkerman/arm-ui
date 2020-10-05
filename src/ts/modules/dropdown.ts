@@ -34,7 +34,7 @@ import {DropdownInterface} from "../interfaces/DropdownInterface";
             }
 
             this.options = Object.assign(this, options);
-            this.$el = typeof $el === 'string' ? document.querySelector($el) : $el;
+            this.$el = (typeof $el === 'string' ? document.querySelector($el) : $el) as Element;
             this.init();
         }
 
@@ -46,14 +46,14 @@ import {DropdownInterface} from "../interfaces/DropdownInterface";
         private initDom() :void {
             let that = this;
 
-            if (!that.options.togglers.length ) {
-                that.$toggle = [that.$el.querySelector('a.toggler')];
+            if (!that.options.togglers.length) {
+                that.$toggle = [that.$el.querySelector('a.toggler')] as Array<Element>;
             }
             else {
                 that.$toggle = [];
 
                 for (let i = 0; i < that.options.togglers.length; i++) {
-                    that.$toggle[that.$toggle.length] = that.options.togglers[i];
+                    that.$toggle[that.$toggle.length] = that.options.togglers[i] as Element;
                 }
             }
 
@@ -61,7 +61,7 @@ import {DropdownInterface} from "../interfaces/DropdownInterface";
                 that.$content = that.options.content;
             }
             else {
-                that.$content = that.$el.querySelector('.dropdown__content');
+                that.$content = that.$el.querySelector('.dropdown__content') as Element;
             }
 
             that.$el.classList.add(that.options.class.container);
@@ -87,7 +87,7 @@ import {DropdownInterface} from "../interfaces/DropdownInterface";
             }
 
             if (that.options.bodyClose) {
-                document.addEventListener('click', function (event) {
+                document.addEventListener('click', function (event:Event) {
                     that.eventBodyClick(event);
                 });
             }
@@ -123,7 +123,7 @@ import {DropdownInterface} from "../interfaces/DropdownInterface";
                     return true;
                 }
 
-                parent = parent.parentNode;
+                parent = parent.parentNode as Element;
             }
 
             return false;

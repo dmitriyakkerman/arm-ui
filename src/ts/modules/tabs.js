@@ -1,5 +1,5 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+exports.__esModule = true;
 (function (root, factory) {
     if (typeof define === 'function' && define.amd) {
         define([], factory);
@@ -11,55 +11,51 @@ Object.defineProperty(exports, "__esModule", { value: true });
         root.Tabs = factory();
     }
 }(typeof self !== 'undefined' ? self : this, function () {
-    class Tabs {
-        constructor(options = {}) {
+    var Tabs = /** @class */ (function () {
+        function Tabs(options) {
+            if (options === void 0) { options = {}; }
             this.onLoad = function () { };
             this.options = Object.assign(this, options);
-            this.tabTogglers = (typeof options.tabTogglers === 'string' ?
-                document.querySelectorAll(options.tabTogglers) :
-                options.tabTogglers ||
-                    document.querySelectorAll('.tabs [data-pane]'));
+            this.tabTogglers = typeof options.tabTogglers === 'string' ? document.querySelectorAll(options.tabTogglers) : options.tabTogglers || document.querySelectorAll('.tabs [data-pane]');
             this.onInit();
             this.onLoad();
         }
-        static clearClasses(arr) {
+        Tabs.clearClasses = function (arr) {
             arr.forEach(function (el) {
                 el.classList.remove('active');
             });
-        }
-        onInit() {
+        };
+        Tabs.prototype.onInit = function () {
             this.setCurrentOnInit();
             this.initClasses();
             this.changeCurrent();
-        }
-        setCurrentOnInit() {
-            let currentTabToggler = this.tabTogglers[0];
-            let currentPane;
-            if (this.tabTogglers[0] instanceof HTMLElement) {
-                currentPane = document.getElementById(currentTabToggler.dataset.pane);
-            }
+        };
+        Tabs.prototype.setCurrentOnInit = function () {
+            var currentTabToggler = this.tabTogglers[0];
+            var currentPane = document.getElementById(currentTabToggler.dataset.pane);
             currentTabToggler.classList.add('active');
             currentPane.classList.add('active');
-        }
-        initClasses() {
+        };
+        Tabs.prototype.initClasses = function () {
             this.tabTogglers.forEach(function (tabToggler) {
-                let matchedPane = document.getElementById(tabToggler.dataset.pane);
+                var matchedPane = document.getElementById(tabToggler.dataset.pane);
                 matchedPane.classList.add('tab-pane');
             });
-        }
-        changeCurrent() {
-            let that = this;
+        };
+        Tabs.prototype.changeCurrent = function () {
+            var that = this;
             that.tabTogglers.forEach(function (tabToggler) {
                 tabToggler.addEventListener('click', function (e) {
                     e.preventDefault();
                     Tabs.clearClasses(that.tabTogglers);
                     Tabs.clearClasses(document.querySelectorAll('.tab-pane'));
                     this.classList.add('active');
-                    let matchedPane = document.getElementById(this.dataset.pane);
+                    var matchedPane = document.getElementById(this.dataset.pane);
                     matchedPane.classList.add('active');
                 });
             });
-        }
-    }
+        };
+        return Tabs;
+    }());
     return Tabs;
 }));

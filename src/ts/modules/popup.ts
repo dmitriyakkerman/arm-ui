@@ -30,8 +30,8 @@ import {PopupOptions} from "../types/PopupOptions";
             }
 
             this.options = Object.assign(this, options);
-            this.el = typeof options.el === 'string' ? document.querySelector(options.el) : options.el;
-            this.openers = typeof options.openers === 'string' ? document.querySelectorAll(options.openers) : options.openers;
+            this.el = (typeof options.el === 'string' ? document.querySelector(options.el) : options.el) as Element;
+            this.openers = (typeof options.openers === 'string' ? document.querySelectorAll(options.openers) : options.openers) as Array<HTMLElement>;
             this.closable = options.closable || false;
             this.onInit();
             this.onLoad();
@@ -96,7 +96,7 @@ import {PopupOptions} from "../types/PopupOptions";
             let popupClose = that.el.querySelector('.popup__close-btn');
 
             if (popupClose) {
-                popupClose.addEventListener('click', function (e:any) {
+                popupClose.addEventListener('click', function (e:Event) {
                     e.preventDefault();
                     that.el.classList.remove('active');
                     that.onClose.call(that);

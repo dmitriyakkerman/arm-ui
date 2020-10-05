@@ -18,7 +18,12 @@ import {TabsOptions} from "../types/TabsOptions";
 
         constructor(options:TabsOptions = {}) {
             this.options = Object.assign(this, options);
-            this.tabTogglers = typeof options.tabTogglers === 'string' ? document.querySelectorAll(options.tabTogglers) : options.tabTogglers || document.querySelectorAll('.tabs [data-pane]');
+            this.tabTogglers = (
+                typeof options.tabTogglers === 'string' ?
+                document.querySelectorAll(options.tabTogglers) :
+                options.tabTogglers ||
+                document.querySelectorAll('.tabs [data-pane]')
+            ) as Array<HTMLElement>;
             this.onInit();
             this.onLoad();
         }
@@ -37,7 +42,10 @@ import {TabsOptions} from "../types/TabsOptions";
 
         private setCurrentOnInit() :void {
             let currentTabToggler = this.tabTogglers[0];
-            let currentPane = document.getElementById(currentTabToggler.dataset.pane);
+            let currentPane: any;
+            if(this.tabTogglers[0] instanceof HTMLElement) {
+                currentPane = document.getElementById(currentTabToggler.dataset.pane) as Element;
+            }
 
             currentTabToggler.classList.add('active');
             currentPane!.classList.add('active');
@@ -45,7 +53,7 @@ import {TabsOptions} from "../types/TabsOptions";
 
         private initClasses() :void {
             this.tabTogglers.forEach(function(tabToggler:HTMLElement) {
-                let matchedPane = document.getElementById(tabToggler.dataset.pane!);
+                let matchedPane = document.getElementById(tabToggler.dataset.pane!) as Element;
                 matchedPane!.classList.add('tab-pane')
             })
         }
@@ -54,7 +62,7 @@ import {TabsOptions} from "../types/TabsOptions";
             let that = this;
 
             that.tabTogglers.forEach(function (tabToggler:HTMLElement) {
-                tabToggler.addEventListener('click', function (e) {
+                tabToggler.addEventListener('click', function (e: Event) {
                     e.preventDefault();
 
                     Tabs.clearClasses(that.tabTogglers);

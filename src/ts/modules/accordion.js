@@ -1,5 +1,5 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+exports.__esModule = true;
 (function (root, factory) {
     if (typeof define === 'function' && define.amd) {
         define([], factory);
@@ -11,30 +11,32 @@ Object.defineProperty(exports, "__esModule", { value: true });
         root.Accordion = factory();
     }
 }(typeof self !== 'undefined' ? self : this, function () {
-    class Accordion {
-        constructor(options = {}) {
+    var Accordion = /** @class */ (function () {
+        function Accordion(options) {
+            if (options === void 0) { options = {}; }
             this.options = options;
             this.el = typeof options.el === 'string' ? document.querySelectorAll(options.el) : options.el || document.querySelectorAll('.accordion');
             this.onInit();
         }
-        onInit() {
+        Accordion.prototype.onInit = function () {
             this.addClasses();
             this.toggleState();
-        }
-        addClasses() {
-            let that = this;
+        };
+        Accordion.prototype.addClasses = function () {
+            var that = this;
             that.el.forEach(function (element) {
                 element.classList.add('accordion');
             });
-        }
-        toggleState() {
-            let that = this;
+        };
+        Accordion.prototype.toggleState = function () {
+            var that = this;
             that.el.forEach(function (element) {
                 element.firstElementChild.addEventListener('click', function () {
                     element.classList.toggle('active');
                 });
             });
-        }
-    }
+        };
+        return Accordion;
+    }());
     return Accordion;
 }));
