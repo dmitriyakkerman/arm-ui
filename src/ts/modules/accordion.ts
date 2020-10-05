@@ -14,11 +14,11 @@ import {AccordionOptions} from '../types/AccordionOptions'
 
     class Accordion implements AccordionInterface {
         public options: object = {};
-        public el: any;
+        public el: string | NodeListOf<HTMLElement>;
 
         constructor(options: AccordionOptions) {
             this.options = options;
-            this.el = (typeof options.el === 'string' ? document.querySelectorAll(options.el) : options.el || document.querySelectorAll('.accordion')) as NodeListOf<HTMLElement>;
+            this.el = (typeof options.el === 'string' ? document.querySelectorAll(options.el) : options.el || document.querySelectorAll('.accordion') as NodeListOf<HTMLElement>);
             this.onInit();
         }
 
@@ -30,7 +30,7 @@ import {AccordionOptions} from '../types/AccordionOptions'
         protected addClasses(): void {
             let that = this;
 
-            that.el.forEach(function (element: HTMLElement) {
+            (that.el as NodeListOf<HTMLElement>).forEach(function (element: HTMLElement) {
                 element.classList.add('accordion')
             })
         }
@@ -38,7 +38,7 @@ import {AccordionOptions} from '../types/AccordionOptions'
         protected toggleState(): void {
             let that = this;
 
-            that.el.forEach(function (element: HTMLElement) {
+            (that.el as NodeListOf<HTMLElement>).forEach(function (element: HTMLElement) {
                 element.firstElementChild!.addEventListener('click', function () {
                     element.classList.toggle('active')
                 })

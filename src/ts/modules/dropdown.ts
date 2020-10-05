@@ -29,13 +29,13 @@ import {DropdownInterface} from "../interfaces/DropdownInterface";
             open: 'open'
         };
 
-        constructor($el: string | object, options = {}) {
+        constructor($el: string | HTMLElement, options = {}) {
             if (!$el) {
                 return;
             }
 
             this.options = Object.assign(this, options);
-            this.$el = (typeof $el === 'string' ? document.querySelector($el) : $el) as Element;
+            this.$el = (typeof $el === 'string' ? document.querySelector($el) : $el) as HTMLElement;
             this.init();
         }
 
@@ -47,35 +47,35 @@ import {DropdownInterface} from "../interfaces/DropdownInterface";
         private initDom(): void {
             let that = this;
 
-            if (!that.options.togglers.length) {
+            if (!(that.options.togglers as NodeListOf<HTMLElement>).length) {
                 that.$toggle = [that.$el.querySelector('a.toggler')] as Array<Element>;
             }
             else {
                 that.$toggle = [];
 
-                for (let i = 0; i < that.options.togglers.length; i++) {
+                for (let i = 0; i < (that.options.togglers as NodeListOf<HTMLElement>).length; i++) {
                     that.$toggle[that.$toggle.length] = that.options.togglers[i] as Element;
                 }
             }
 
-            if (that.options.content) {
+            if (that.options.content as string) {
                 that.$content = that.options.content;
             }
             else {
                 that.$content = that.$el.querySelector('.dropdown__content') as Element;
             }
 
-            that.$el.classList.add(that.options.class.container);
+            that.$el.classList.add(that.options.class.container as string);
 
-            if (that.options.opened) {
+            if (that.options.opened as boolean) {
                 that.open();
             }
 
             for (let i = 0; i < that.$toggle.length; i++) {
-                that.$toggle[i].classList.add(that.options.class.toggle);
+                that.$toggle[i].classList.add(that.options.class.toggle as string);
             }
 
-            that.$content.classList.add(that.options.class.content);
+            that.$content.classList.add(that.options.class.content as string);
         }
 
         protected initEvents(): void {
@@ -87,7 +87,7 @@ import {DropdownInterface} from "../interfaces/DropdownInterface";
                 });
             }
 
-            if (that.options.bodyClose) {
+            if (that.options.bodyClose as boolean) {
                 document.addEventListener('click', function (event:Event) {
                     that.eventBodyClick(event);
                 });
@@ -99,7 +99,7 @@ import {DropdownInterface} from "../interfaces/DropdownInterface";
 
             let that = this;
 
-            if (that.$el.classList.contains(that.options.class.open)) {
+            if (that.$el.classList.contains(that.options.class.open as string)) {
                 that.close();
             }
             else {
