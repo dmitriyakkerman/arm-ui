@@ -31,7 +31,7 @@ import {SelectExtendedOptions} from "../types/SelectExtendedOptions";
         multiSelectedText: string;
         onChange: Function;
 
-        constructor($el: string | Element, options:SelectExtendedOptions) {
+        constructor($el: string | Element, options: SelectExtendedOptions) {
             let that = this;
 
             this.id = SelectExtended.generateId();
@@ -57,7 +57,7 @@ import {SelectExtendedOptions} from "../types/SelectExtendedOptions";
             let value = '';
 
             Object.defineProperty(this, 'value', {
-                get: function () :string {
+                get: function (): string {
                     if (that.options.multiSelect) {
                         let result: any = [];
 
@@ -116,7 +116,7 @@ import {SelectExtendedOptions} from "../types/SelectExtendedOptions";
             }
         }
 
-        private initEvents() :void {
+        private initEvents(): void {
             let that = this;
 
             (that.$value as HTMLElement).onclick = function (event: Event) {
@@ -128,7 +128,7 @@ import {SelectExtendedOptions} from "../types/SelectExtendedOptions";
                 }, 50);
             };
 
-            document.body.addEventListener('click', function (event:Event) {
+            document.body.addEventListener('click', function (event: Event) {
                 if (!that.blocked && (!((event.target! as Element).closest('.select-ext-' + that.id))) as boolean) {
                     that.$el.classList.remove('active');
                 }
@@ -146,7 +146,7 @@ import {SelectExtendedOptions} from "../types/SelectExtendedOptions";
                 that.selectedCount = 0 as number;
 
                 that.$el.querySelectorAll('.select-ext-multi-option').forEach((option: HTMLElement) => {
-                    option.querySelector('input')!.onclick = function (event) {
+                    option.querySelector('input')!.onclick = function (event: Event) {
 
                         if (that.checked as boolean) {
                             that.selectedCount++;
@@ -168,7 +168,7 @@ import {SelectExtendedOptions} from "../types/SelectExtendedOptions";
             }
         }
 
-        private getName() :string {
+        private getName(): string {
             return this.$select.name;
         }
 

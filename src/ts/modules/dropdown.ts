@@ -39,12 +39,12 @@ import {DropdownInterface} from "../interfaces/DropdownInterface";
             this.init();
         }
 
-        protected init() :void {
+        protected init(): void {
             this.initDom();
             this.initEvents();
         }
 
-        private initDom() :void {
+        private initDom(): void {
             let that = this;
 
             if (!that.options.togglers.length) {
@@ -78,7 +78,7 @@ import {DropdownInterface} from "../interfaces/DropdownInterface";
             that.$content.classList.add(that.options.class.content);
         }
 
-        protected initEvents() :void {
+        protected initEvents(): void {
             let that = this;
 
             for (let i = 0; i < that.$toggle.length; i++) {
@@ -94,7 +94,7 @@ import {DropdownInterface} from "../interfaces/DropdownInterface";
             }
         }
 
-        protected eventToggleClick(event: Event) :void {
+        protected eventToggleClick(event: Event): void {
             event.preventDefault();
 
             let that = this;
@@ -107,7 +107,7 @@ import {DropdownInterface} from "../interfaces/DropdownInterface";
             }
         }
 
-        protected eventBodyClick(event:Event) :void {
+        protected eventBodyClick(event: Event): void {
             let that = this;
 
             if (!that.elementInDropdown(event.target) ) {
@@ -115,7 +115,7 @@ import {DropdownInterface} from "../interfaces/DropdownInterface";
             }
         }
 
-         protected elementInDropdown($el:any) :boolean {
+         protected elementInDropdown($el: any): boolean {
             let that = this,
                 parent = $el;
 
@@ -130,12 +130,12 @@ import {DropdownInterface} from "../interfaces/DropdownInterface";
             return false;
         }
 
-        public open() :void {
+        public open(): void {
             this.$el.classList.add(this.options.class.open);
             this.options.onOpen.call(this);
         }
 
-        public close() :void {
+        public close(): void {
             this.$el.classList.remove(this.options.class.open);
             this.options.onClose.call(this);
         }

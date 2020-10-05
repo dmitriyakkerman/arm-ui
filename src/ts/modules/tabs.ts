@@ -29,19 +29,19 @@ import {TabsOptions} from "../types/TabsOptions";
             this.onLoad();
         }
 
-        static clearClasses(arr:any) :void {
-            arr.forEach(function (el:HTMLElement) {
+        static clearClasses(arr: NodeListOf<HTMLElement>): void {
+            arr.forEach(function (el: Element) {
                 el.classList.remove('active');
             })
         }
 
-        protected onInit() :void {
+        protected onInit(): void {
             this.setCurrentOnInit();
             this.initClasses();
             this.changeCurrent();
         }
 
-        private setCurrentOnInit() :void {
+        private setCurrentOnInit(): void {
             let currentTabToggler = this.tabTogglers[0];
             let currentPane: any;
             if(this.tabTogglers[0] instanceof HTMLElement) {
@@ -52,17 +52,17 @@ import {TabsOptions} from "../types/TabsOptions";
             currentPane!.classList.add('active');
         }
 
-        private initClasses() :void {
-            this.tabTogglers.forEach(function(tabToggler:HTMLElement) {
+        private initClasses(): void {
+            this.tabTogglers.forEach(function(tabToggler: HTMLElement) {
                 let matchedPane = document.getElementById(tabToggler.dataset.pane!) as Element;
                 matchedPane!.classList.add('tab-pane')
             })
         }
 
-        protected changeCurrent() :void {
+        protected changeCurrent(): void {
             let that = this;
 
-            that.tabTogglers.forEach(function (tabToggler:HTMLElement) {
+            that.tabTogglers.forEach(function (tabToggler: HTMLElement) {
                 tabToggler.addEventListener('click', function (e: Event) {
                     e.preventDefault();
 

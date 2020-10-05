@@ -38,12 +38,12 @@ import {PopupOptions} from "../types/PopupOptions";
             this.onLoad();
         }
 
-        protected onInit() :void {
+        protected onInit(): void {
             this.initHTML();
             this.initEvents();
         }
 
-        private initHTML() :HTMLElement {
+        private initHTML(): HTMLElement {
             this.el.classList.add('popup');
             this.el.firstElementChild.classList.add('popup__container');
 
@@ -59,12 +59,12 @@ import {PopupOptions} from "../types/PopupOptions";
             return this.el;
         }
 
-        protected initEvents() :void {
+        protected initEvents(): void {
             this.open();
             this.close();
         }
 
-        public open() :void {
+        public open(): void {
             let that = this;
 
             that.openers.forEach(function (popupOpen:HTMLElement) {
@@ -76,7 +76,7 @@ import {PopupOptions} from "../types/PopupOptions";
             })
         }
 
-        public close() {
+        public close(): void {
             let that = this;
 
             document.addEventListener('keydown', function(e: KeyboardEvent) {
@@ -86,9 +86,9 @@ import {PopupOptions} from "../types/PopupOptions";
                 }
             });
 
-            that.el.addEventListener('click', function (e:any) {
+            that.el.addEventListener('click', function (e: Event) {
 
-                if (!e.target.closest('.popup__container')) {
+                if (!(e.target! as Element).closest('.popup__container')) {
                     that.el.classList.remove('active');
                     that.onClose.call(that);
                 }
@@ -97,7 +97,7 @@ import {PopupOptions} from "../types/PopupOptions";
             let popupClose = that.el.querySelector('.popup__close-btn');
 
             if (popupClose) {
-                popupClose.addEventListener('click', function (e:Event) {
+                popupClose.addEventListener('click', function (e: Event) {
                     e.preventDefault();
                     that.el.classList.remove('active');
                     that.onClose.call(that);

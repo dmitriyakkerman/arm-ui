@@ -30,7 +30,7 @@ import {AccordionOptions} from '../types/AccordionOptions'
         protected addClasses(): void {
             let that = this;
 
-            that.el.forEach(function (element:HTMLElement) {
+            that.el.forEach(function (element: HTMLElement) {
                 element.classList.add('accordion')
             })
         }
@@ -38,7 +38,7 @@ import {AccordionOptions} from '../types/AccordionOptions'
         protected toggleState(): void {
             let that = this;
 
-            that.el.forEach(function (element:HTMLElement) {
+            that.el.forEach(function (element: HTMLElement) {
                 element.firstElementChild!.addEventListener('click', function () {
                     element.classList.toggle('active')
                 })
