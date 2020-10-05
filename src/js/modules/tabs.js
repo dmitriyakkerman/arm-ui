@@ -1,8 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+const globals_1 = require("../globals/globals");
 (function (root, factory) {
-    if (typeof define === 'function' && define.amd) {
-        define([], factory);
+    if (typeof globals_1.define === 'function' && globals_1.define.amd) {
+        globals_1.define([], factory);
     }
     else if (typeof module === 'object' && module.exports) {
         module.exports = factory();

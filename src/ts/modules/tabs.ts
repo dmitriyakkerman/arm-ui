@@ -1,3 +1,4 @@
+import {define} from "../globals/globals";
 import {TabsInterface} from "../interfaces/TabsInterface";
 import {TabsOptions} from "../types/TabsOptions";
 

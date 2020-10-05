@@ -1,3 +1,4 @@
+import {define} from "../globals/globals";
 import {DropdownInterface} from "../interfaces/DropdownInterface";
 
 (function (root, factory) {

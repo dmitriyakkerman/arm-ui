@@ -1,3 +1,4 @@
+import {define} from "../globals/globals";
 import {PopupInterface} from "../interfaces/PopupInterface";
 import {PopupOptions} from "../types/PopupOptions";
 

@@ -1,3 +1,4 @@
+import {define} from "../globals/globals";
 import {AccordionInterface} from "../interfaces/AccordionInterface";
 import {AccordionOptions} from '../types/AccordionOptions'
 
