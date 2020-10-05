@@ -24,13 +24,13 @@ import {TabsOptions} from "../types/TabsOptions";
                 document.querySelectorAll(options.tabTogglers) :
                 options.tabTogglers ||
                 document.querySelectorAll('.tabs [data-pane]')
-            ) as Array<HTMLElement>;
+            ) as NodeListOf<HTMLElement>;
             this.onInit();
             this.onLoad();
         }
 
         static clearClasses(arr: NodeListOf<HTMLElement>): void {
-            arr.forEach(function (el: Element) {
+            arr.forEach(function (el: HTMLElement) {
                 el.classList.remove('active');
             })
         }

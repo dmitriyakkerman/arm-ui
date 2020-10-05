@@ -32,7 +32,7 @@ import {PopupOptions} from "../types/PopupOptions";
 
             this.options = Object.assign(this, options);
             this.el = (typeof options.el === 'string' ? document.querySelector(options.el) : options.el) as Element;
-            this.openers = (typeof options.openers === 'string' ? document.querySelectorAll(options.openers) : options.openers) as Array<HTMLElement>;
+            this.openers = (typeof options.openers === 'string' ? document.querySelectorAll(options.openers) : options.openers) as NodeListOf<HTMLElement>;
             this.closable = options.closable || false;
             this.onInit();
             this.onLoad();

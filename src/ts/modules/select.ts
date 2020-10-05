@@ -61,7 +61,7 @@ import {SelectExtendedOptions} from "../types/SelectExtendedOptions";
                     if (that.options.multiSelect) {
                         let result: any = [];
 
-                        (that.$el as Element).querySelectorAll('.select-ext-multi-option').forEach(($opt: Element) => {
+                        ((that.$el as HTMLElement).querySelectorAll('.select-ext-multi-option') as NodeListOf<HTMLElement>).forEach(($opt: HTMLElement) => {
                             if ($opt.querySelector('input')!.checked) {
                                 result.push($opt.querySelector('input')!.value);
                             }
@@ -134,7 +134,7 @@ import {SelectExtendedOptions} from "../types/SelectExtendedOptions";
                 }
             });
 
-            that.$el.querySelectorAll('.select-ext-option').forEach((option: HTMLElement) => {
+            ((that.$el as HTMLElement).querySelectorAll('.select-ext-option') as NodeListOf<HTMLElement>).forEach((option: HTMLElement) => {
                 option.onclick = function () {
                     that.value = option.dataset['value'];
                     that.valueName = option.innerHTML as string;
@@ -145,7 +145,7 @@ import {SelectExtendedOptions} from "../types/SelectExtendedOptions";
             if (that.options.multiSelect) {
                 that.selectedCount = 0 as number;
 
-                that.$el.querySelectorAll('.select-ext-multi-option').forEach((option: HTMLElement) => {
+                ((that.$el as HTMLElement).querySelectorAll('.select-ext-multi-option') as NodeListOf<HTMLElement>).forEach((option: HTMLElement) => {
                     option.querySelector('input')!.onclick = function (event: Event) {
 
                         if (that.checked as boolean) {
@@ -200,7 +200,7 @@ import {SelectExtendedOptions} from "../types/SelectExtendedOptions";
                 if (that.options.multiSelect) {
                     that.selectedCount = 0;
 
-                    that.$el.querySelectorAll('.select-ext-multi-option').forEach((option: HTMLElement) => {
+                    ((that.$el as HTMLElement).querySelectorAll('.select-ext-multi-option') as NodeListOf<HTMLElement>).forEach((option: HTMLElement) => {
                         if (option.querySelector('input')!.checked) {
                             that.selectedCount++;
                         }
