@@ -14,7 +14,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
     class Accordion {
         constructor(options = {}) {
             this.options = options;
-            this.el = typeof options.el === 'string' ? document.querySelectorAll(options.el) : options.el || document.querySelectorAll('.accordion');
+            this.el = (typeof options.el === 'string' ? document.querySelectorAll(options.el) : options.el || document.querySelectorAll('.accordion'));
             this.onInit();
         }
         onInit() {
