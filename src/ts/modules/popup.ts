@@ -13,7 +13,7 @@ import {PopupOptions} from "../types/PopupOptions";
 }(typeof self !== 'undefined' ? self : this, function () {
 
     class Popup implements PopupInterface {
-        public options: object;
+        public options: object = {};
         public el: any;
         public openers: any;
         public closable: boolean;
@@ -21,7 +21,7 @@ import {PopupOptions} from "../types/PopupOptions";
         public onOpen: Function = function () {};
         public onClose: Function = function () {};
 
-        constructor(options:PopupOptions = {}) {
+        constructor(options:PopupOptions) {
 
             if (!options.el) {
                 throw new Error('No popup root selector')

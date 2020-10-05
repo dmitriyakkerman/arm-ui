@@ -1,5 +1,5 @@
 export type PopupOptions = {
-    el?: any,
+    el: any,
     openers?: any,
     closable?: boolean,
     onLoad?: Function,

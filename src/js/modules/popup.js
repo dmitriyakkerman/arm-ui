@@ -13,7 +13,8 @@ const globals_1 = require("../globals/globals");
     }
 }(typeof self !== 'undefined' ? self : this, function () {
     class Popup {
-        constructor(options = {}) {
+        constructor(options) {
+            this.options = {};
             this.onLoad = function () { };
             this.onOpen = function () { };
             this.onClose = function () { };
