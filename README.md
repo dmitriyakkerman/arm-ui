@@ -12,9 +12,9 @@ Require:
     
 With ES6 import:    
     
-    import ArmUI from 'arm-ui.js'       
+    import ArmUI from './dist/js/arm-ui.min.js'       
     or    
-    import {Accordion, Tabs, Popup, SelectExtended, Dropdown} from 'arm-ui.js'
+    import {Accordion, Tabs, Popup, SelectExtended, Dropdown} from './dist/js/arm-ui.min.js'
     
 Script:
 
