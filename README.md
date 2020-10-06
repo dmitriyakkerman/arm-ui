@@ -112,7 +112,7 @@ Initialization:
     Dropdown   
     
     new ArmUI.Dropdown('#dropdown-lang', {
-        togglers: '.togglers',
+        togglers: document.querySelectorAll('.toggler')
         bodyClose: true,
         opened: false,
         onOpen: function() {},
