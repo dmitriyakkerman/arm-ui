@@ -82,7 +82,7 @@ Initialization:
         
     new ArmUI.Popup({
         el: '.popup',
-        openers:  document.querySelectorAll('.j-popup'),
+        openers: '.j-popup',
         closable: true,
         onLoad: function() {},
         onOpen: function() {},
