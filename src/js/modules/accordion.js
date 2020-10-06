@@ -13,8 +13,7 @@ const globals_1 = require("../globals/globals");
     }
 }(typeof self !== 'undefined' ? self : this, function () {
     class Accordion {
-        constructor(options) {
-            this.options = {};
+        constructor(options = {}) {
             this.options = options;
             this.el = (typeof options.el === 'string' ? document.querySelectorAll(options.el) : options.el || document.querySelectorAll('.accordion'));
             this.onInit();
