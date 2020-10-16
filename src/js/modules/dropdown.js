@@ -13,24 +13,20 @@ const globals_1 = require("../globals/globals");
     }
 }(typeof self !== 'undefined' ? self : this, function () {
     class Dropdown {
-        constructor($el, options = {}) {
-            this.onOpen = function () { };
-            this.onClose = function () { };
-            this.opened = false;
-            this.bodyClose = true;
-            this.togglers = [];
-            this.content = null;
-            this.class = {
-                container: 'dropdown',
-                content: 'dropdown__content',
-                toggle: 'dropdown__toggle',
-                open: 'open'
-            };
+        constructor($el, options) {
             if (!$el) {
                 return;
             }
-            this.options = Object.assign(this, options);
             this.$el = (typeof $el === 'string' ? document.querySelector($el) : $el);
+            this.options = options;
+            this.options.togglers = options.togglers;
+            this.options.bodyClose = options.bodyClose || true;
+            this.options.opened = options.opened || false;
+            this.options.class = options.class || {};
+            this.options.class.container = options.class.container || 'dropdown';
+            this.options.class.content = options.class.content || 'dropdown__content';
+            this.options.class.toggle = options.class.toggle || 'dropdown__toggle';
+            this.options.class.open = options.class.open || 'open';
             this.init();
         }
         init() {
@@ -40,33 +36,33 @@ const globals_1 = require("../globals/globals");
         initDom() {
             let that = this;
             if (!that.options.togglers.length) {
-                that.$toggle = [that.$el.querySelector('a.toggler')];
+                Dropdown.$toggle = [that.$el.querySelector('a.toggler')];
             }
             else {
-                that.$toggle = [];
+                Dropdown.$toggle = [];
                 for (let i = 0; i < that.options.togglers.length; i++) {
-                    that.$toggle[that.$toggle.length] = that.options.togglers[i];
+                    Dropdown.$toggle[Dropdown.$toggle.length] = that.options.togglers[i];
                 }
             }
             if (that.options.content) {
-                that.$content = that.options.content;
+                Dropdown.$content = that.options.content;
             }
             else {
-                that.$content = that.$el.querySelector('.dropdown__content');
+                Dropdown.$content = that.$el.querySelector('.dropdown__content');
             }
             that.$el.classList.add(that.options.class.container);
             if (that.options.opened) {
                 that.open();
             }
-            for (let i = 0; i < that.$toggle.length; i++) {
-                that.$toggle[i].classList.add(that.options.class.toggle);
+            for (let i = 0; i < Dropdown.$toggle.length; i++) {
+                Dropdown.$toggle[i].classList.add(that.options.class.toggle);
             }
-            that.$content.classList.add(that.options.class.content);
+            Dropdown.$content.classList.add(that.options.class.content);
         }
         initEvents() {
             let that = this;
-            for (let i = 0; i < that.$toggle.length; i++) {
-                that.$toggle[i].addEventListener('click', function (event) {
+            for (let i = 0; i < Dropdown.$toggle.length; i++) {
+                Dropdown.$toggle[i].addEventListener('click', function (event) {
                     that.eventToggleClick(event);
                 });
             }

@@ -1,5 +1,6 @@
 import {define} from "../globals/globals";
 import {DropdownInterface} from "../interfaces/DropdownInterface";
+import {DropdownOptions} from "../types/DropdownOptions";
 
 (function (root, factory) {
     if (typeof define === 'function' && define.amd) {
@@ -14,28 +15,33 @@ import {DropdownInterface} from "../interfaces/DropdownInterface";
     class Dropdown implements DropdownInterface {
         public $el: any;
         public options: any;
-        public $toggle: any;
-        public $content: any;
-        public onOpen: Function = function () {};
-        public onClose: Function = function() {};
-        public opened: boolean = false;
-        public bodyClose: boolean = true;
-        public togglers: Array<any> = [];
-        public content: null = null;
-        public class: object = {
-            container: 'dropdown',
-            content: 'dropdown__content',
-            toggle: 'dropdown__toggle',
-            open: 'open'
-        };
+        // public $toggle: any;
+        // public $content: any;
+        // public onOpen: Function = function () {};
+        // public onClose: Function = function() {};
+        // public opened: boolean = false;
+        // public bodyClose: boolean = true;
+        // public togglers: Array<any> = [];
+        // public content: null = null;
 
-        constructor($el: string | HTMLElement, options = {}) {
+        static $toggle: any;
+        static $content: any;
+
+        constructor($el: string | HTMLElement, options:DropdownOptions) {
             if (!$el) {
                 return;
             }
 
-            this.options = Object.assign(this, options);
             this.$el = (typeof $el === 'string' ? document.querySelector($el) : $el) as HTMLElement;
+            this.options = options as object;
+            this.options.togglers = options.togglers as HTMLElement | NodeListOf<HTMLElement>;
+            this.options.bodyClose = options.bodyClose || true as boolean;
+            this.options.opened = options.opened || false as boolean;
+            this.options.class = options.class || {} as object;
+            this.options.class.container = options.class.container || 'dropdown' as string;
+            this.options.class.content = options.class.content || 'dropdown__content' as string;
+            this.options.class.toggle = options.class.toggle || 'dropdown__toggle' as string;
+            this.options.class.open = options.class.open || 'open' as string;
             this.init();
         }
 
@@ -48,41 +54,41 @@ import {DropdownInterface} from "../interfaces/DropdownInterface";
             let that = this;
 
             if (!(that.options.togglers as NodeListOf<HTMLElement>).length) {
-                that.$toggle = [that.$el.querySelector('a.toggler')] as Array<Element>;
+                Dropdown.$toggle = [that.$el.querySelector('a.toggler')] as Array<Element>;
             }
             else {
-                that.$toggle = [];
+                Dropdown.$toggle = [];
 
                 for (let i = 0; i < (that.options.togglers as NodeListOf<HTMLElement>).length; i++) {
-                    that.$toggle[that.$toggle.length] = that.options.togglers[i] as Element;
+                    Dropdown.$toggle[Dropdown.$toggle.length] = that.options.togglers[i] as Element;
                 }
             }
 
             if (that.options.content as string) {
-                that.$content = that.options.content;
+                Dropdown.$content = that.options.content;
             }
             else {
-                that.$content = that.$el.querySelector('.dropdown__content') as Element;
+                Dropdown.$content = that.$el.querySelector('.dropdown__content') as Element;
             }
 
             that.$el.classList.add(that.options.class.container as string);
 
-            if (that.options.opened as boolean) {
+            if (that.options.opened) {
                 that.open();
             }
 
-            for (let i = 0; i < that.$toggle.length; i++) {
-                that.$toggle[i].classList.add(that.options.class.toggle as string);
+            for (let i = 0; i < Dropdown.$toggle.length; i++) {
+                Dropdown.$toggle[i].classList.add(that.options.class.toggle as string);
             }
 
-            that.$content.classList.add(that.options.class.content as string);
+            Dropdown.$content.classList.add(that.options.class.content as string);
         }
 
         protected initEvents(): void {
             let that = this;
 
-            for (let i = 0; i < that.$toggle.length; i++) {
-                that.$toggle[i].addEventListener('click', function (event:Event) {
+            for (let i = 0; i < Dropdown.$toggle.length; i++) {
+                Dropdown.$toggle[i].addEventListener('click', function (event:Event) {
                     that.eventToggleClick(event);
                 });
             }

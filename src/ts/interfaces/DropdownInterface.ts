@@ -1,4 +1,4 @@
 export interface DropdownInterface {
-    onOpen: Function,
-    onClose: Function
+    $el: string | HTMLElement,
+    options: object
 }
