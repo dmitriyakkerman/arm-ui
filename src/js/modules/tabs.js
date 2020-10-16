@@ -14,14 +14,10 @@ const globals_1 = require("../globals/globals");
 }(typeof self !== 'undefined' ? self : this, function () {
     class Tabs {
         constructor(options = {}) {
-            this.onLoad = function () { };
-            this.options = Object.assign(this, options);
-            this.tabTogglers = (typeof options.tabTogglers === 'string' ?
-                document.querySelectorAll(options.tabTogglers) :
-                options.tabTogglers ||
-                    document.querySelectorAll('.tabs [data-pane]'));
+            this.options = options;
+            this.options.tabTogglers = document.querySelectorAll(options.tabTogglers);
             this.onInit();
-            this.onLoad();
+            this.options.onLoad();
         }
         static clearClasses(arr) {
             arr.forEach(function (el) {
@@ -34,26 +30,26 @@ const globals_1 = require("../globals/globals");
             this.changeCurrent();
         }
         setCurrentOnInit() {
-            let currentTabToggler = this.tabTogglers[0];
+            let currentTabToggler = this.options.tabTogglers[0];
             let currentPane;
-            if (this.tabTogglers[0] instanceof HTMLElement) {
+            if (this.options.tabTogglers[0] instanceof HTMLElement) {
                 currentPane = document.getElementById(currentTabToggler.dataset.pane);
             }
             currentTabToggler.classList.add('active');
             currentPane.classList.add('active');
         }
         initClasses() {
-            this.tabTogglers.forEach(function (tabToggler) {
+            this.options.tabTogglers.forEach(function (tabToggler) {
                 let matchedPane = document.getElementById(tabToggler.dataset.pane);
                 matchedPane.classList.add('tab-pane');
             });
         }
         changeCurrent() {
             let that = this;
-            that.tabTogglers.forEach(function (tabToggler) {
+            that.options.tabTogglers.forEach(function (tabToggler) {
                 tabToggler.addEventListener('click', function (e) {
                     e.preventDefault();
-                    Tabs.clearClasses(that.tabTogglers);
+                    Tabs.clearClasses(that.options.tabTogglers);
                     Tabs.clearClasses(document.querySelectorAll('.tab-pane'));
                     this.classList.add('active');
                     let matchedPane = document.getElementById(this.dataset.pane);

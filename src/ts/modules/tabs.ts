@@ -13,20 +13,13 @@ import {TabsOptions} from "../types/TabsOptions";
 }(typeof self !== 'undefined' ? self : this, function () {
 
     class Tabs implements TabsInterface {
-        public options: object;
-        public tabTogglers: any;
-        public onLoad: Function = function () {};
+        public options: any;
 
         constructor(options:TabsOptions = {}) {
-            this.options = Object.assign(this, options);
-            this.tabTogglers = (
-                typeof options.tabTogglers === 'string' ?
-                document.querySelectorAll(options.tabTogglers) :
-                options.tabTogglers ||
-                document.querySelectorAll('.tabs [data-pane]')
-            ) as NodeListOf<HTMLElement>;
+            this.options = options as object;
+            this.options.tabTogglers = document.querySelectorAll(options.tabTogglers);
             this.onInit();
-            this.onLoad();
+            this.options.onLoad();
         }
 
         static clearClasses(arr: NodeListOf<HTMLElement>): void {
@@ -42,10 +35,10 @@ import {TabsOptions} from "../types/TabsOptions";
         }
 
         private setCurrentOnInit(): void {
-            let currentTabToggler = this.tabTogglers[0];
-            let currentPane: any;
-            if(this.tabTogglers[0] instanceof HTMLElement) {
-                currentPane = document.getElementById(currentTabToggler.dataset.pane) as Element;
+            let currentTabToggler = this.options.tabTogglers[0];
+            let currentPane: HTMLElement;
+            if(this.options.tabTogglers[0] instanceof HTMLElement) {
+                currentPane = document.getElementById(currentTabToggler.dataset.pane)!;
             }
 
             currentTabToggler.classList.add('active');
@@ -53,8 +46,8 @@ import {TabsOptions} from "../types/TabsOptions";
         }
 
         private initClasses(): void {
-            this.tabTogglers.forEach(function(tabToggler: HTMLElement) {
-                let matchedPane = document.getElementById(tabToggler.dataset.pane!) as Element;
+            this.options.tabTogglers.forEach(function(tabToggler: HTMLElement) {
+                let matchedPane = document.getElementById(tabToggler.dataset.pane!) as HTMLElement;
                 matchedPane!.classList.add('tab-pane')
             })
         }
@@ -62,11 +55,11 @@ import {TabsOptions} from "../types/TabsOptions";
         protected changeCurrent(): void {
             let that = this;
 
-            that.tabTogglers.forEach(function (tabToggler: HTMLElement) {
+            that.options.tabTogglers.forEach(function (tabToggler: HTMLElement) {
                 tabToggler.addEventListener('click', function (e: Event) {
                     e.preventDefault();
 
-                    Tabs.clearClasses(that.tabTogglers);
+                    Tabs.clearClasses(that.options.tabTogglers);
                     Tabs.clearClasses(document.querySelectorAll('.tab-pane'));
 
                     this.classList.add('active');
