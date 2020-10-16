@@ -50,7 +50,7 @@ describe('Accordion testing', () => {
   });
 
   test('Accordion should contain root selector', () => {
-    expect(accordion.el).toBeDefined();
+    expect(accordion.options.el).toBeDefined();
   });
 
   test('Accordion module should be initialized', () => {
@@ -83,7 +83,7 @@ describe('Tabs testing', () => {
   });
 
   test('Tabs should contain togglers', () => {
-    expect(tabs.tabTogglers).toBeDefined();
+    expect(tabs.options.tabTogglers).toBeDefined();
   });
 
   test('Tabs module should be initialized', () => {
@@ -112,11 +112,11 @@ describe('Popup testing', () => {
   });
 
   test('ArmUI.Popup should contain root selector', () => {
-    expect(popup.el).toBeDefined();
+    expect(popup.options.el).toBeDefined();
   });
 
   test('Popup should contain openers', () => {
-    expect(popup.openers).toBeTruthy();
+    expect(popup.options.openers).toBeTruthy();
   });
 
   test('Popup module should be initialized', () => {
