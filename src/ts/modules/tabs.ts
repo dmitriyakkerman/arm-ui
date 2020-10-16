@@ -28,8 +28,8 @@ import {TabsOptions} from "../types/TabsOptions";
             })
         }
 
-        protected onLoad() {
-            if(this.options && this.options.onLoad) {
+        protected onLoad(): void {
+            if(this.options && (this.options.onLoad as Function)) {
                 this.options.onLoad();
             }
         }

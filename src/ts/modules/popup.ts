@@ -13,13 +13,7 @@ import {PopupOptions} from "../types/PopupOptions";
 }(typeof self !== 'undefined' ? self : this, function () {
 
     class Popup implements PopupInterface {
-        public options: object = {};
-        public el: any;
-        public openers: any;
-        public closable: boolean;
-        public onLoad: Function = function () {};
-        public onOpen: Function = function () {};
-        public onClose: Function = function () {};
+        public options: any;
 
         constructor(options:PopupOptions) {
 
@@ -30,10 +24,10 @@ import {PopupOptions} from "../types/PopupOptions";
                 throw new Error('No popup opener selector/selectors')
             }
 
-            this.options = Object.assign(this, options);
-            this.el = (typeof options.el === 'string' ? document.querySelector(options.el) : options.el) as Element;
-            this.openers = (typeof options.openers === 'string' ? document.querySelectorAll(options.openers) : options.openers) as NodeListOf<HTMLElement>;
-            this.closable = options.closable || false;
+            this.options = options as object;
+            this.options.el = (typeof options.el === 'string' ? document.querySelector(options.el) : options.el) as Element;
+            this.options.openers = (typeof options.openers === 'string' ? document.querySelectorAll(options.openers) : options.openers) as NodeListOf<HTMLElement>;
+            this.options.closable = options.closable || false;
             this.onInit();
             this.onLoad();
         }
@@ -43,20 +37,26 @@ import {PopupOptions} from "../types/PopupOptions";
             this.initEvents();
         }
 
-        private initHTML(): HTMLElement {
-            this.el.classList.add('popup');
-            this.el.firstElementChild.classList.add('popup__container');
+        protected onLoad(): void {
+            if(this.options && (this.options.onLoad as Function)) {
+                this.options.onLoad();
+            }
+        }
 
-            if (this.closable) {
+        private initHTML(): HTMLElement {
+            this.options.el.classList.add('popup');
+            this.options.el.firstElementChild.classList.add('popup__container');
+
+            if (this.options.closable) {
                 let popupClose = document.createElement('a');
                 popupClose.href = '#';
                 popupClose.classList.add('popup__close-btn');
-                this.el.firstElementChild.appendChild(popupClose);
+                this.options.el.firstElementChild.appendChild(popupClose);
             }
 
-            document.body.appendChild(this.el);
+            document.body.appendChild(this.options.el);
 
-            return this.el;
+            return this.options.el;
         }
 
         protected initEvents(): void {
@@ -67,11 +67,11 @@ import {PopupOptions} from "../types/PopupOptions";
         public open(): void {
             let that = this;
 
-            that.openers.forEach(function (popupOpen:HTMLElement) {
+            that.options.openers.forEach(function (popupOpen:HTMLElement) {
                 popupOpen.addEventListener('click', function (e: Event) {
                     e.preventDefault();
-                    that.el.classList.add('active');
-                    that.onOpen.call(that, e);
+                    that.options.el.classList.add('active');
+                    that.options.onOpen.call(that, e);
                 })
             })
         }
@@ -81,26 +81,26 @@ import {PopupOptions} from "../types/PopupOptions";
 
             document.addEventListener('keydown', function(e: KeyboardEvent) {
                 if(e.key === "Escape") {
-                    that.el.classList.remove('active');
-                    that.onClose.call(that);
+                    that.options.el.classList.remove('active');
+                    that.options.onClose.call(that);
                 }
             });
 
-            that.el.addEventListener('click', function (e: Event) {
+            that.options.el.addEventListener('click', function (e: Event) {
 
                 if (!(e.target! as Element).closest('.popup__container')) {
-                    that.el.classList.remove('active');
-                    that.onClose.call(that);
+                    that.options.el.classList.remove('active');
+                    that.options.onClose.call(that);
                 }
             });
 
-            let popupClose = that.el.querySelector('.popup__close-btn');
+            let popupClose = that.options.el.querySelector('.popup__close-btn');
 
             if (popupClose) {
                 popupClose.addEventListener('click', function (e: Event) {
                     e.preventDefault();
-                    that.el.classList.remove('active');
-                    that.onClose.call(that);
+                    that.options.el.classList.remove('active');
+                    that.options.onClose.call(that);
                 })
             }
         }
