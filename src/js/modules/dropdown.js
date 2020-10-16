@@ -18,16 +18,38 @@ const globals_1 = require("../globals/globals");
                 return;
             }
             this.$el = (typeof $el === 'string' ? document.querySelector($el) : $el);
-            this.options = options;
-            this.options.togglers = options.togglers;
-            this.options.bodyClose = options.bodyClose || true;
-            this.options.opened = options.opened || false;
-            this.options.class = options.class || {};
-            this.options.class.container = options.class.container || 'dropdown';
-            this.options.class.content = options.class.content || 'dropdown__content';
-            this.options.class.toggle = options.class.toggle || 'dropdown__toggle';
-            this.options.class.open = options.class.open || 'open';
+            if (options) {
+                this.options = options;
+                this.options.togglers = options.togglers;
+                this.options.bodyClose = options.bodyClose || true;
+                this.options.opened = options.opened || false;
+                this.options.onOpen = options.onOpen;
+                this.options.onClose = options.onClose;
+                this.options.class = options.class || {};
+                this.options.class.container = options.class.container || 'dropdown';
+                this.options.class.content = options.class.content || 'dropdown__content';
+                this.options.class.toggle = options.class.toggle || 'dropdown__toggle';
+                this.options.class.open = options.class.open || 'open';
+            }
+            else {
+                this.mergeOptions();
+            }
             this.init();
+        }
+        mergeOptions() {
+            let defaults = {
+                bodyClose: true,
+                opened: false,
+                onOpen: function () { },
+                onClose: function () { },
+                class: {
+                    container: 'dropdown',
+                    content: 'dropdown__content',
+                    toggle: 'dropdown__toggle',
+                    open: 'open'
+                }
+            };
+            this.options = Object.assign(this, defaults);
         }
         init() {
             this.initDom();
@@ -35,7 +57,7 @@ const globals_1 = require("../globals/globals");
         }
         initDom() {
             let that = this;
-            if (!that.options.togglers.length) {
+            if (!that.options.togglers) {
                 Dropdown.$toggle = [that.$el.querySelector('a.toggler')];
             }
             else {

@@ -33,16 +33,42 @@ import {DropdownOptions} from "../types/DropdownOptions";
             }
 
             this.$el = (typeof $el === 'string' ? document.querySelector($el) : $el) as HTMLElement;
-            this.options = options as object;
-            this.options.togglers = options.togglers as HTMLElement | NodeListOf<HTMLElement>;
-            this.options.bodyClose = options.bodyClose || true as boolean;
-            this.options.opened = options.opened || false as boolean;
-            this.options.class = options.class || {} as object;
-            this.options.class.container = options.class.container || 'dropdown' as string;
-            this.options.class.content = options.class.content || 'dropdown__content' as string;
-            this.options.class.toggle = options.class.toggle || 'dropdown__toggle' as string;
-            this.options.class.open = options.class.open || 'open' as string;
+
+            if(options) {
+                this.options = options as object;
+                this.options.togglers = options.togglers as HTMLElement | NodeListOf<HTMLElement>;
+                this.options.bodyClose = options.bodyClose || true as boolean;
+                this.options.opened = options.opened || false as boolean;
+                this.options.onOpen = options.onOpen as Function;
+                this.options.onClose = options.onClose as Function;
+                this.options.class = options.class || {} as object;
+                this.options.class.container = options.class.container || 'dropdown' as string;
+                this.options.class.content = options.class.content || 'dropdown__content' as string;
+                this.options.class.toggle = options.class.toggle || 'dropdown__toggle' as string;
+                this.options.class.open = options.class.open || 'open' as string;
+            }
+            else {
+                this.mergeOptions();
+            }
+
             this.init();
+        }
+
+        private mergeOptions() {
+            let defaults = {
+                bodyClose: true,
+                opened: false,
+                onOpen: function () {},
+                onClose: function () {},
+                class: {
+                    container: 'dropdown',
+                    content: 'dropdown__content',
+                    toggle: 'dropdown__toggle',
+                    open: 'open'
+                }
+            };
+
+            this.options = Object.assign(this, defaults)
         }
 
         protected init(): void {
@@ -53,7 +79,7 @@ import {DropdownOptions} from "../types/DropdownOptions";
         private initDom(): void {
             let that = this;
 
-            if (!(that.options.togglers as NodeListOf<HTMLElement>).length) {
+            if (!that.options.togglers) {
                 Dropdown.$toggle = [that.$el.querySelector('a.toggler')] as Array<Element>;
             }
             else {
