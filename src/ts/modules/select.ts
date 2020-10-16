@@ -26,10 +26,6 @@ import {SelectExtendedOptions} from "../types/SelectExtendedOptions";
         valueName: any;
         selectedCount: any;
         checked: any;
-        containerClass: any;
-        multiSelect: any;
-        multiSelectedText: string;
-        onChange: Function;
 
         constructor($el: string | Element, options: SelectExtendedOptions) {
             let that = this;
@@ -38,15 +34,15 @@ import {SelectExtendedOptions} from "../types/SelectExtendedOptions";
             this.$select = (typeof $el === 'string' ? document.querySelector($el) : $el) as Element;
             this.placeholder = this.$select.dataset['placeholder'] || '';
 
-            this.containerClass = options.containerClass as string;
-            this.multiSelect = options.multiSelect as boolean;
-            this.multiSelectedText = options.multiSelectedText as string;
-            this.onChange = options.onChange as Function;
-
-            this.options = options || {};
-
-            if (typeof this.options.multiSelect === 'undefined') {
-                this.options.multiSelect = false as boolean;
+            if(options) {
+                this.options = options as object;
+                this.options.containerClass = options.containerClass as string;
+                this.options.multiSelect = options.multiSelect as boolean;
+                this.options.multiSelectedText = options.multiSelectedText as string;
+                this.options.onChange = options.onChange as Function;
+            }
+            else {
+                this.mergeOptions();
             }
 
             this.blocked = false;
@@ -85,6 +81,14 @@ import {SelectExtendedOptions} from "../types/SelectExtendedOptions";
             if (!this.options.multiSelect) {
                 this.value = null;
             }
+        }
+
+        private mergeOptions(): void {
+            let defaults = {
+                onChange: function () {}
+            };
+
+            this.options = Object.assign(defaults)
         }
 
         static generateId(): number {

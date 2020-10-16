@@ -54,7 +54,7 @@ import {DropdownOptions} from "../types/DropdownOptions";
             this.init();
         }
 
-        private mergeOptions() {
+        private mergeOptions(): void {
             let defaults = {
                 bodyClose: true,
                 opened: false,

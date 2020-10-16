@@ -18,13 +18,15 @@ const globals_1 = require("../globals/globals");
             this.id = SelectExtended.generateId();
             this.$select = (typeof $el === 'string' ? document.querySelector($el) : $el);
             this.placeholder = this.$select.dataset['placeholder'] || '';
-            this.containerClass = options.containerClass;
-            this.multiSelect = options.multiSelect;
-            this.multiSelectedText = options.multiSelectedText;
-            this.onChange = options.onChange;
-            this.options = options || {};
-            if (typeof this.options.multiSelect === 'undefined') {
-                this.options.multiSelect = false;
+            if (options) {
+                this.options = options;
+                this.options.containerClass = options.containerClass;
+                this.options.multiSelect = options.multiSelect;
+                this.options.multiSelectedText = options.multiSelectedText;
+                this.options.onChange = options.onChange;
+            }
+            else {
+                this.mergeOptions();
             }
             this.blocked = false;
             this.initHtml();
@@ -54,6 +56,12 @@ const globals_1 = require("../globals/globals");
             if (!this.options.multiSelect) {
                 this.value = null;
             }
+        }
+        mergeOptions() {
+            let defaults = {
+                onChange: function () { }
+            };
+            this.options = Object.assign(defaults);
         }
         static generateId() {
             if (!SelectExtended.id) {

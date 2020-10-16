@@ -1,6 +1,10 @@
 export interface SelectExtendedInterface {
-    containerClass: string | object,
-    multiSelect: boolean,
-    multiSelectedText: string,
-    onChange: Function
+    $el: string | HTMLElement,
+    $select: string | HTMLElement,
+    $value: string | HTMLElement,
+    blocked: Boolean,
+    id: number,
+    options: object,
+    placeholder: string,
+    value: any
 }
