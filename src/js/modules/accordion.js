@@ -15,7 +15,7 @@ const globals_1 = require("../globals/globals");
     class Accordion {
         constructor(options = {}) {
             this.options = options;
-            this.el = (typeof options.el === 'string' ? document.querySelectorAll(options.el) : options.el || document.querySelectorAll('.accordion'));
+            this.options.el = (typeof options.el === 'string' ? document.querySelectorAll(options.el) : options.el || document.querySelectorAll('.accordion'));
             this.onInit();
         }
         onInit() {
@@ -24,13 +24,13 @@ const globals_1 = require("../globals/globals");
         }
         addClasses() {
             let that = this;
-            that.el.forEach(function (element) {
+            that.options.el.forEach(function (element) {
                 element.classList.add('accordion');
             });
         }
         toggleState() {
             let that = this;
-            that.el.forEach(function (element) {
+            that.options.el.forEach(function (element) {
                 element.firstElementChild.addEventListener('click', function () {
                     element.classList.toggle('active');
                 });
