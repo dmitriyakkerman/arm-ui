@@ -13,16 +13,21 @@ const globals_1 = require("../globals/globals");
     }
 }(typeof self !== 'undefined' ? self : this, function () {
     class Tabs {
-        constructor(options = {}) {
+        constructor(options) {
             this.options = options;
-            this.options.tabTogglers = document.querySelectorAll(options.tabTogglers);
+            this.options.tabTogglers = (typeof options.tabTogglers === 'string' ? document.querySelectorAll(options.tabTogglers) : options.tabTogglers || document.querySelectorAll('.tabs [data-pane]'));
             this.onInit();
-            this.options.onLoad();
+            this.onLoad();
         }
         static clearClasses(arr) {
             arr.forEach(function (el) {
                 el.classList.remove('active');
             });
+        }
+        onLoad() {
+            if (this.options && this.options.onLoad) {
+                this.options.onLoad();
+            }
         }
         onInit() {
             this.setCurrentOnInit();

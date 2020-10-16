@@ -15,17 +15,23 @@ import {TabsOptions} from "../types/TabsOptions";
     class Tabs implements TabsInterface {
         public options: any;
 
-        constructor(options:TabsOptions = {}) {
-            this.options = options as object;
-            this.options.tabTogglers = document.querySelectorAll(options.tabTogglers);
+        constructor(options:TabsOptions) {
+            this.options = options;
+            this.options.tabTogglers = (typeof options.tabTogglers === 'string' ? document.querySelectorAll(options.tabTogglers) : options.tabTogglers || document.querySelectorAll('.tabs [data-pane]')) as NodeListOf<HTMLElement>;
             this.onInit();
-            this.options.onLoad();
+            this.onLoad();
         }
 
         static clearClasses(arr: NodeListOf<HTMLElement>): void {
             arr.forEach(function (el: HTMLElement) {
                 el.classList.remove('active');
             })
+        }
+
+        protected onLoad() {
+            if(this.options && this.options.onLoad) {
+                this.options.onLoad();
+            }
         }
 
         protected onInit(): void {
