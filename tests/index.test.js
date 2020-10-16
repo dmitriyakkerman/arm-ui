@@ -46,15 +46,15 @@ describe('Accordion testing', () => {
   //Accordion initialization
 
   let accordion = new ArmUI.Accordion({
-    elements: document.querySelectorAll('.accordion')
+    el: document.querySelectorAll('.accordion')
+  });
+
+  test('Accordion module should be defined', () => {
+    expect(accordion).toBeDefined();
   });
 
   test('Accordion should contain root selector', () => {
     expect(accordion.options.el).toBeDefined();
-  });
-
-  test('Accordion module should be initialized', () => {
-    expect(accordion).toBeTruthy();
   });
 
 });
@@ -79,15 +79,23 @@ describe('Tabs testing', () => {
   //Tabs initialization
 
   let tabs = new ArmUI.Tabs({
-    tabTogglers: document.querySelectorAll('.tabs a')
+    tabTogglers: document.querySelectorAll('.tabs a'),
+    onLoad: function() {
+      console.log('Initialized')
+    }
   });
 
-  test('Tabs should contain togglers', () => {
+  test('Tabs module should be defined', () => {
+    expect(tabs).toBeDefined();
+  });
+
+  test('Tabs should contain togglers option', () => {
     expect(tabs.options.tabTogglers).toBeDefined();
   });
 
-  test('Tabs module should be initialized', () => {
-    expect(tabs).toBeTruthy();
+  test('Tabs should contain onLoad function', () => {
+    expect(tabs.options.onLoad).toBeDefined();
+    expect(tabs.options.onLoad).toBeInstanceOf(Function);
   });
 
 });
@@ -106,21 +114,49 @@ describe('Popup testing', () => {
   //Popup initialization
 
   let popup = new ArmUI.Popup({
-    el: document.querySelector('.popup'),
-    openers: document.querySelectorAll('.j-popup'),
-    closable: true
+    el: '.popup',
+    openers: '.j-popup',
+    closable: true,
+    onLoad: function() {
+      console.log('Loaded')
+    },
+    onOpen: function() {
+      console.log('Opened')
+    },
+    onClose: function() {
+      console.log('Closed')
+    }
+  });
+
+  test('Popup module should be defined', () => {
+    expect(popup).toBeDefined();
   });
 
   test('ArmUI.Popup should contain root selector', () => {
     expect(popup.options.el).toBeDefined();
   });
 
-  test('Popup should contain openers', () => {
+  test('Popup should contain "openers" option', () => {
     expect(popup.options.openers).toBeTruthy();
   });
 
-  test('Popup module should be initialized', () => {
-    expect(popup).toBeDefined();
+  test('Popup should contain "closable" option', () => {
+    expect(popup.options.closable).toBeTruthy();
+  });
+
+  test('Popup should contain "onLoad" function', () => {
+    expect(popup.options.onLoad).toBeDefined();
+    expect(popup.options.onLoad).toBeInstanceOf(Function);
+  });
+
+  test('Popup should contain "onOpen" function', () => {
+    expect(popup.options.onOpen).toBeDefined();
+    expect(popup.options.onOpen).toBeInstanceOf(Function);
+  });
+
+  test('Popup should contain "onClose" function', () => {
+    expect(popup.options.onClose).toBeDefined();
+    expect(popup.options.onClose).toBeInstanceOf(Function);
   });
 
 });
@@ -138,25 +174,32 @@ describe('SelectExtended testing', () => {
 
   //Select initialization
 
-  let select = new ArmUI.SelectExtended(document.querySelector('.select-default'), {
-    multiSelect: true,
-    containerClass: 'additional-class'
+  let select = new ArmUI.SelectExtended('.select-default', {
+    containerClass: 'additional-class',
+    multiSelect: false,
+    multiSelectedText: 'Выбрано',
+    onChange: function() {}
+  });
+
+  test('SelectExtended module should be defined', () => {
+    expect(select).toBeDefined();
   });
 
   test('SelectExtended should contain root selector', () => {
-    expect(select.$select).toBeDefined();
+    expect(select.$el).toBeDefined();
   });
 
   test('SelectExtended toBe multiselected', () => {
-    expect(select.options.multiSelect).toBeTruthy();
+    expect(select.options.multiSelect).toBeFalsy();
   });
 
   test('SelectExtended should have class wrapper', () => {
     expect(select.options.containerClass).toBeDefined();
   });
 
-  test('SelectExtended module should be initialized', () => {
-    expect(select).toBeDefined();
+  test('SelectExtended should have "onChange" function', () => {
+    expect(select.options.onChange).toBeDefined();
+    expect(select.options.onChange).toBeInstanceOf(Function);
   });
 
 });
@@ -178,7 +221,13 @@ describe('Dropdown testing', () => {
 
   //Dropdown initialization
 
-  let dropdown = new ArmUI.Dropdown(document.getElementById('dropdown-lang'));
+  let dropdown = new ArmUI.Dropdown('#dropdown-lang', {
+    togglers: document.querySelectorAll('.toggler'),
+    bodyClose: true,
+    opened: false,
+    onOpen: function() {},
+    onClose: function() {}
+  });
 
   test('Dropdown module should be defined', () => {
     expect(dropdown).toBeDefined();
@@ -186,6 +235,28 @@ describe('Dropdown testing', () => {
 
   test('Dropdown should contain root selector', () => {
     expect(dropdown.$el).toBeDefined();
+  });
+
+  test('Dropdown should have "togglers" options', () => {
+    expect(dropdown.options.togglers).toBeTruthy();
+  });
+
+  test('Dropdown should have "bodyClose" options', () => {
+    expect(dropdown.options.bodyClose).toBeTruthy();
+  });
+
+  test('Dropdown should have "opened" options', () => {
+    expect(dropdown.options.opened).toBeFalsy();
+  });
+
+  test('Dropdown should have "onOpen" function', () => {
+    expect(dropdown.options.onOpen).toBeDefined();
+    expect(dropdown.options.onOpen).toBeInstanceOf(Function);
+  });
+
+  test('Dropdown should have "onClose" function', () => {
+    expect(dropdown.options.onClose).toBeDefined();
+    expect(dropdown.options.onClose).toBeInstanceOf(Function);
   });
 
 });
