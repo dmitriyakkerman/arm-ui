@@ -13,7 +13,7 @@ import {PopupOptions} from "../types/PopupOptions";
 }(typeof self !== 'undefined' ? self : this, function () {
 
     class Popup implements PopupInterface {
-        public options: any;
+        public options: PopupOptions;
 
         constructor(options:PopupOptions) {
 
@@ -24,7 +24,7 @@ import {PopupOptions} from "../types/PopupOptions";
                 throw new Error('No popup opener selector/selectors')
             }
 
-            this.options = options as object;
+            this.options = options;
             this.options.el = (typeof options.el === 'string' ? document.querySelector(options.el) : options.el) as Element;
             this.options.openers = (typeof options.openers === 'string' ? document.querySelectorAll(options.openers) : options.openers) as NodeListOf<HTMLElement>;
             this.options.closable = options.closable || false;
@@ -39,7 +39,7 @@ import {PopupOptions} from "../types/PopupOptions";
 
         protected onLoad(): void {
             if(this.options && (this.options.onLoad as Function)) {
-                this.options.onLoad();
+                this.options.onLoad!();
             }
         }
 
@@ -71,7 +71,7 @@ import {PopupOptions} from "../types/PopupOptions";
                 popupOpen.addEventListener('click', function (e: Event) {
                     e.preventDefault();
                     that.options.el.classList.add('active');
-                    that.options.onOpen.call(that, e);
+                    that.options.onOpen!.call(that, e);
                 })
             })
         }
@@ -82,7 +82,7 @@ import {PopupOptions} from "../types/PopupOptions";
             document.addEventListener('keydown', function(e: KeyboardEvent) {
                 if(e.key === "Escape") {
                     that.options.el.classList.remove('active');
-                    that.options.onClose.call(that);
+                    that.options.onClose!.call(that);
                 }
             });
 
@@ -90,7 +90,7 @@ import {PopupOptions} from "../types/PopupOptions";
 
                 if (!(e.target! as Element).closest('.popup__container')) {
                     that.options.el.classList.remove('active');
-                    that.options.onClose.call(that);
+                    that.options.onClose!.call(that);
                 }
             });
 
@@ -100,7 +100,7 @@ import {PopupOptions} from "../types/PopupOptions";
                 popupClose.addEventListener('click', function (e: Event) {
                     e.preventDefault();
                     that.options.el.classList.remove('active');
-                    that.options.onClose.call(that);
+                    that.options.onClose!.call(that);
                 })
             }
         }

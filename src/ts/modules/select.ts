@@ -14,15 +14,15 @@ import {SelectExtendedOptions} from "../types/SelectExtendedOptions";
 
     class SelectExtended implements SelectExtendedInterface {
 
-        $select: any;
-        $el: any;
-        id: number;
+        public $select: any;
+        public $el: any;
+        public id: number;
         static id: number;
-        placeholder: string;
-        options: any;
-        blocked: boolean;
-        value: any;
-        $value: any;
+        public placeholder: string;
+        public options: any;
+        public blocked: boolean;
+        public value: any;
+        public $value: any;
         valueName: any;
         selectedCount: any;
         checked: any;

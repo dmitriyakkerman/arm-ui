@@ -35,7 +35,7 @@ const globals_1 = require("../globals/globals");
             this.changeCurrent();
         }
         setCurrentOnInit() {
-            let currentTabToggler = this.options.tabTogglers[0];
+            let currentTabToggler = (this.options.tabTogglers)[0];
             let currentPane;
             if (this.options.tabTogglers[0] instanceof HTMLElement) {
                 currentPane = document.getElementById(currentTabToggler.dataset.pane);

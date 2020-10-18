@@ -13,7 +13,7 @@ import {TabsOptions} from "../types/TabsOptions";
 }(typeof self !== 'undefined' ? self : this, function () {
 
     class Tabs implements TabsInterface {
-        public options: any;
+        public options: TabsOptions;
 
         constructor(options:TabsOptions) {
             this.options = options;
@@ -30,7 +30,7 @@ import {TabsOptions} from "../types/TabsOptions";
 
         protected onLoad(): void {
             if(this.options && (this.options.onLoad as Function)) {
-                this.options.onLoad();
+                this.options.onLoad!();
             }
         }
 
@@ -41,7 +41,7 @@ import {TabsOptions} from "../types/TabsOptions";
         }
 
         private setCurrentOnInit(): void {
-            let currentTabToggler = this.options.tabTogglers[0];
+            let currentTabToggler = (this.options.tabTogglers)[0];
             let currentPane: HTMLElement;
             if(this.options.tabTogglers[0] instanceof HTMLElement) {
                 currentPane = document.getElementById(currentTabToggler.dataset.pane)!;

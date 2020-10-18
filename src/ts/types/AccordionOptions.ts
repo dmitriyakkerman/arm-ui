@@ -1,3 +1,3 @@
 export type AccordionOptions = {
-    el?: any
+    el?: NodeListOf<HTMLElement>
 }

@@ -13,7 +13,7 @@ import {AccordionOptions} from '../types/AccordionOptions'
 }(typeof self !== 'undefined' ? self : this, function () {
 
     class Accordion implements AccordionInterface {
-        public options: any;
+        public options: AccordionOptions;
 
         constructor(options: AccordionOptions = {}) {
             this.options = options as object;

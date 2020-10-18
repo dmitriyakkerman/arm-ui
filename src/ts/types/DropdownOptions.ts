@@ -3,6 +3,6 @@ export type DropdownOptions = {
     bodyClose: boolean,
     opened: boolean,
     class: any,
-    onOpen: Function,
-    onClose: Function
+    onOpen?: Function,
+    onClose?: Function
 }

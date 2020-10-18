@@ -15,15 +15,6 @@ import {DropdownOptions} from "../types/DropdownOptions";
     class Dropdown implements DropdownInterface {
         public $el: any;
         public options: any;
-        // public $toggle: any;
-        // public $content: any;
-        // public onOpen: Function = function () {};
-        // public onClose: Function = function() {};
-        // public opened: boolean = false;
-        // public bodyClose: boolean = true;
-        // public togglers: Array<any> = [];
-        // public content: null = null;
-
         static $toggle: any;
         static $content: any;
 
