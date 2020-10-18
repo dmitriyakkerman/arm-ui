@@ -16,8 +16,8 @@ import {TabsOptions} from "../types/TabsOptions";
         public options: TabsOptions;
 
         constructor(options:TabsOptions) {
-            this.options = options;
-            this.options.tabTogglers = (typeof options.tabTogglers === 'string' ? document.querySelectorAll(options.tabTogglers) : options.tabTogglers || document.querySelectorAll('.tabs [data-pane]')) as NodeListOf<HTMLElement>;
+            this.options = options || {};
+            this.options.tabTogglers = (Object.keys(this.options).length && options.tabTogglers) ? (typeof options.tabTogglers === 'string' ? document.querySelectorAll(options.tabTogglers) : options.tabTogglers) : document.querySelectorAll('.tabs [data-pane]');
             this.onInit();
             this.onLoad();
         }

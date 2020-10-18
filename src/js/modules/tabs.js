@@ -14,8 +14,8 @@ const globals_1 = require("../globals/globals");
 }(typeof self !== 'undefined' ? self : this, function () {
     class Tabs {
         constructor(options) {
-            this.options = options;
-            this.options.tabTogglers = (typeof options.tabTogglers === 'string' ? document.querySelectorAll(options.tabTogglers) : options.tabTogglers || document.querySelectorAll('.tabs [data-pane]'));
+            this.options = options || {};
+            this.options.tabTogglers = (Object.keys(this.options).length && options.tabTogglers) ? (typeof options.tabTogglers === 'string' ? document.querySelectorAll(options.tabTogglers) : options.tabTogglers) : document.querySelectorAll('.tabs [data-pane]');
             this.onInit();
             this.onLoad();
         }
