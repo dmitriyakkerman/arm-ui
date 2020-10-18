@@ -13,10 +13,10 @@ import {DropdownOptions} from "../types/DropdownOptions";
 }(typeof self !== 'undefined' ? self : this, function () {
 
     class Dropdown implements DropdownInterface {
-        public $el: any;
-        public options: any;
-        static $toggle: any;
-        static $content: any;
+        public $el: HTMLElement;
+        public options: DropdownOptions;
+        static $toggle: Array<HTMLElement>;
+        static $content: HTMLElement;
 
         constructor($el: string | HTMLElement, options:DropdownOptions) {
             if (!$el) {
@@ -26,10 +26,11 @@ import {DropdownOptions} from "../types/DropdownOptions";
             this.$el = (typeof $el === 'string' ? document.querySelector($el) : $el) as HTMLElement;
 
             if(options) {
-                this.options = options as object;
-                this.options.togglers = options.togglers as HTMLElement | NodeListOf<HTMLElement>;
+                this.options = options;
+                this.options.togglers = options.togglers as NodeListOf<HTMLElement>;
                 this.options.bodyClose = options.bodyClose || true as boolean;
                 this.options.opened = options.opened || false as boolean;
+                this.options.content = options.content as any;
                 this.options.onOpen = options.onOpen as Function;
                 this.options.onClose = options.onClose as Function;
                 this.options.class = options.class || {} as object;
@@ -71,13 +72,13 @@ import {DropdownOptions} from "../types/DropdownOptions";
             let that = this;
 
             if (!that.options.togglers) {
-                Dropdown.$toggle = [that.$el.querySelector('a.toggler')] as Array<Element>;
+                Dropdown.$toggle = [that.$el.querySelector('a.toggler')] as Array<HTMLElement>;
             }
             else {
                 Dropdown.$toggle = [];
 
                 for (let i = 0; i < (that.options.togglers as NodeListOf<HTMLElement>).length; i++) {
-                    Dropdown.$toggle[Dropdown.$toggle.length] = that.options.togglers[i] as Element;
+                    Dropdown.$toggle[Dropdown.$toggle.length] = (that.options.togglers as NodeListOf<HTMLElement>)[i];
                 }
             }
 
@@ -85,7 +86,7 @@ import {DropdownOptions} from "../types/DropdownOptions";
                 Dropdown.$content = that.options.content;
             }
             else {
-                Dropdown.$content = that.$el.querySelector('.dropdown__content') as Element;
+                Dropdown.$content = that.$el.querySelector('.dropdown__content') as HTMLElement;
             }
 
             that.$el.classList.add(that.options.class.container as string);
@@ -155,12 +156,12 @@ import {DropdownOptions} from "../types/DropdownOptions";
 
         public open(): void {
             this.$el.classList.add(this.options.class.open);
-            this.options.onOpen.call(this);
+            this.options.onOpen!.call(this);
         }
 
         public close(): void {
             this.$el.classList.remove(this.options.class.open);
-            this.options.onClose.call(this);
+            this.options.onClose!.call(this);
         }
     }
 

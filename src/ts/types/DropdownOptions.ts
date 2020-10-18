@@ -1,8 +1,9 @@
 export type DropdownOptions = {
-    togglers: HTMLElement | NodeListOf<HTMLElement>,
-    bodyClose: boolean,
-    opened: boolean,
-    class: any,
+    togglers?: HTMLElement | NodeListOf<HTMLElement>,
+    bodyClose?: boolean,
+    opened?: boolean,
+    content?: any,
+    class?: any,
     onOpen?: Function,
     onClose?: Function
 }

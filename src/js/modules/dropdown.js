@@ -23,6 +23,7 @@ const globals_1 = require("../globals/globals");
                 this.options.togglers = options.togglers;
                 this.options.bodyClose = options.bodyClose || true;
                 this.options.opened = options.opened || false;
+                this.options.content = options.content;
                 this.options.onOpen = options.onOpen;
                 this.options.onClose = options.onClose;
                 this.options.class = options.class || {};
