@@ -1,7 +1,7 @@
 export interface SelectExtendedInterface {
-    $el: string | HTMLElement,
-    $select: string | HTMLElement,
-    $value: string | HTMLElement,
+    $el: HTMLElement,
+    $select: object,
+    $value: HTMLElement,
     blocked: Boolean,
     id: number,
     options: object,

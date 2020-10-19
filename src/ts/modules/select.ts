@@ -15,23 +15,23 @@ import {SelectExtendedOptions} from "../types/SelectExtendedOptions";
     class SelectExtended implements SelectExtendedInterface {
 
         public $select: any;
-        public $el: any;
+        public $el: HTMLElement;
         public id: number;
         static id: number;
         public placeholder: string;
         public options: any;
         public blocked: boolean;
         public value: any;
-        public $value: any;
-        valueName: any;
-        selectedCount: any;
-        checked: any;
+        public $value: HTMLElement;
+        valueName: string;
+        selectedCount: number;
+        checked: boolean;
 
         constructor($el: string | Element, options: SelectExtendedOptions) {
             let that = this;
 
             this.id = SelectExtended.generateId();
-            this.$select = (typeof $el === 'string' ? document.querySelector($el) : $el) as Element;
+            this.$select = (typeof $el === 'string' ? document.querySelector($el) : $el) as HTMLElement;
             this.placeholder = this.$select.dataset['placeholder'] || '';
 
             if(options) {
@@ -141,13 +141,13 @@ import {SelectExtendedOptions} from "../types/SelectExtendedOptions";
             ((that.$el as HTMLElement).querySelectorAll('.select-ext-option') as NodeListOf<HTMLElement>).forEach((option: HTMLElement) => {
                 option.onclick = function () {
                     that.value = option.dataset['value'];
-                    that.valueName = option.innerHTML as string;
+                    that.valueName = option.innerHTML;
                     that.$el.classList.remove('active');
                 }
             });
 
             if (that.options.multiSelect) {
-                that.selectedCount = 0 as number;
+                that.selectedCount = 0;
 
                 ((that.$el as HTMLElement).querySelectorAll('.select-ext-multi-option') as NodeListOf<HTMLElement>).forEach((option: HTMLElement) => {
                     option.querySelector('input')!.onclick = function (event: Event) {
@@ -223,7 +223,7 @@ import {SelectExtendedOptions} from "../types/SelectExtendedOptions";
 
         }
 
-        protected makeMultiOption(name: string, value: string, selected: boolean): Element {
+        protected makeMultiOption(name: string, value: string, selected: boolean): HTMLElement {
             let $option = document.createElement('label');
             $option.classList.add('select-ext-multi-option');
 
@@ -245,14 +245,14 @@ import {SelectExtendedOptions} from "../types/SelectExtendedOptions";
             return $option;
         }
 
-        protected makeCurrentValue(): Element {
+        protected makeCurrentValue(): HTMLElement {
             this.$value = document.createElement('div');
             this.$value.classList.add('select-ext__value');
 
             return this.$value;
         }
 
-        protected makeOptionGroup(): Element {
+        protected makeOptionGroup(): HTMLElement {
             let $group = document.createElement('div');
 
             $group.classList.add('select-ext__options');
@@ -274,7 +274,7 @@ import {SelectExtendedOptions} from "../types/SelectExtendedOptions";
             let $options = this.$el.querySelectorAll('.select-ext-option');
 
             for (let i = 0; i < $options.length; i++) {
-                if ($options[i].dataset['value'] === value) {
+                if (($options as NodeListOf<HTMLElement>)[i].dataset['value'] === value) {
                     this.$select.value = value;
                     this.$value.innerHTML = $options[i].innerHTML;
 
@@ -295,7 +295,7 @@ import {SelectExtendedOptions} from "../types/SelectExtendedOptions";
             this.$value.classList.remove('active');
         }
 
-        static makeOption(value: string, text: string): Element {
+        static makeOption(value: string, text: string): HTMLElement {
             let $option = document.createElement('div');
             $option.classList.add('select-ext-option');
             $option.dataset['value'] = value;
