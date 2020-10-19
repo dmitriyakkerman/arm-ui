@@ -18,7 +18,7 @@ const globals_1 = require("../globals/globals");
                 throw new Error('No popup root selector');
             }
             if (!options.openers) {
-                throw new Error('No popup opener selector/selectors');
+                throw new Error('No popup openers');
             }
             this.options = options;
             this.options.el = (typeof options.el === 'string' ? document.querySelector(options.el) : options.el);
@@ -58,7 +58,9 @@ const globals_1 = require("../globals/globals");
                 popupOpen.addEventListener('click', function (e) {
                     e.preventDefault();
                     that.options.el.classList.add('active');
-                    that.options.onOpen.call(that, e);
+                    if (that.options.onOpen) {
+                        that.options.onOpen.call(that);
+                    }
                 });
             });
         }
@@ -67,13 +69,17 @@ const globals_1 = require("../globals/globals");
             document.addEventListener('keydown', function (e) {
                 if (e.key === "Escape") {
                     that.options.el.classList.remove('active');
-                    that.options.onClose.call(that);
+                    if (that.options.onClose) {
+                        that.options.onClose.call(that);
+                    }
                 }
             });
             that.options.el.addEventListener('click', function (e) {
                 if (!e.target.closest('.popup__container')) {
                     that.options.el.classList.remove('active');
-                    that.options.onClose.call(that);
+                    if (that.options.onClose) {
+                        that.options.onClose.call(that);
+                    }
                 }
             });
             let popupClose = that.options.el.querySelector('.popup__close-btn');
@@ -81,7 +87,9 @@ const globals_1 = require("../globals/globals");
                 popupClose.addEventListener('click', function (e) {
                     e.preventDefault();
                     that.options.el.classList.remove('active');
-                    that.options.onClose.call(that);
+                    if (that.options.onClose) {
+                        that.options.onClose.call(that);
+                    }
                 });
             }
         }

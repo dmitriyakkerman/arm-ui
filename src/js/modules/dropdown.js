@@ -21,7 +21,7 @@ const globals_1 = require("../globals/globals");
             if (options) {
                 this.options = options;
                 this.options.togglers = options.togglers;
-                this.options.bodyClose = options.bodyClose || true;
+                this.options.bodyClose = typeof options.bodyClose === 'undefined' ? true : options.bodyClose;
                 this.options.opened = options.opened || false;
                 this.options.content = options.content;
                 this.options.onOpen = options.onOpen;
@@ -123,11 +123,15 @@ const globals_1 = require("../globals/globals");
         }
         open() {
             this.$el.classList.add(this.options.class.open);
-            this.options.onOpen.call(this);
+            if (this.options.onOpen) {
+                this.options.onOpen.call(this);
+            }
         }
         close() {
             this.$el.classList.remove(this.options.class.open);
-            this.options.onClose.call(this);
+            if (this.options.onClose) {
+                this.options.onClose.call(this);
+            }
         }
     }
     return Dropdown;

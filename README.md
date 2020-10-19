@@ -98,9 +98,7 @@ Initialization:
         
     or
         
-    new ArmUI.Tabs({
-        onLoad: function() {}      
-    })
+    new ArmUI.Tabs()
        
     Select 
      

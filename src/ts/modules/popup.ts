@@ -21,7 +21,7 @@ import {PopupOptions} from "../types/PopupOptions";
                 throw new Error('No popup root selector')
             }
             if (!options.openers) {
-                throw new Error('No popup opener selector/selectors')
+                throw new Error('No popup openers')
             }
 
             this.options = options;
@@ -71,7 +71,9 @@ import {PopupOptions} from "../types/PopupOptions";
                 popupOpen.addEventListener('click', function (e: Event) {
                     e.preventDefault();
                     that.options.el.classList.add('active');
-                    that.options.onOpen!.call(that, e);
+                    if(that.options.onOpen) {
+                        that.options.onOpen.call(that);
+                    }
                 })
             })
         }
@@ -82,7 +84,10 @@ import {PopupOptions} from "../types/PopupOptions";
             document.addEventListener('keydown', function(e: KeyboardEvent) {
                 if(e.key === "Escape") {
                     that.options.el.classList.remove('active');
-                    that.options.onClose!.call(that);
+
+                    if(that.options.onClose) {
+                        that.options.onClose.call(that);
+                    }
                 }
             });
 
@@ -90,7 +95,10 @@ import {PopupOptions} from "../types/PopupOptions";
 
                 if (!(e.target! as Element).closest('.popup__container')) {
                     that.options.el.classList.remove('active');
-                    that.options.onClose!.call(that);
+
+                    if(that.options.onClose) {
+                        that.options.onClose.call(that);
+                    }
                 }
             });
 
@@ -100,7 +108,10 @@ import {PopupOptions} from "../types/PopupOptions";
                 popupClose.addEventListener('click', function (e: Event) {
                     e.preventDefault();
                     that.options.el.classList.remove('active');
-                    that.options.onClose!.call(that);
+
+                    if(that.options.onClose) {
+                        that.options.onClose.call(that);
+                    }
                 })
             }
         }

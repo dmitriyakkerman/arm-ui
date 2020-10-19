@@ -28,7 +28,7 @@ import {DropdownOptions} from "../types/DropdownOptions";
             if(options) {
                 this.options = options;
                 this.options.togglers = options.togglers as NodeListOf<HTMLElement>;
-                this.options.bodyClose = options.bodyClose || true as boolean;
+                this.options.bodyClose = typeof options.bodyClose === 'undefined' ? true : options.bodyClose as boolean;
                 this.options.opened = options.opened || false as boolean;
                 this.options.content = options.content as any;
                 this.options.onOpen = options.onOpen as Function;
@@ -156,12 +156,18 @@ import {DropdownOptions} from "../types/DropdownOptions";
 
         public open(): void {
             this.$el.classList.add(this.options.class.open);
-            this.options.onOpen!.call(this);
+
+            if(this.options.onOpen) {
+                this.options.onOpen.call(this);
+            }
         }
 
         public close(): void {
             this.$el.classList.remove(this.options.class.open);
-            this.options.onClose!.call(this);
+
+            if(this.options.onClose) {
+                this.options.onClose.call(this);
+            }
         }
     }
 
