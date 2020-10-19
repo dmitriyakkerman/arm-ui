@@ -31,7 +31,7 @@ import {SelectExtendedOptions} from "../types/SelectExtendedOptions";
             let that = this;
 
             this.id = SelectExtended.generateId();
-            this.$select = (typeof $el === 'string' ? document.querySelector($el) : $el) as HTMLElement;
+            this.$select = (typeof $el === 'string' ? document.querySelector($el) : $el);
             this.placeholder = this.$select.dataset['placeholder'] || '';
 
             if(options) {
@@ -57,7 +57,7 @@ import {SelectExtendedOptions} from "../types/SelectExtendedOptions";
                     if (that.options.multiSelect) {
                         let result: any = [];
 
-                        ((that.$el as HTMLElement).querySelectorAll('.select-ext-multi-option') as NodeListOf<HTMLElement>).forEach(($opt: HTMLElement) => {
+                        (that.$el.querySelectorAll('.select-ext-multi-option') as NodeListOf<HTMLElement>).forEach(($opt: HTMLElement) => {
                             if ($opt.querySelector('input')!.checked) {
                                 result.push($opt.querySelector('input')!.value);
                             }
@@ -123,7 +123,7 @@ import {SelectExtendedOptions} from "../types/SelectExtendedOptions";
         private initEvents(): void {
             let that = this;
 
-            (that.$value as HTMLElement).onclick = function (event: Event) {
+            that.$value.onclick = function (event: Event) {
                 that.blocked = true;
                 that.$el.classList.toggle('active');
 
@@ -138,7 +138,7 @@ import {SelectExtendedOptions} from "../types/SelectExtendedOptions";
                 }
             });
 
-            ((that.$el as HTMLElement).querySelectorAll('.select-ext-option') as NodeListOf<HTMLElement>).forEach((option: HTMLElement) => {
+            (that.$el.querySelectorAll('.select-ext-option') as NodeListOf<HTMLElement>).forEach((option: HTMLElement) => {
                 option.onclick = function () {
                     that.value = option.dataset['value'];
                     that.valueName = option.innerHTML;
@@ -149,10 +149,10 @@ import {SelectExtendedOptions} from "../types/SelectExtendedOptions";
             if (that.options.multiSelect) {
                 that.selectedCount = 0;
 
-                ((that.$el as HTMLElement).querySelectorAll('.select-ext-multi-option') as NodeListOf<HTMLElement>).forEach((option: HTMLElement) => {
+                (that.$el.querySelectorAll('.select-ext-multi-option') as NodeListOf<HTMLElement>).forEach((option: HTMLElement) => {
                     option.querySelector('input')!.onclick = function (event: Event) {
 
-                        if (that.checked as boolean) {
+                        if (that.checked) {
                             that.selectedCount++;
                         }
                         else {
@@ -204,7 +204,7 @@ import {SelectExtendedOptions} from "../types/SelectExtendedOptions";
                 if (that.options.multiSelect) {
                     that.selectedCount = 0;
 
-                    ((that.$el as HTMLElement).querySelectorAll('.select-ext-multi-option') as NodeListOf<HTMLElement>).forEach((option: HTMLElement) => {
+                    (that.$el.querySelectorAll('.select-ext-multi-option') as NodeListOf<HTMLElement>).forEach((option: HTMLElement) => {
                         if (option.querySelector('input')!.checked) {
                             that.selectedCount++;
                         }
