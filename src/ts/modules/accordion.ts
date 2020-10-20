@@ -17,7 +17,7 @@ import {AccordionOptions} from '../types/AccordionOptions'
 
         constructor(options: AccordionOptions = {}) {
             this.options = options as object;
-            this.options.el = (typeof options.el === 'string' ? document.querySelectorAll(options.el) : options.el || document.querySelectorAll('.accordion')) as NodeListOf<HTMLElement>;
+            this.options.el = typeof options.el === 'string' ? document.querySelectorAll(options.el) : options.el || document.querySelectorAll('.accordion');
             this.onInit();
         }
 

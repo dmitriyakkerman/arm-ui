@@ -15,7 +15,7 @@ const globals_1 = require("../globals/globals");
     class Accordion {
         constructor(options = {}) {
             this.options = options;
-            this.options.el = (typeof options.el === 'string' ? document.querySelectorAll(options.el) : options.el || document.querySelectorAll('.accordion'));
+            this.options.el = typeof options.el === 'string' ? document.querySelectorAll(options.el) : options.el || document.querySelectorAll('.accordion');
             this.onInit();
         }
         onInit() {

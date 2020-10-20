@@ -16,7 +16,7 @@ const globals_1 = require("../globals/globals");
         constructor($el, options) {
             let that = this;
             this.id = SelectExtended.generateId();
-            this.$select = (typeof $el === 'string' ? document.querySelector($el) : $el);
+            this.$select = typeof $el === 'string' ? document.querySelector($el) : $el;
             this.placeholder = this.$select.dataset['placeholder'] || '';
             if (options) {
                 this.options = options;
