@@ -22,7 +22,7 @@ const globals_1 = require("../globals/globals");
             }
             this.options = options;
             this.options.el = typeof options.el === 'string' ? document.querySelector(options.el) : options.el;
-            this.options.openers = typeof options.openers === 'string' ? document.querySelectorAll(options.openers) : options.openers;
+            this.options.openers = typeof options.openers === 'string' ? document.querySelectorAll(options.openers) : [options.openers];
             this.options.closable = options.closable || false;
             this.onInit();
             this.onLoad();
