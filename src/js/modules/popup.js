@@ -93,6 +93,12 @@ const globals_1 = require("../globals/globals");
                 });
             }
         }
+        manualOpen() {
+            this.options.el.classList.add('active');
+        }
+        manualClose() {
+            this.options.el.classList.remove('active');
+        }
     }
     return Popup;
 }));

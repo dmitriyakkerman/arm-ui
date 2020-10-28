@@ -115,6 +115,14 @@ import {PopupOptions} from "../types/PopupOptions";
                 })
             }
         }
+
+        public manualOpen() {
+            this.options.el.classList.add('active');
+        }
+
+        public manualClose() {
+            this.options.el.classList.remove('active');
+        }
     }
 
     return Popup;
