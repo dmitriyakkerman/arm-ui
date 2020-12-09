@@ -76,7 +76,7 @@ Initialization:
        
     or
         
-    new ArmUI.Accordion();  
+    new ArmUI.Accordion();  -> default initialization by root element/elements with className "accordion"
      
     Popup
         
@@ -98,7 +98,7 @@ Initialization:
         
     or
         
-    new ArmUI.Tabs()
+    new ArmUI.Tabs()    -> default initialization by root element/elements with className "tabs"
        
     Select 
      
