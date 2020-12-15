@@ -258,5 +258,4 @@ describe('Dropdown testing', () => {
     expect(dropdown.options.onClose).toBeDefined();
     expect(dropdown.options.onClose).toBeInstanceOf(Function);
   });
-
 });
