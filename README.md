@@ -71,7 +71,8 @@ Initialization:
     Accordion   
         
     new ArmUI.Accordion({
-        el: '.accordion'
+        el: '.accordion',
+        openOneCloseAll: false
     });
        
     or
