@@ -46,7 +46,8 @@ describe('Accordion testing', () => {
   //Accordion initialization
 
   let accordion = new ArmUI.Accordion({
-    el: document.querySelectorAll('.accordion')
+    el: document.querySelectorAll('.accordion'),
+    openOneCloseAll: true
   });
 
   test('Accordion module should be defined', () => {
@@ -55,6 +56,10 @@ describe('Accordion testing', () => {
 
   test('Accordion should contain root selector', () => {
     expect(accordion.options.el).toBeDefined();
+  });
+
+  test('Accordion should contain openOneCloseAll function with "truthy" value', () => {
+    expect(accordion.options.openOneCloseAll).toBe(true);
   });
 
 });
