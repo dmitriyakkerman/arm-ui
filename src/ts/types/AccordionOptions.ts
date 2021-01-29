@@ -1,3 +1,4 @@
 export type AccordionOptions = {
-    el?: NodeListOf<HTMLElement>
+    el?: NodeListOf<HTMLElement>,
+    openOneCloseAll?: Function
 }

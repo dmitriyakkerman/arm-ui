@@ -26,10 +26,14 @@ import {AccordionOptions} from '../types/AccordionOptions'
             this.toggleState();
         }
 
-        protected addClasses(): void {
-            let that = this;
+        static closeAll(accordions: NodeListOf<HTMLElement>): void {
+            accordions.forEach(function (accordion: Element) {
+                accordion.classList.remove('active')
+            })
+        }
 
-            (that.options.el as NodeListOf<HTMLElement>).forEach(function (element: HTMLElement) {
+        protected addClasses(): void {
+            (this.options.el as NodeListOf<HTMLElement>).forEach(function (element: HTMLElement) {
                 element.classList.add('accordion')
             })
         }
@@ -39,7 +43,14 @@ import {AccordionOptions} from '../types/AccordionOptions'
 
             (that.options.el as NodeListOf<HTMLElement>).forEach(function (element: HTMLElement) {
                 element.firstElementChild!.addEventListener('click', function () {
-                    element.classList.toggle('active')
+                    if(that.options.openOneCloseAll) {
+                        Accordion.closeAll(that.options.el as NodeListOf<HTMLElement>);
+
+                        (this as HTMLElement).parentElement!.classList.toggle('active')
+                    }
+                    else {
+                        element.classList.toggle('active')
+                    }
                 })
             })
         }

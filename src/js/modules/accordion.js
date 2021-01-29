@@ -22,9 +22,13 @@ const globals_1 = require("../globals/globals");
             this.addClasses();
             this.toggleState();
         }
+        static closeAll(accordions) {
+            accordions.forEach(function (accordion) {
+                accordion.classList.remove('active');
+            });
+        }
         addClasses() {
-            let that = this;
-            that.options.el.forEach(function (element) {
+            this.options.el.forEach(function (element) {
                 element.classList.add('accordion');
             });
         }
@@ -32,7 +36,13 @@ const globals_1 = require("../globals/globals");
             let that = this;
             that.options.el.forEach(function (element) {
                 element.firstElementChild.addEventListener('click', function () {
-                    element.classList.toggle('active');
+                    if (that.options.openOneCloseAll) {
+                        Accordion.closeAll(that.options.el);
+                        this.parentElement.classList.toggle('active');
+                    }
+                    else {
+                        element.classList.toggle('active');
+                    }
                 });
             });
         }

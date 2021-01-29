@@ -25,5 +25,8 @@
     "jest": "^26.1.0",
     "webpack": "^4.43.0",
     "webpack-cli": "^3.1.2"
+  },
+  "dependencies": {
+    "typescript": "^4.1.3"
   }
 }
