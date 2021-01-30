@@ -1,5 +1,6 @@
 [![Build Status](https://travis-ci.org/dmitriyakkerman/arm-ui.svg?branch=master)](https://travis-ci.org/dmitriyakkerman/arm-ui)
 [![Coverage Status](https://coveralls.io/repos/github/dmitriyakkerman/arm-ui/badge.svg?branch=master)](https://coveralls.io/github/dmitriyakkerman/arm-ui?branch=master)
+[![TypeScript](https://badges.frapsoft.com/typescript/love/typescript.svg?v=101)](https://github.com/ellerbrock/typescript-badges/)
 
 Example:
 
