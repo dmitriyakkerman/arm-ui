@@ -1,0 +1,43 @@
+.lightbox {
+  cursor: zoom-in;
+}
+
+.lightbox-clone-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  visibility: hidden;
+  opacity: 0;
+  content: '';
+
+  &.active {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  .lightbox-clone {
+    position: absolute;
+    cursor: zoom-out;
+    content: '';
+    transition: all .5s ease;
+
+    > img {
+      cursor: zoom-out;
+      transition: height .5s ease, width .5s ease;
+    }
+
+    &.centered {
+      top: 50% !important;
+      left: 50% !important;
+      transform: translate(-50%, -50%) !important;
+
+      > img {
+        width: 100%;
+        height: auto;
+        transition: height .5s ease, width .5s ease;
+      }
+    }
+  }
+}
