@@ -14,14 +14,14 @@ class Lightbox {
 
     initHTML(target, position) {
         let wrapper = document.createElement('div');
-        wrapper.classList.add('clone-bg');
+        wrapper.classList.add('lightbox-clone-wrapper');
 
         setTimeout(() => {
             wrapper.classList.add('active');
         }, 100);
 
         let clone = document.createElement('div');
-        clone.classList.add('clone');
+        clone.classList.add('lightbox-clone');
         clone.style.top = position.top + 'px';
         clone.style.left = position.left + 'px';
         clone.style.width = target.naturalWidth + 'px';
@@ -63,12 +63,12 @@ class Lightbox {
     }
 
     static close() {
-        let parent = document.querySelector('.clone-bg');
-        let child = parent.querySelector('.clone');
-        child.classList.remove('centered');
+        let wrapper = document.querySelector('.lightbox-clone-wrapper');
+        let clone = wrapper.querySelector('.lightbox-clone');
+        clone.classList.remove('centered');
 
         setTimeout(() => {
-            parent.remove();
+            wrapper.remove();
         }, 500);
     }
 
@@ -78,7 +78,7 @@ class Lightbox {
         document.addEventListener('click', function (e) {
             e.preventDefault();
 
-            if(e.target.closest('.clone-bg')) {
+            if(e.target.closest('.lightbox-clone-wrapper')) {
                 Lightbox.close();
             }
         });
