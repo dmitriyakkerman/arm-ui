@@ -3,6 +3,7 @@ const Tabs = require('../js/modules/tabs');
 const Popup = require('../js/modules/popup');
 const SelectExtended = require('../js/modules/select');
 const Dropdown = require('../js/modules/dropdown');
+const Lightbox = require('../js/modules/lightbox');
 
 (function (root, factory) {
   if (typeof define === 'function' && define.amd) {
@@ -22,6 +23,7 @@ const Dropdown = require('../js/modules/dropdown');
   ArmUI.Popup = Popup;
   ArmUI.SelectExtended = SelectExtended;
   ArmUI.Dropdown = Dropdown;
+  ArmUI.Lightbox = Lightbox;
 
   return ArmUI;
 }));
