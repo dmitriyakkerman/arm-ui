@@ -39,7 +39,6 @@ const globals_1 = require("../globals/globals");
             clone.style.top = position.top + 'px';
             clone.style.left = position.left + 'px';
             clone.style.width = target.naturalWidth + 'px';
-            clone.style.height = target.naturalHeight + 'px';
             setTimeout(() => {
                 clone.classList.add('centered');
             }, 100);

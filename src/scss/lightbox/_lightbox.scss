@@ -19,6 +19,7 @@
 
   .lightbox-clone {
     position: absolute;
+    max-width: calc(100% - 30px);
     cursor: zoom-out;
     content: '';
     transition: all .5s ease;
