@@ -66,14 +66,14 @@ import {ImagePositionOptions} from "../types/internal/ImagePositionOptions";
 
             this.options.targets.forEach(function (target: HTMLImageElement) {
                 target.addEventListener('click', function (e) {
-                    that.initHTML(e.target as HTMLImageElement, Lightbox.getTargetPosition(target));
+                    that.initHTML(e.target as HTMLImageElement, that.getTargetPosition(target));
 
                     that.scrollClose(target);
                 })
             });
         }
 
-        static getTargetPosition(target: HTMLImageElement): ImagePositionOptions {
+        protected getTargetPosition(target: HTMLImageElement): ImagePositionOptions {
             let targetPosition = target.getBoundingClientRect();
 
             return {

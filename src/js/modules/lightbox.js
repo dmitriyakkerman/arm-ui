@@ -52,12 +52,12 @@ const globals_1 = require("../globals/globals");
             let that = this;
             this.options.targets.forEach(function (target) {
                 target.addEventListener('click', function (e) {
-                    that.initHTML(e.target, Lightbox.getTargetPosition(target));
+                    that.initHTML(e.target, that.getTargetPosition(target));
                     that.scrollClose(target);
                 });
             });
         }
-        static getTargetPosition(target) {
+        getTargetPosition(target) {
             let targetPosition = target.getBoundingClientRect();
             return {
                 top: targetPosition.top,
