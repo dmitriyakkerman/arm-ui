@@ -89,7 +89,7 @@ import {ImagePositionOptions} from "../types/internal/ImagePositionOptions";
                 e.preventDefault();
 
                 if((e.target as HTMLElement).closest('.lightbox-clone-wrapper')) {
-                    let wrapper = document.querySelector('.lightbox-clone-wrapper');
+                    let wrapper = document.querySelector('.lightbox-clone-wrapper') as HTMLElement;
 
                     if(wrapper) {
                         let clone = wrapper.querySelector('.lightbox-clone') as HTMLElement;
@@ -97,7 +97,7 @@ import {ImagePositionOptions} from "../types/internal/ImagePositionOptions";
 
                         setTimeout(() => {
                             wrapper!.remove();
-                        }, 700);
+                        }, 500);
                     }
                 }
             });
@@ -106,7 +106,7 @@ import {ImagePositionOptions} from "../types/internal/ImagePositionOptions";
         protected scrollClose(target: HTMLImageElement) {
             document.addEventListener('scroll', function () {
                 let targetPositionTop = target.getBoundingClientRect().top;
-                let wrapper = document.querySelector('.lightbox-clone-wrapper');
+                let wrapper = document.querySelector('.lightbox-clone-wrapper') as HTMLElement;
 
                 if(wrapper) {
                     let clone = wrapper.querySelector('.lightbox-clone') as HTMLElement;

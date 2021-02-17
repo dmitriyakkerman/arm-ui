@@ -75,7 +75,7 @@ const globals_1 = require("../globals/globals");
                         clone.classList.remove('centered');
                         setTimeout(() => {
                             wrapper.remove();
-                        }, 700);
+                        }, 500);
                     }
                 }
             });
