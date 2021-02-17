@@ -30,6 +30,10 @@ describe('ArmUI testing', () => {
     expect(ArmUI.Dropdown).toBeDefined();
   });
 
+  test('Defining ArmUI.Lightbox', () => {
+    expect(ArmUI.Lightbox).toBeDefined();
+  });
+
 });
 
 describe('Accordion testing', () => {
@@ -263,4 +267,27 @@ describe('Dropdown testing', () => {
     expect(dropdown.options.onClose).toBeDefined();
     expect(dropdown.options.onClose).toBeInstanceOf(Function);
   });
+
+  describe("Lightbox testing", () => {
+
+    //Default lightbox markup
+
+    document.body.innerHTML = `
+        <img src=""> 
+    `;
+
+    //Lightbox initialization
+
+    let lightbox = new ArmUI.Lightbox({
+      targets: 'img'
+    })
+
+    test('Lightbox module should be defined', () => {
+      expect(lightbox).toBeDefined();
+    });
+
+    test('Lightbox should have "targets" options', () => {
+      expect(lightbox.options.targets).toBeTruthy();
+    });
+  })
 });
