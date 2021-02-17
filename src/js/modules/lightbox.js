@@ -21,7 +21,7 @@ const globals_1 = require("../globals/globals");
             this.options.targets = typeof options.targets === 'string' ? document.querySelectorAll(options.targets) : options.targets;
             this.initClasses();
             this.initClone();
-            this.initClose();
+            this.bodyClose();
         }
         initClasses() {
             this.options.targets.forEach(function (target) {
@@ -53,6 +53,7 @@ const globals_1 = require("../globals/globals");
             this.options.targets.forEach(function (target) {
                 target.addEventListener('click', function (e) {
                     that.initHTML(e.target, Lightbox.getTargetPosition(target));
+                    that.scrollClose(target);
                 });
             });
         }
@@ -63,33 +64,34 @@ const globals_1 = require("../globals/globals");
                 left: targetPosition.left
             };
         }
-        initClose() {
-            this.bodyClose();
-            this.scrollClose();
-        }
-        static close() {
-            let wrapper = document.querySelector('.lightbox-clone-wrapper');
-            if (wrapper) {
-                let clone = wrapper.querySelector('.lightbox-clone');
-                clone.classList.remove('centered');
-                setTimeout(() => {
-                    wrapper.remove();
-                }, 500);
-            }
-        }
         bodyClose() {
             let that = this;
             document.addEventListener('click', function (e) {
                 e.preventDefault();
                 if (e.target.closest('.lightbox-clone-wrapper')) {
-                    Lightbox.close();
+                    let wrapper = document.querySelector('.lightbox-clone-wrapper');
+                    if (wrapper) {
+                        let clone = wrapper.querySelector('.lightbox-clone');
+                        clone.classList.remove('centered');
+                        setTimeout(() => {
+                            wrapper.remove();
+                        }, 700);
+                    }
                 }
             });
         }
-        scrollClose() {
-            let that = this;
+        scrollClose(target) {
             document.addEventListener('scroll', function () {
-                Lightbox.close();
+                let targetPositionTop = target.getBoundingClientRect().top;
+                let wrapper = document.querySelector('.lightbox-clone-wrapper');
+                if (wrapper) {
+                    let clone = wrapper.querySelector('.lightbox-clone');
+                    clone.classList.remove('centered');
+                    clone.style.top = targetPositionTop + 'px';
+                    setTimeout(() => {
+                        wrapper.remove();
+                    }, 750);
+                }
             });
         }
     }

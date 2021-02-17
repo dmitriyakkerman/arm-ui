@@ -26,7 +26,7 @@ import {ImagePositionOptions} from "../types/internal/ImagePositionOptions";
             this.options.targets = typeof options.targets === 'string' ? document.querySelectorAll(options.targets) : options.targets;
             this.initClasses();
             this.initClone();
-            this.initClose();
+            this.bodyClose();
         }
 
         private initClasses(): void {
@@ -67,6 +67,8 @@ import {ImagePositionOptions} from "../types/internal/ImagePositionOptions";
             this.options.targets.forEach(function (target: HTMLImageElement) {
                 target.addEventListener('click', function (e) {
                     that.initHTML(e.target as HTMLImageElement, Lightbox.getTargetPosition(target));
+
+                    that.scrollClose(target);
                 })
             });
         }
@@ -80,24 +82,6 @@ import {ImagePositionOptions} from "../types/internal/ImagePositionOptions";
             }
         }
 
-        protected initClose(): void {
-            this.bodyClose();
-            this.scrollClose();
-        }
-
-        static close(): void {
-            let wrapper = document.querySelector('.lightbox-clone-wrapper');
-
-            if(wrapper) {
-                let clone = wrapper.querySelector('.lightbox-clone')!;
-                clone.classList.remove('centered');
-
-                setTimeout(() => {
-                    wrapper!.remove();
-                }, 500);
-            }
-        }
-
         protected bodyClose(): void {
             let that = this;
 
@@ -105,20 +89,37 @@ import {ImagePositionOptions} from "../types/internal/ImagePositionOptions";
                 e.preventDefault();
 
                 if((e.target as HTMLElement).closest('.lightbox-clone-wrapper')) {
-                    Lightbox.close();
+                    let wrapper = document.querySelector('.lightbox-clone-wrapper');
+
+                    if(wrapper) {
+                        let clone = wrapper.querySelector('.lightbox-clone') as HTMLElement;
+                        clone.classList.remove('centered');
+
+                        setTimeout(() => {
+                            wrapper!.remove();
+                        }, 700);
+                    }
                 }
             });
         }
 
-        protected scrollClose(): void {
-            let that = this;
-
+        protected scrollClose(target: HTMLImageElement) {
             document.addEventListener('scroll', function () {
-                Lightbox.close();
-            });
+                let targetPositionTop = target.getBoundingClientRect().top;
+                let wrapper = document.querySelector('.lightbox-clone-wrapper');
+
+                if(wrapper) {
+                    let clone = wrapper.querySelector('.lightbox-clone') as HTMLElement;
+                    clone.classList.remove('centered');
+                    clone.style.top = targetPositionTop + 'px';
+
+                    setTimeout(() => {
+                        wrapper!.remove();
+                    }, 750);
+                }
+            })
         }
     }
 
     return Lightbox;
 }));
-
