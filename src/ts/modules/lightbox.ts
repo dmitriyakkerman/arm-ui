@@ -97,7 +97,6 @@ import {ImagePositionOptions} from "../types/internal/ImagePositionOptions";
                     wrapper!.remove();
                 }, 500);
             }
-
         }
 
         protected bodyClose(): void {
