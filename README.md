@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/dmitriyakkerman/arm-ui.svg?branch=master)](https://travis-ci.org/dmitriyakkerman/arm-ui)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/dmitriyakkerman/arm-ui/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/dmitriyakkerman/arm-ui/?branch=master)
 [![TypeScript](https://badges.frapsoft.com/typescript/love/typescript.svg?v=101)](https://github.com/ellerbrock/typescript-badges/)
 
 Example:
