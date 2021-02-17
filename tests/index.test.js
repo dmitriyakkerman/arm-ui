@@ -89,9 +89,7 @@ describe('Tabs testing', () => {
 
   let tabs = new ArmUI.Tabs({
     tabTogglers: document.querySelectorAll('.tabs a'),
-    onLoad: function() {
-      console.log('Initialized')
-    }
+    onLoad: function() {}
   });
 
   test('Tabs module should be defined', () => {
@@ -126,15 +124,9 @@ describe('Popup testing', () => {
     el: '.popup',
     openers: '.j-popup',
     closable: true,
-    onLoad: function() {
-      console.log('Loaded')
-    },
-    onOpen: function() {
-      console.log('Opened')
-    },
-    onClose: function() {
-      console.log('Closed')
-    }
+    onLoad: function() {},
+    onOpen: function() {},
+    onClose: function() {}
   });
 
   test('Popup module should be defined', () => {
