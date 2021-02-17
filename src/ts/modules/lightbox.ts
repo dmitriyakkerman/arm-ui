@@ -92,12 +92,15 @@ import {ImagePositionOptions} from "../types/internal/ImagePositionOptions";
                     let wrapper = document.querySelector('.lightbox-clone-wrapper') as HTMLElement;
 
                     if(wrapper) {
-                        let clone = wrapper.querySelector('.lightbox-clone') as HTMLElement;
-                        clone.classList.remove('centered');
+                        let clone = wrapper.firstElementChild as HTMLElement;
 
-                        setTimeout(() => {
-                            wrapper!.remove();
-                        }, 500);
+                        new Promise<void>(function (resolve) {
+                            clone.classList.remove('centered');
+
+                            setTimeout(resolve, 500);
+                        }).then(function () {
+                            wrapper.remove();
+                        });
                     }
                 }
             });
@@ -105,17 +108,21 @@ import {ImagePositionOptions} from "../types/internal/ImagePositionOptions";
 
         protected scrollClose(target: HTMLImageElement) {
             document.addEventListener('scroll', function () {
-                let targetPositionTop = target.getBoundingClientRect().top;
+                let targetPosition = target.getBoundingClientRect();
                 let wrapper = document.querySelector('.lightbox-clone-wrapper') as HTMLElement;
 
                 if(wrapper) {
-                    let clone = wrapper.querySelector('.lightbox-clone') as HTMLElement;
-                    clone.classList.remove('centered');
-                    clone.style.top = targetPositionTop + 'px';
+                    let clone = wrapper.firstElementChild as HTMLElement;
 
-                    setTimeout(() => {
-                        wrapper!.remove();
-                    }, 750);
+                    new Promise<void>(function (resolve) {
+                        clone.classList.remove('centered');
+                        clone.style.top = targetPosition.top + 'px';
+                        clone.style.left = targetPosition.left + 'px';
+
+                        setTimeout(resolve, 750);
+                    }).then(function () {
+                        wrapper.remove();
+                    });
                 }
             })
         }
