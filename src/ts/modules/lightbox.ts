@@ -87,13 +87,17 @@ import {ImagePositionOptions} from "../types/internal/ImagePositionOptions";
         }
 
         static close(): void {
-            let wrapper = document.querySelector('.lightbox-clone-wrapper')!;
-            let clone = wrapper.querySelector('.lightbox-clone')!;
-            clone.classList.remove('centered');
+            let wrapper = document.querySelector('.lightbox-clone-wrapper');
 
-            setTimeout(() => {
-                wrapper.remove();
-            }, 500);
+            if(wrapper) {
+                let clone = wrapper.querySelector('.lightbox-clone')!;
+                clone.classList.remove('centered');
+
+                setTimeout(() => {
+                    wrapper!.remove();
+                }, 500);
+            }
+
         }
 
         protected bodyClose(): void {

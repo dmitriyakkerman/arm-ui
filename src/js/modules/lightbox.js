@@ -70,11 +70,13 @@ const globals_1 = require("../globals/globals");
         }
         static close() {
             let wrapper = document.querySelector('.lightbox-clone-wrapper');
-            let clone = wrapper.querySelector('.lightbox-clone');
-            clone.classList.remove('centered');
-            setTimeout(() => {
-                wrapper.remove();
-            }, 500);
+            if (wrapper) {
+                let clone = wrapper.querySelector('.lightbox-clone');
+                clone.classList.remove('centered');
+                setTimeout(() => {
+                    wrapper.remove();
+                }, 500);
+            }
         }
         bodyClose() {
             let that = this;
