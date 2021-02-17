@@ -65,7 +65,6 @@ const globals_1 = require("../globals/globals");
             };
         }
         bodyClose() {
-            let that = this;
             document.addEventListener('click', function (e) {
                 e.preventDefault();
                 if (e.target.closest('.lightbox-clone-wrapper')) {

@@ -83,8 +83,6 @@ import {ImagePositionOptions} from "../types/internal/ImagePositionOptions";
         }
 
         protected bodyClose(): void {
-            let that = this;
-
             document.addEventListener('click', function (e) {
                 e.preventDefault();
 
