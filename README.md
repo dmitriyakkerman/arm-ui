@@ -24,12 +24,14 @@ Script:
     
 Markup:
 
+    Accordion
+
     <div class="accordion">
         <div>Question1</div>
         <div>Answer1</div>
     </div>      
     
-    ------------------------------    
+    Tabs  
         
     <ul class="tabs">
         <li>
@@ -42,14 +44,14 @@ Markup:
     <div id="pane-1">Content 1</div>
     <div id="pane-2">Content 2</div>   
         
-    -------------------------------       
+    Popup      
         
     <div class="popup">
         <div>Popup text</div>
     </div>
     <a href="#" class="j-popup">Show popup</a>   
      
-    --------------------------------
+    Select
         
     <select class="my-select" data-placeholder="Выберите опцию">
         <option value="1">1</option>
@@ -57,7 +59,7 @@ Markup:
         <option value="3">3</option>
     </select>
            
-    ---------------------------------              
+    Dropdown             
            
     <div id="dropdown-lang" class="dropdown">
       <a href="#" class="toggler">Some text</a>
@@ -66,7 +68,11 @@ Markup:
           <a href="">111</a>
         </li>
       </ul>
-    </div>  
+    </div>
+    
+    Lightbox
+    
+    <img src="image.jpg">   
  
 Initialization:
            
@@ -120,4 +126,10 @@ Initialization:
         opened: false,
         onOpen: function() {},
         onClose: function() {}
+    });
+    
+    Lightbox
+    
+    new ArmUI.Lightbox({
+        targets: 'img'
     });
