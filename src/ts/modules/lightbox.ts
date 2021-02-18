@@ -16,7 +16,7 @@ import {ImagePositionOptions} from "../types/internal/ImagePositionOptions";
     class Lightbox implements LightboxInterface {
         public options: LightboxOptions;
         static animationCloseSpeed: number = 350;
-        static animationTranslateSpeed: number = 100;
+        static animationTranslateSpeed: number = 150;
 
         constructor(options: LightboxOptions) {
 

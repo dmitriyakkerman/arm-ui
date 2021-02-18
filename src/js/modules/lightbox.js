@@ -106,6 +106,6 @@ const globals_1 = require("../globals/globals");
         }
     }
     Lightbox.animationCloseSpeed = 350;
-    Lightbox.animationTranslateSpeed = 100;
+    Lightbox.animationTranslateSpeed = 150;
     return Lightbox;
 }));
