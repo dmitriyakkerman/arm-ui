@@ -15,6 +15,8 @@ import {ImagePositionOptions} from "../types/internal/ImagePositionOptions";
 
     class Lightbox implements LightboxInterface {
         public options: LightboxOptions;
+        static animationCloseSpeed: number = 350;
+        static animationTranslateSpeed: number = 100;
 
         constructor(options: LightboxOptions) {
 
@@ -37,21 +39,27 @@ import {ImagePositionOptions} from "../types/internal/ImagePositionOptions";
 
         private initHTML(target: HTMLImageElement, position: ImagePositionOptions): void {
             let wrapper = document.createElement('div');
-            wrapper.classList.add('lightbox-clone-wrapper');
 
-            setTimeout(() => {
+            new Promise(function (resolve) {
+                wrapper.classList.add('lightbox-clone-wrapper');
+
+                setTimeout(resolve, Lightbox.animationTranslateSpeed);
+            }).then(function () {
                 wrapper.classList.add('active');
-            }, 100);
+            });
 
             let clone = document.createElement('div');
-            clone.classList.add('lightbox-clone');
-            clone.style.top = position.top + 'px';
-            clone.style.left = position.left + 'px';
-            clone.style.width = target.naturalWidth + 'px';
 
-            setTimeout(() => {
+            new Promise(function (resolve) {
+                clone.classList.add('lightbox-clone');
+                clone.style.top = position.top + 'px';
+                clone.style.left = position.left + 'px';
+                clone.style.width = target.naturalWidth + 'px';
+
+                setTimeout(resolve, Lightbox.animationTranslateSpeed);
+            }).then(function () {
                 clone.classList.add('centered');
-            }, 100);
+            });
 
             let cloneImg = document.createElement('img');
             cloneImg.src = target.src;
@@ -95,7 +103,7 @@ import {ImagePositionOptions} from "../types/internal/ImagePositionOptions";
                         new Promise<void>(function (resolve) {
                             clone.classList.remove('centered');
 
-                            setTimeout(resolve, 500);
+                            setTimeout(resolve, Lightbox.animationCloseSpeed);
                         }).then(function () {
                             wrapper.remove();
                         });
@@ -117,9 +125,11 @@ import {ImagePositionOptions} from "../types/internal/ImagePositionOptions";
                         clone.style.top = targetPosition.top + 'px';
                         clone.style.left = targetPosition.left + 'px';
 
-                        setTimeout(resolve, 750);
+                        setTimeout(resolve, Lightbox.animationCloseSpeed);
                     }).then(function () {
-                        wrapper.remove();
+                         if(clone.style.top === targetPosition.top + 'px' && clone.style.left === targetPosition.left + 'px') {
+                            wrapper.remove();
+                        }
                     });
                 }
             })
