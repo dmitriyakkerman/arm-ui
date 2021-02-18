@@ -15,8 +15,8 @@ import {ImagePositionOptions} from "../types/internal/ImagePositionOptions";
 
     class Lightbox implements LightboxInterface {
         public options: LightboxOptions;
-        static animationCloseSpeed: number = 350;
-        static animationTranslateSpeed: number = 150;
+        static animationCloseSpeed: number = 750;
+        static animationTranslateSpeed: number = 100;
 
         constructor(options: LightboxOptions) {
 
@@ -43,7 +43,7 @@ import {ImagePositionOptions} from "../types/internal/ImagePositionOptions";
             new Promise(function (resolve) {
                 wrapper.classList.add('lightbox-clone-wrapper');
 
-                setTimeout(resolve, Lightbox.animationTranslateSpeed);
+                setTimeout(resolve, 100);
             }).then(function () {
                 wrapper.classList.add('active');
             });
@@ -56,7 +56,7 @@ import {ImagePositionOptions} from "../types/internal/ImagePositionOptions";
                 clone.style.left = position.left + 'px';
                 clone.style.width = target.naturalWidth + 'px';
 
-                setTimeout(resolve, Lightbox.animationTranslateSpeed);
+                setTimeout(resolve, 100);
             }).then(function () {
                 clone.classList.add('centered');
             });
@@ -127,9 +127,7 @@ import {ImagePositionOptions} from "../types/internal/ImagePositionOptions";
 
                         setTimeout(resolve, Lightbox.animationCloseSpeed);
                     }).then(function () {
-                         if(clone.style.top === targetPosition.top + 'px' && clone.style.left === targetPosition.left + 'px') {
-                            wrapper.remove();
-                        }
+                        wrapper.remove();
                     });
                 }
             })

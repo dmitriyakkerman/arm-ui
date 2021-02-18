@@ -32,7 +32,7 @@ const globals_1 = require("../globals/globals");
             let wrapper = document.createElement('div');
             new Promise(function (resolve) {
                 wrapper.classList.add('lightbox-clone-wrapper');
-                setTimeout(resolve, Lightbox.animationTranslateSpeed);
+                setTimeout(resolve, 100);
             }).then(function () {
                 wrapper.classList.add('active');
             });
@@ -42,7 +42,7 @@ const globals_1 = require("../globals/globals");
                 clone.style.top = position.top + 'px';
                 clone.style.left = position.left + 'px';
                 clone.style.width = target.naturalWidth + 'px';
-                setTimeout(resolve, Lightbox.animationTranslateSpeed);
+                setTimeout(resolve, 100);
             }).then(function () {
                 clone.classList.add('centered');
             });
@@ -97,15 +97,13 @@ const globals_1 = require("../globals/globals");
                         clone.style.left = targetPosition.left + 'px';
                         setTimeout(resolve, Lightbox.animationCloseSpeed);
                     }).then(function () {
-                        if (clone.style.top === targetPosition.top + 'px' && clone.style.left === targetPosition.left + 'px') {
-                            wrapper.remove();
-                        }
+                        wrapper.remove();
                     });
                 }
             });
         }
     }
-    Lightbox.animationCloseSpeed = 350;
-    Lightbox.animationTranslateSpeed = 150;
+    Lightbox.animationCloseSpeed = 750;
+    Lightbox.animationTranslateSpeed = 100;
     return Lightbox;
 }));
