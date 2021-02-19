@@ -9,13 +9,13 @@ import {ImagePositionOptions} from "../types/internal/ImagePositionOptions";
     } else if (typeof module === 'object' && module.exports) {
         module.exports = factory();
     } else {
-        root.Lightbox = factory();
+        root!.Lightbox = factory();
     }
 }(typeof self !== 'undefined' ? self : this, function () {
 
     class Lightbox implements LightboxInterface {
         public options: LightboxOptions;
-        static animationCloseSpeed: number = 750;
+        static animationCloseSpeed: number = 150;
         static animationTranslateSpeed: number = 100;
 
         constructor(options: LightboxOptions) {
@@ -113,24 +113,36 @@ import {ImagePositionOptions} from "../types/internal/ImagePositionOptions";
         }
 
         protected scrollClose(target: HTMLImageElement) {
-            document.addEventListener('scroll', function () {
-                let targetPosition = target.getBoundingClientRect();
-                let wrapper = document.querySelector('.lightbox-clone-wrapper') as HTMLElement;
+            setTimeout(function(){
+                Lightbox.onetime(document, 'scroll', function () {
+                    let targetPosition = target.getBoundingClientRect();
+                    let wrapper = document.querySelector('.lightbox-clone-wrapper') as HTMLElement;
 
-                if(wrapper) {
-                    let clone = wrapper.firstElementChild as HTMLElement;
+                    if(wrapper) {
+                        let clone = wrapper.firstElementChild as HTMLElement;
 
-                    new Promise<void>(function (resolve) {
-                        clone.classList.remove('centered');
-                        clone.style.top = targetPosition.top + 'px';
-                        clone.style.left = targetPosition.left + 'px';
+                        new Promise<void>(function (resolve) {
+                            clone.classList.remove('centered');
+                            clone.style.top = targetPosition.top + 'px';
+                            clone.style.left = targetPosition.left + 'px';
 
-                        setTimeout(resolve, Lightbox.animationCloseSpeed);
-                    }).then(function () {
-                        wrapper.remove();
-                    });
-                }
-            })
+                            setTimeout(resolve, Lightbox.animationCloseSpeed);
+                        }).then(function () {
+                            if((clone.style.top === targetPosition.top + 'px') && (clone.style.left === targetPosition.left + 'px')) {
+                                wrapper.remove();
+                            }
+                        });
+                    }
+                });
+            }, Lightbox.animationCloseSpeed);
+
+        }
+
+        static onetime(node: Node, type: string, callback: EventListener) {
+            node.addEventListener(type, function(e) {
+                e.target!.removeEventListener(e.type, callback);
+                return callback(e);
+            });
         }
     }
 

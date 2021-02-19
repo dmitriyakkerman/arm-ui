@@ -86,24 +86,34 @@ const globals_1 = require("../globals/globals");
             });
         }
         scrollClose(target) {
-            document.addEventListener('scroll', function () {
-                let targetPosition = target.getBoundingClientRect();
-                let wrapper = document.querySelector('.lightbox-clone-wrapper');
-                if (wrapper) {
-                    let clone = wrapper.firstElementChild;
-                    new Promise(function (resolve) {
-                        clone.classList.remove('centered');
-                        clone.style.top = targetPosition.top + 'px';
-                        clone.style.left = targetPosition.left + 'px';
-                        setTimeout(resolve, Lightbox.animationCloseSpeed);
-                    }).then(function () {
-                        wrapper.remove();
-                    });
-                }
+            setTimeout(function () {
+                Lightbox.onetime(document, 'scroll', function () {
+                    let targetPosition = target.getBoundingClientRect();
+                    let wrapper = document.querySelector('.lightbox-clone-wrapper');
+                    if (wrapper) {
+                        let clone = wrapper.firstElementChild;
+                        new Promise(function (resolve) {
+                            clone.classList.remove('centered');
+                            clone.style.top = targetPosition.top + 'px';
+                            clone.style.left = targetPosition.left + 'px';
+                            setTimeout(resolve, Lightbox.animationCloseSpeed);
+                        }).then(function () {
+                            if ((clone.style.top === targetPosition.top + 'px') && (clone.style.left === targetPosition.left + 'px')) {
+                                wrapper.remove();
+                            }
+                        });
+                    }
+                });
+            }, Lightbox.animationCloseSpeed);
+        }
+        static onetime(node, type, callback) {
+            node.addEventListener(type, function (e) {
+                e.target.removeEventListener(e.type, callback);
+                return callback(e);
             });
         }
     }
-    Lightbox.animationCloseSpeed = 750;
+    Lightbox.animationCloseSpeed = 150;
     Lightbox.animationTranslateSpeed = 100;
     return Lightbox;
 }));

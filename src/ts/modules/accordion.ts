@@ -8,7 +8,7 @@ import {AccordionOptions} from '../types/AccordionOptions'
     } else if (typeof module === 'object' && module.exports) {
         module.exports = factory();
     } else {
-        root.Accordion = factory();
+        root!.Accordion = factory();
     }
 }(typeof self !== 'undefined' ? self : this, function () {
 
@@ -45,7 +45,6 @@ import {AccordionOptions} from '../types/AccordionOptions'
                 element.firstElementChild!.addEventListener('click', function () {
                     if(that.options.openOneCloseAll) {
                         Accordion.closeAll(that.options.el as NodeListOf<HTMLElement>);
-
                         (this as HTMLElement).parentElement!.classList.toggle('active')
                     }
                     else {

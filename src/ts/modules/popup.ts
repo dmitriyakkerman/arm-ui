@@ -8,7 +8,7 @@ import {PopupOptions} from "../types/PopupOptions";
     } else if (typeof module === 'object' && module.exports) {
         module.exports = factory();
     } else {
-        root.Popup = factory();
+        root!.Popup = factory();
     }
 }(typeof self !== 'undefined' ? self : this, function () {
 
