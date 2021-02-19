@@ -15,8 +15,8 @@ import {ImagePositionOptions} from "../types/internal/ImagePositionOptions";
 
     class Lightbox implements LightboxInterface {
         public options: LightboxOptions;
-        static animationCloseSpeed: number = 150;
-        static animationTranslateSpeed: number = 100;
+        static animationCloseSpeed: number = 500;
+        static animationTranslateSpeed: number = 150;
 
         constructor(options: LightboxOptions) {
 
@@ -135,7 +135,6 @@ import {ImagePositionOptions} from "../types/internal/ImagePositionOptions";
                     }
                 });
             }, Lightbox.animationCloseSpeed);
-
         }
 
         static runOnce(node: Node, type: string, callback: EventListener) {

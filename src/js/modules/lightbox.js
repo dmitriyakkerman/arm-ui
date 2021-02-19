@@ -113,7 +113,7 @@ const globals_1 = require("../globals/globals");
             });
         }
     }
-    Lightbox.animationCloseSpeed = 150;
-    Lightbox.animationTranslateSpeed = 100;
+    Lightbox.animationCloseSpeed = 500;
+    Lightbox.animationTranslateSpeed = 150;
     return Lightbox;
 }));
