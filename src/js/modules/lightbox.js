@@ -87,7 +87,7 @@ const globals_1 = require("../globals/globals");
         }
         scrollClose(target) {
             setTimeout(function () {
-                Lightbox.onetime(document, 'scroll', function () {
+                Lightbox.runOnce(document, 'scroll', function () {
                     let targetPosition = target.getBoundingClientRect();
                     let wrapper = document.querySelector('.lightbox-clone-wrapper');
                     if (wrapper) {
@@ -106,7 +106,7 @@ const globals_1 = require("../globals/globals");
                 });
             }, Lightbox.animationCloseSpeed);
         }
-        static onetime(node, type, callback) {
+        static runOnce(node, type, callback) {
             node.addEventListener(type, function (e) {
                 e.target.removeEventListener(e.type, callback);
                 return callback(e);

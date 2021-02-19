@@ -114,7 +114,7 @@ import {ImagePositionOptions} from "../types/internal/ImagePositionOptions";
 
         protected scrollClose(target: HTMLImageElement) {
             setTimeout(function(){
-                Lightbox.onetime(document, 'scroll', function () {
+                Lightbox.runOnce(document, 'scroll', function () {
                     let targetPosition = target.getBoundingClientRect();
                     let wrapper = document.querySelector('.lightbox-clone-wrapper') as HTMLElement;
 
@@ -138,7 +138,7 @@ import {ImagePositionOptions} from "../types/internal/ImagePositionOptions";
 
         }
 
-        static onetime(node: Node, type: string, callback: EventListener) {
+        static runOnce(node: Node, type: string, callback: EventListener) {
             node.addEventListener(type, function(e) {
                 e.target!.removeEventListener(e.type, callback);
                 return callback(e);
