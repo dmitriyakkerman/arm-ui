@@ -30,18 +30,22 @@ const globals_1 = require("../globals/globals");
         }
         initHTML(target, position) {
             let wrapper = document.createElement('div');
-            wrapper.classList.add('lightbox-clone-wrapper');
-            setTimeout(() => {
+            new Promise(function (resolve) {
+                wrapper.classList.add('lightbox-clone-wrapper');
+                setTimeout(resolve, 100);
+            }).then(function () {
                 wrapper.classList.add('active');
-            }, 100);
+            });
             let clone = document.createElement('div');
-            clone.classList.add('lightbox-clone');
-            clone.style.top = position.top + 'px';
-            clone.style.left = position.left + 'px';
-            clone.style.width = target.naturalWidth + 'px';
-            setTimeout(() => {
+            new Promise(function (resolve) {
+                clone.classList.add('lightbox-clone');
+                clone.style.top = position.top + 'px';
+                clone.style.left = position.left + 'px';
+                clone.style.width = target.naturalWidth + 'px';
+                setTimeout(resolve, 100);
+            }).then(function () {
                 clone.classList.add('centered');
-            }, 100);
+            });
             let cloneImg = document.createElement('img');
             cloneImg.src = target.src;
             clone.appendChild(cloneImg);
@@ -73,7 +77,7 @@ const globals_1 = require("../globals/globals");
                         let clone = wrapper.firstElementChild;
                         new Promise(function (resolve) {
                             clone.classList.remove('centered');
-                            setTimeout(resolve, 500);
+                            setTimeout(resolve, Lightbox.animationCloseSpeed);
                         }).then(function () {
                             wrapper.remove();
                         });
@@ -91,7 +95,7 @@ const globals_1 = require("../globals/globals");
                         clone.classList.remove('centered');
                         clone.style.top = targetPosition.top + 'px';
                         clone.style.left = targetPosition.left + 'px';
-                        setTimeout(resolve, 750);
+                        setTimeout(resolve, Lightbox.animationCloseSpeed);
                     }).then(function () {
                         wrapper.remove();
                     });
@@ -99,5 +103,7 @@ const globals_1 = require("../globals/globals");
             });
         }
     }
+    Lightbox.animationCloseSpeed = 750;
+    Lightbox.animationTranslateSpeed = 100;
     return Lightbox;
 }));
