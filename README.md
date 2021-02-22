@@ -107,7 +107,7 @@ Initialization:
         
     or
         
-    new ArmUI.Tabs()    -> default initialization by root element/elements with className "tabs"
+    new ArmUI.Tabs();    -> default initialization by root element/elements with className "tabs"
        
     Select 
      
