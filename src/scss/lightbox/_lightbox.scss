@@ -22,22 +22,20 @@
     max-width: calc(100% - 30px);
     cursor: zoom-out;
     content: '';
-    transition: all .5s ease;
+    transition: all .3s ease;
 
     > img {
       cursor: zoom-out;
-      transition: height .5s ease, width .5s ease;
+      transition: height .3s ease, width .3s ease;
     }
 
     &.centered {
       top: 50% !important;
       left: 50% !important;
-      transform: translate(-50%, -50%) !important;
 
       > img {
-        width: 100%;
-        height: auto;
-        transition: height .5s ease, width .5s ease;
+        transform: scale(2);
+        transition: height .3s ease, width .3s ease;
       }
     }
   }

@@ -69,11 +69,7 @@ Markup:
         </li>
       </ul>
     </div>
-    
-    Lightbox
-    
-    <img src="image.jpg">   
- 
+     
 Initialization:
            
     Accordion   
@@ -126,10 +122,4 @@ Initialization:
         opened: false,
         onOpen: function() {},
         onClose: function() {}
-    });
-    
-    Lightbox
-    
-    new ArmUI.Lightbox({
-        targets: 'img'
     });
