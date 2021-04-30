@@ -10,7 +10,16 @@
   },
   "author": "Dmitriy Akkerman",
   "license": "ISC",
-  "keywords": ["ui-components", "ui-kit", "popup", "accordion", "tabs", "dropdown", "select", "lightbox"],
+  "keywords": [
+    "ui-components",
+    "ui-kit",
+    "popup",
+    "accordion",
+    "tabs",
+    "dropdown",
+    "select",
+    "lightbox"
+  ],
   "devDependencies": {
     "@babel/core": "^7.10.2",
     "@babel/plugin-proposal-class-properties": "^7.10.4",
