@@ -4,5 +4,6 @@ export type PopupOptions = {
     closable?: boolean,
     onLoad?: Function,
     onOpen?: Function,
-    onClose?: Function
+    onClose?: Function,
+    closeIcon?: string
 }

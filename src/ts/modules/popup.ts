@@ -35,6 +35,7 @@ import {PopupOptions} from "../types/PopupOptions";
         protected onInit(): void {
             this.initHTML();
             this.initEvents();
+            this.initCloseIcon();
         }
 
         protected onLoad(): void {
@@ -62,6 +63,13 @@ import {PopupOptions} from "../types/PopupOptions";
         protected initEvents(): void {
             this.open();
             this.close();
+        }
+
+        protected initCloseIcon(): void {
+            if(this.options.closable && this.options.closeIcon) {
+                let closeBtn = this.options.el.querySelector('.popup__close-btn');
+                closeBtn.innerHTML = this.options.closeIcon;
+            }
         }
 
         public open(): void {

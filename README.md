@@ -90,6 +90,7 @@ Initialization:
         el: '.popup',
         openers: '.j-popup',
         closable: true,
+        closeIcon: '<svg></svg>',
         onLoad: function() {},
         onOpen: function() {},
         onClose: function() {}

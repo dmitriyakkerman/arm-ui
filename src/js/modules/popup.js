@@ -30,6 +30,7 @@ const globals_1 = require("../globals/globals");
         onInit() {
             this.initHTML();
             this.initEvents();
+            this.initCloseIcon();
         }
         onLoad() {
             if (this.options && this.options.onLoad) {
@@ -51,6 +52,12 @@ const globals_1 = require("../globals/globals");
         initEvents() {
             this.open();
             this.close();
+        }
+        initCloseIcon() {
+            if (this.options.closable && this.options.closeIcon) {
+                let closeBtn = this.options.el.querySelector('.popup__close-btn');
+                closeBtn.innerHTML = this.options.closeIcon;
+            }
         }
         open() {
             let that = this;
