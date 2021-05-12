@@ -65,12 +65,14 @@ import {TabsOptions} from "../types/TabsOptions";
                 tabToggler.addEventListener('click', function (e: Event) {
                     e.preventDefault();
 
+                    let parentEl = this.closest('.tabs')!.parentElement;
+
                     Tabs.clearClasses(that.options.tabTogglers);
-                    Tabs.clearClasses(document.querySelectorAll('.tab-pane'));
+                    Tabs.clearClasses(parentEl!.querySelectorAll('.tab-pane'));
 
                     this.classList.add('active');
 
-                    let matchedPane = document.getElementById(this.dataset.pane!);
+                    let matchedPane = parentEl!.querySelector('#' + this.dataset.pane!);
                     matchedPane!.classList.add('active');
                 })
             })

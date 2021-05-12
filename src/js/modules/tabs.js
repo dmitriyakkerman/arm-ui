@@ -54,10 +54,11 @@ const globals_1 = require("../globals/globals");
             that.options.tabTogglers.forEach(function (tabToggler) {
                 tabToggler.addEventListener('click', function (e) {
                     e.preventDefault();
+                    let parentEl = this.closest('.tabs').parentElement;
                     Tabs.clearClasses(that.options.tabTogglers);
-                    Tabs.clearClasses(document.querySelectorAll('.tab-pane'));
+                    Tabs.clearClasses(parentEl.querySelectorAll('.tab-pane'));
                     this.classList.add('active');
-                    let matchedPane = document.getElementById(this.dataset.pane);
+                    let matchedPane = parentEl.querySelector('#' + this.dataset.pane);
                     matchedPane.classList.add('active');
                 });
             });
