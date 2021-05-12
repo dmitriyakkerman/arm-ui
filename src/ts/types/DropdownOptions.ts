@@ -5,5 +5,6 @@ export type DropdownOptions = {
     content?: any,
     class?: any,
     onOpen?: Function,
-    onClose?: Function
+    onClose?: Function,
+    toggleIcon?: string
 }

@@ -49,8 +49,7 @@ import {PopupOptions} from "../types/PopupOptions";
             this.options.el.firstElementChild.classList.add('popup__container');
 
             if (this.options.closable) {
-                let popupClose = document.createElement('a');
-                popupClose.href = '#';
+                let popupClose = document.createElement('button');
                 popupClose.classList.add('popup__close-btn');
                 this.options.el.firstElementChild.appendChild(popupClose);
             }

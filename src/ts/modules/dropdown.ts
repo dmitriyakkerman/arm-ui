@@ -66,13 +66,14 @@ import {DropdownOptions} from "../types/DropdownOptions";
         protected init(): void {
             this.initDom();
             this.initEvents();
+            this.initToggleIcon();
         }
 
         private initDom(): void {
             let that = this;
 
             if (!that.options.togglers) {
-                Dropdown.$toggle = [that.$el.querySelector('a.toggler')] as Array<HTMLElement>;
+                Dropdown.$toggle = [that.$el.querySelector('button.toggler')] as Array<HTMLElement>;
             }
             else {
                 Dropdown.$toggle = [];
@@ -115,6 +116,15 @@ import {DropdownOptions} from "../types/DropdownOptions";
                 document.addEventListener('click', function (event:Event) {
                     that.eventBodyClick(event);
                 });
+            }
+        }
+
+        protected initToggleIcon(): void {
+            if(this.options.toggleIcon) {
+                let dropdownToggle = this.$el.querySelector('.dropdown__toggle');
+                let dropdownToggleIcon = document.createElement('div');
+                dropdownToggleIcon.innerHTML = this.options.toggleIcon;
+                dropdownToggle!.appendChild(dropdownToggleIcon);
             }
         }
 

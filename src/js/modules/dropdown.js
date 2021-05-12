@@ -55,11 +55,12 @@ const globals_1 = require("../globals/globals");
         init() {
             this.initDom();
             this.initEvents();
+            this.initToggleIcon();
         }
         initDom() {
             let that = this;
             if (!that.options.togglers) {
-                Dropdown.$toggle = [that.$el.querySelector('a.toggler')];
+                Dropdown.$toggle = [that.$el.querySelector('button.toggler')];
             }
             else {
                 Dropdown.$toggle = [];
@@ -93,6 +94,14 @@ const globals_1 = require("../globals/globals");
                 document.addEventListener('click', function (event) {
                     that.eventBodyClick(event);
                 });
+            }
+        }
+        initToggleIcon() {
+            if (this.options.toggleIcon) {
+                let dropdownToggle = this.$el.querySelector('.dropdown__toggle');
+                let dropdownToggleIcon = document.createElement('div');
+                dropdownToggleIcon.innerHTML = this.options.toggleIcon;
+                dropdownToggle.appendChild(dropdownToggleIcon);
             }
         }
         eventToggleClick(event) {
