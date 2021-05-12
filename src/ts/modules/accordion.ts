@@ -23,6 +23,7 @@ import {AccordionOptions} from '../types/AccordionOptions'
 
         protected onInit(): void {
             this.addClasses();
+            this.initIcons();
             this.toggleState();
         }
 
@@ -32,9 +33,24 @@ import {AccordionOptions} from '../types/AccordionOptions'
             })
         }
 
+        protected initIcons() {
+            let that = this;
+
+            if(this.options.togglerIcon) {
+                (this.options.el as NodeListOf<HTMLElement>).forEach(function (element: HTMLElement) {
+                    let accordionToggler = document.createElement('div');
+                    accordionToggler.classList.add('accordion-toggler__icon');
+                    accordionToggler.innerHTML = that.options.togglerIcon as string;
+                    element.firstElementChild!.appendChild(accordionToggler);
+                })
+            }
+        }
+
         protected addClasses(): void {
             (this.options.el as NodeListOf<HTMLElement>).forEach(function (element: HTMLElement) {
-                element.classList.add('accordion')
+                element.classList.add('accordion');
+                element.firstElementChild!.classList.add('accordion-toggler');
+                element.firstElementChild!.nextElementSibling!.classList.add('accordion-collapse');
             })
         }
 

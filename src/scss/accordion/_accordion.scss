@@ -1,22 +1,40 @@
 .accordion {
   overflow: hidden;
 
-  > div:first-child {
+  &-toggler {
+    position: relative;
     cursor: pointer;
 
-    + div {
-      opacity: 0;
-      height: 0;
-      visibility: hidden;
-      transition: max-height .5s, opacity .3s;
+    &__icon {
+      position: absolute;
+      transition: transform .5s;
+
+      > * {
+        width: 100%;
+        height: 100%;
+      }
     }
+  }
+
+  &-collapse {
+    opacity: 0;
+    height: 0;
+    visibility: hidden;
+    transition: max-height .5s, opacity .3s;
   }
 
   &.active {
 
-    > div:first-child {
+    .accordion {
 
-      + div {
+      &-toggler {
+
+        &__icon {
+          transform: rotate(180deg);
+        }
+      }
+
+      &-collapse {
         opacity: 1;
         visibility: visible;
         height: auto;

@@ -1,4 +1,5 @@
 export type AccordionOptions = {
     el?: NodeListOf<HTMLElement>,
-    openOneCloseAll?: Function
+    openOneCloseAll?: Function,
+    togglerIcon?: string
 }

@@ -20,6 +20,7 @@ const globals_1 = require("../globals/globals");
         }
         onInit() {
             this.addClasses();
+            this.initIcons();
             this.toggleState();
         }
         static closeAll(accordions) {
@@ -27,9 +28,22 @@ const globals_1 = require("../globals/globals");
                 accordion.classList.remove('active');
             });
         }
+        initIcons() {
+            let that = this;
+            if (this.options.togglerIcon) {
+                this.options.el.forEach(function (element) {
+                    let accordionToggler = document.createElement('div');
+                    accordionToggler.classList.add('accordion-toggler__icon');
+                    accordionToggler.innerHTML = that.options.togglerIcon;
+                    element.firstElementChild.appendChild(accordionToggler);
+                });
+            }
+        }
         addClasses() {
             this.options.el.forEach(function (element) {
                 element.classList.add('accordion');
+                element.firstElementChild.classList.add('accordion-toggler');
+                element.firstElementChild.nextElementSibling.classList.add('accordion-collapse');
             });
         }
         toggleState() {

@@ -76,7 +76,8 @@ Initialization:
         
     new ArmUI.Accordion({
         el: '.accordion',
-        openOneCloseAll: false
+        openOneCloseAll: false,
+        togglerIcon: '<svg></svg>'
     });
        
     or
