@@ -7,17 +7,7 @@ Example:
 Styles:  
     
     <link rel="stylesheet" href="./dist/css/arm-ui.min.css">
-
-Require:
-
-    const ArmUI = require('arm-ui');
-    
-With ES6 import:    
-    
-    import ArmUI from './dist/js/arm-ui.min.js'       
-    or    
-    import {Accordion, Dropdown, Popup, SelectExtended, Tabs} from './dist/js/arm-ui.min.js'
-    
+   
 Script:
 
     <script src="./dist/js/arm-ui.min.js"></script>
@@ -51,7 +41,7 @@ Markup:
          
     Select
         
-    <select class="my-select" data-placeholder="Выберите опцию">
+    <select class="my-select" data-placeholder="Choose option">
         <option value="1">1</option>
         <option value="2">2</option>
         <option value="3">3</option>
@@ -112,7 +102,7 @@ Initialization:
     new ArmUI.SelectExtended('.my-select', {
         containerClass: 'additional-class',
         multiSelect: false,
-        multiSelectedText: 'Выбрано',
+        multiSelectedText: 'Chosen',
         onChange: function() {}
     }); 
         
