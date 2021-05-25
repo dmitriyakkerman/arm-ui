@@ -79,7 +79,7 @@ import {PopupOptions} from "../types/PopupOptions";
                     e.preventDefault();
                     that.options.el.classList.add('active');
                     if(that.options.onOpen) {
-                        that.options.onOpen.call(that);
+                        that.options.onOpen(e);
                     }
                 })
             })

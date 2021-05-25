@@ -93,7 +93,9 @@ Initialization:
         closable: true,
         closeIcon: '<svg></svg>',
         onLoad: function() {},
-        onOpen: function() {},
+        onOpen: function(event) {
+           //event param is available for interaction
+        },
         onClose: function() {}
     });
     
