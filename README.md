@@ -54,7 +54,7 @@ Markup:
             <button data-pane="pane-1">Link 1</button>
         </li>
         <li>
-            <button href="" data-pane="pane-2">Link 2</button>
+            <button data-pane="pane-2">Link 2</button>
         </li>
     </ul>
     <div id="pane-1">Content 1</div>
@@ -111,7 +111,7 @@ Initialization:
     Tabs    
         
     new ArmUI.Tabs({
-        tabTogglers: '.tabs a',
+        tabTogglers: '.tabs button',
         onLoad: function() {}
     })
         
